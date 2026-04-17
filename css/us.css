@@ -84,6 +84,7 @@ body.dark .logo { filter: invert(1); }
 .section-title { 
   text-align: center; 
   margin-bottom: 40px; 
+  padding: 30px 12px;
 }
 
 .section-title h2 { font-size: 2.5rem; color: var(--text); }
@@ -109,8 +110,69 @@ body.dark .logo { filter: invert(1); }
 .banner-container { width: 100%; height: 100%; overflow: hidden; position: relative;}
 .banner-container img{width: 100%; height: 100%; object-fit: cover;}
 
+.ingredientes-title{text-align: center;padding: 40px 25px;}
+
+.ingredientes-contenedor{display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 45px; padding-top: 10px;}
+.ingredientes-cards{background-color: #383f3f; border-radius: 20px;}
+.ingredientes-text{font-family: Roboto, sans-serif; font-size: 1.0em; font-weight: bold; text-align: center;padding: 20px 12px; color: #dad6d6;}
+.ingredientes-text p{font-size: 0.9em;}
+.rositateamo{padding-top: 18px;}
+.ingredientes-cards img{width: 100%;}
+.ingredientes-cards:hover { 
+  transform: scale(1.05); 
+  z-index: 10;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.miniconteiner-empresas{display: grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center; align-items: center; gap: 8px; padding: 5px 10px;}
+.emmpresas-card img{width: 100%; height: 10vh;}
+
 @media (max-width: 768px) {
   .nav-container { flex-direction: column; padding: 15px 0; }
   .nav-list { margin-top: 15px; font-size: 0.9rem; }
   .contact-grid { grid-template-columns: 1fr; text-align: center; }
+}
+
+@media (max-width: 1024px) {
+  .ingredientes-contenedor {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 768px) {
+  .ingredientes-contenedor {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .bg {
+    height: 400px; 
+  }
+
+  .section {
+    padding: 40px 0; 
+  }
+
+  .section-title h2 {
+    font-size: 2rem; 
+  }
+  
+  .ingredientes-title {
+    padding: 20px 15px; 
+  }
+  
+  .nav-list {
+    flex-wrap: wrap; 
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .bg {
+    height: 300px; 
+  }
+  
+  .section-title h2 {
+    font-size: 1.75rem; 
+  }
 }
