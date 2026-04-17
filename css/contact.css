@@ -81,8 +81,6 @@ body.dark .logo { filter: invert(1); }
 
 .contact-info h2 { font-size: 2rem; margin-bottom: 20px; }
 .contact-list li { margin-bottom: 15px; color: var(--text-soft); }
-
-/* Formulario */
 .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .form-group { display: flex; flex-direction: column; }
 .full-width { grid-column: 1 / -1; }

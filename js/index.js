@@ -13,6 +13,10 @@ themeToggle.addEventListener("click", () => {
   localStorage.setItem("tema", darkModeActive ? "dark" : "light");
 });
 
+
+
+
+
 const slider = document.getElementById('slider');
 const slides = document.querySelectorAll('.slide');
 const prevBtn = document.getElementById('prevBtn');
