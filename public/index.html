@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palmas Street</title>
+  <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <img src="/media/media-logos/LogoPS.png" alt="Loogo de la tienda" class="logo">
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="#banner">Inicio</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#menu">Productos destacados</a></li>
+          <li><a href="web/us.html">Nosotros</a></li>
+          <li><a href="web/contact.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro"> </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="bg" id="banner">
+      <div class="banner-container">
+        <div class="banner-slider" id="slider">
+          <div class="slide" style="background-image: url('/media/media-banners/carrus_2.jpg');"></div>
+          <div class="slide" style="background-image: url('/media/media-banners/img5.avif');"></div>
+          <div class="slide" style="background-image: url('/media/media-banners/carrus_3.jpg');"></div>
+          <div class="slide" style="background-image: url('/media/media-banners/img2.jpg');"></div>
+        </div>
+        <button class="btn-nav prev" id="prevBtn">&#10094;</button>
+        <button class="btn-nav next" id="nextBtn">&#10095;</button>
+        <div class="dots-container" id="dots"></div>
+      </div>
+    </section>
+
+    <section class="section-mision-vision">
+      <div class="container-mision-vison">
+        <div class="section-title-mv">
+          <span>Quiénes Somos</span>
+          <h2>Descripción de la Empresa</h2>
+        </div>
+        
+        <div class="contact-grid">
+          <div class="text">
+            <p>Palmas Street es una tienda de ropa urbana nacida en Lima, enfocada en la moda joven. Nuestro catálogo ofrece desde prendas básicas e informales como polos y zapatillas, hasta artículos premium como chaquetas de cuero y perfumes. Nos mueve la cultura de la calle y la necesidad de ofrecer algo diferente, mezclando la comodidad que pide el día a día con el estilo que te hace destacar en cualquier lugar. No solo vendemos ropa, sino una forma de sentir la ciudad: auténtica, movida y sin etiquetas. Cada una de nuestras piezas está seleccionada para quienes buscan calidad y un diseño que aguante su ritmo, asegurando que siempre tengas ese "look" listo para salir, ya sea algo tranqui o algo más producido.</p>
+          </div>
+          <img src="/media/media-img/descripcion.jpg" alt="Descripción de la empresa" />
+        </div>
+
+        <div class="section-title-mv">
+          <span>Nuestro Norte</span>
+          <h2>Misión y Visión</h2>
+        </div>
+
+        <div class="contact-grid" style="align-items: center; margin-bottom: 4rem;">
+          <img src="/media/media-img/m&v.jpg" alt="Misión y Visión" />
+          <div class="text">
+            <h3>Misión</h3>
+            <p style="margin-bottom: 2rem;">Brindar a nuestros clientes prendas de alta calidad que representen frescura, atrevimiento y moda urbana, garantizando comodidad y estilo en cada pieza.</p>
+            <h3>Visión</h3>
+            <p>Convertirnos en la marca líder de ropa streetwear en el país, expandiendo nuestro catálogo y manteniendo siempre nuestra esencia y conexión con la cultura joven.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="nuestros-productos">
+      <div class="prods">
+        <div class="title">
+          <h1 id="catalogo">Catálogo</h1>
+        </div>
+        <div class="products-grid">
+          <article class="product-card">
+            <img src="/media/media-sections/logo-hombre.webp" alt="Hombre">
+            <h3>Sección Hombres</h3>
+          </article>
+          <article class="product-card">
+            <img src="/media/media-sections/logo-dama.jpg" alt="Dama">
+            <h3>Sección Damas</h3>
+          </article>
+          <article class="product-card">
+            <img src="/media/media-sections/accesorio.webp" alt="Joyas">
+            <h3>Accesorios</h3> 
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="video" class="video-referencial">
+      <div class="vid-container">
+        <video src="/media/media-vid/WhatsApp Video 2026-04-13 at 18.30.50.mp4" autoplay loop controls muted></video>
+      </div>
+    </section>
+
+    <section id="menu" class="products section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Productos Destacados</h2>
+          <p>Renueva con moda directamente desde la base de datos.</p>
+        </div>
+        
+        
+        <div class="products-grid" id="contenedor-productos">
+            <p style="text-align: center; width: 100%; color: #666;">Cargando colección de Palmas Street...</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="mapa-ubicacion section" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-title">
+          <span>Encuéntranos</span>
+          <h2>Nuestra Tienda</h2>
+        </div>
+        <div class="map-wrapper">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.6157332471626!2d-76.9294290251721!3d-12.206529288042896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b9cb0ceb347f%3A0x2878f2892e2d9aa4!2sPalmasStreet!5e0!3m2!1ses!2spe!4v1776223186646!5m2!1ses!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Palmas Street</h3>
+        <p>Frescura, atrevimiento y moda.</p>
+      </div>
+      <div>
+        <h4>Redes sociales</h4>
+        <ul class="footer-links">
+          <li><a href="https://www.facebook.com/profile.php?id=100075787660504" target="_blank">Facebook</a></li>
+          <li><a href="https://www.instagram.com/palmas.street_/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@palmas.street_" target="_blank">TikTok</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>+51 999 999 999</p>
+        <p>contacto@palmastreet.com</p>
+      </div>
+      <div>
+        <h4>Empresas Afiliadas</h4>
+        <div class="miniconteiner-empresas">
+          <div class="emmpresas-card">
+            <a href="https://pe.hm.com/"><img src="/media/media-logos/hm-symbol-logo.webp"></a>
+          </div>
+          <div class="emmpresas-card">
+            <a href="https://pe.tommy.com/"><img src="/media/media-logos/tmLogo.webp"></a>
+          </div>
+          <div class="emmpresas-card">
+            <a href="https://www.gap.com.pe/"><img src="media/media-logos/gapLogo.webp"></a>
+          </div>
+          <div class="emmpresas-card">
+            <a href="https://www.tiendasel.com/"><img src="media/media-logos/elLogo.webp"></a>
+          </div>
+          <div class="emmpresas-card">
+            <a href="https://www.luvaro.com/"><img src="media/media-logos/luvaroLogo.webp"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Palmas Street. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="/js/index.js"></script>
+</body>
+</html>
