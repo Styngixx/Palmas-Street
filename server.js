@@ -73,12 +73,13 @@ app.post('/enviar-contacto', async (req, res) => {
 });
 
 /**
- * GET /api/productos
- * Devuelve todos los productos de la base de datos en formato JSON
+ * GET /api/main_products
+ * Devuelve todos los productos principales de la base de datos en formato JSON
  */
-app.get('/api/productos', async (req, res) => {
+// --- RUTAS DE LÓGICA (BACKEND) ---
+app.get('/api/main_products', async (req, res) => {
     try {
-        const resultado = await pool.query('SELECT * FROM productos ORDER BY created_at DESC');
+        const resultado = await pool.query('SELECT * FROM main_products ORDER BY created_at DESC');
         res.json(resultado.rows);
     } catch (err) {
         console.error("❌ Error al obtener productos:", err);
@@ -88,5 +89,5 @@ app.get('/api/productos', async (req, res) => {
 
 // --- INICIO DEL SERVIDOR ---
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor de Palmas Street corriendo en http://localhost:${PORT}`);
+    console.log(`🚀 Servidor ACTUALIZADO corriendo en http://localhost:${PORT}`);
 });

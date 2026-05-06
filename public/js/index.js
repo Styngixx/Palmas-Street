@@ -90,7 +90,7 @@ async function cargarProductos() {
 
   try {
       // Le pedimos a nuestro servidor Node.js que nos traiga la ropa de Supabase
-      const respuesta = await fetch('/api/productos');
+      const respuesta = await fetch('/api/main_products');
       
       if (respuesta.ok) {
           const productos = await respuesta.json();
