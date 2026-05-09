@@ -91,3 +91,5 @@ app.get('/api/main_products', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`🚀 Servidor ACTUALIZADO corriendo en http://localhost:${PORT}`);
 });
+
+
