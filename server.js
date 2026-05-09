@@ -1,4 +1,3 @@
-console.log("EL SERVIDOR DE PALMAS STREET ESTÁ VIVO");
 // Importamos las librerías
 require('dotenv').config(); // Para leer el archivo .env
 const express = require('express');
