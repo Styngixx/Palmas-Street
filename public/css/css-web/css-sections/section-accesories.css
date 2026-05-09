@@ -1,0 +1,26 @@
+body{
+    background-color: blanchedalmond;
+    font-family: Roboto;
+    color: black;
+}
+
+.card{
+    margin: 0;
+    /*width: 20rem;  */
+    width: 80%;
+    padding: 55px 20px;
+    align-content: center;
+    border-radius: 10vh;
+    background-color: aquamarine;
+}
+
+.cartas-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+    gap: 20px;
+    padding-left: 70px;
+    padding-right: 70px;
+    align-items: center;
+    justify-content: center;
+    
+}

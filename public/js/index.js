@@ -77,6 +77,62 @@ function resetTimer() {
   timer = setInterval(moveSlide, intervalTime);
 }
 
+// =========================================================
+// LÓGICA DEL CATÁLOGO DINÁMICO (CONEXIÓN A LA BASE DE DATOS)
+// =========================================================
+
+async function cargarProductos() {
+  // Buscamos el div vacío que dejamos en el HTML
+  const contenedor = document.getElementById('contenedor-productos');
+  
+  // Si no estamos en el index.html (por ejemplo, en la página de Nosotros), no hace nada
+  if (!contenedor) return;
+
+  try {
+      // Le pedimos a nuestro servidor Node.js que nos traiga la ropa de Supabase
+      const respuesta = await fetch('/api/main_products');
+      
+      if (respuesta.ok) {
+          const productos = await respuesta.json();
+          
+          // Borramos el texto de "Cargando colección..."
+          contenedor.innerHTML = '';
+
+          // Si la base de datos está vacía
+          if (productos.length === 0) {
+              contenedor.innerHTML = '<p style="text-align:center; width:100%;">No hay productos disponibles por ahora.</p>';
+              return;
+          }
+
+          // Si hay productos, los dibujamos uno por uno
+          productos.forEach(producto => {
+              const tarjetaHTML = `
+                  <article class="product-card">
+                      <img src="${producto.imagen_url}" alt="${producto.nombre}" loading="lazy" />
+                      <div class="product-info">
+                          <h3>${producto.nombre}</h3>
+                          <p>${producto.descripcion}</p>
+                          <p style="font-weight: bold; margin-top: 10px; color: #333;">S/ ${producto.precio}</p>
+                      </div>
+                  </article>
+              `;
+              // Inyectamos el HTML de la tarjeta dentro del contenedor
+              contenedor.innerHTML += tarjetaHTML;
+          });
+      } else {
+          contenedor.innerHTML = '<p style="text-align:center; color:red; width:100%;">Error al cargar el catálogo.</p>';
+      }
+  } catch (error) {
+      console.error('Error de red al cargar productos:', error);
+      contenedor.innerHTML = '<p style="text-align:center; color:red; width:100%;">No se pudo conectar con el servidor.</p>';
+  }
+}
+
+// Escuchamos el evento para que la función arranque apenas cargue la página
+document.addEventListener('DOMContentLoaded', () => {
+  cargarProductos();
+});
+
 /* 
 const botonesComprar = document.querySelectorAll('.btn-comprar');
 const resumenCarrito = document.getElementById('carrito-resumen');
