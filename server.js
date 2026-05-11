@@ -1,5 +1,6 @@
 // Importamos las librerías
-require('dotenv').config(); // Para leer el archivo .env
+//require('dotenv').config(); // Para leer el archivo .env
+require('dotenv').config({ override: true });
 const express = require('express');
 const path = require('path');
 const { Pool } = require('pg');
@@ -91,3 +92,5 @@ app.get('/api/main_products', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`🚀 Servidor ACTUALIZADO corriendo en http://localhost:${PORT}`);
 });
+
+

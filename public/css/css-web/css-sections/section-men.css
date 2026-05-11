@@ -1,0 +1,30 @@
+/* =========================================
+   ESTILOS PERSONALIZADOS SOBRE BOOTSTRAP
+   ========================================= */
+
+/* Efecto al enfocar la barra de búsqueda */
+.custom-search:focus {
+    border-color: #1a2b4c !important;
+    box-shadow: 0 4px 12px rgba(26, 43, 76, 0.15) !important;
+}
+
+/* Transición suave para toda la tarjeta */
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Efecto de elevación al pasar el mouse por la tarjeta */
+.hover-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12) !important;
+}
+
+/* Transición suave para la imagen */
+.hover-card img {
+    transition: transform 0.5s ease;
+}
+
+/* Efecto de zoom en la imagen al pasar el mouse */
+.hover-card:hover img {
+    transform: scale(1.05);
+}
