@@ -33,6 +33,9 @@ app.use(express.json());
 // Servir archivos estáticos (CSS, JS, Imágenes) desde la carpeta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Servir Bootstrap desde node_modules
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
+
 // --- RUTAS DE NAVEGACIÓN ---
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
