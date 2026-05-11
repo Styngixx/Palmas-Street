@@ -113,11 +113,17 @@ async function cargarProductos() {
                           <h3>${producto.nombre}</h3>
                           <p>${producto.descripcion}</p>
                           <p style="font-weight: bold; margin-top: 10px; color: #333;">S/ ${producto.precio}</p>
+                          <button class="btn-add-cart" data-id="${producto.id}" data-name="${producto.nombre}" data-price="${producto.precio}" data-image="${producto.imagen_url}">Agregar al Carrito</button>
                       </div>
                   </article>
               `;
               // Inyectamos el HTML de la tarjeta dentro del contenedor
               contenedor.innerHTML += tarjetaHTML;
+          });
+
+          // Agregar event listeners a los botones de agregar al carrito
+          document.querySelectorAll('.btn-add-cart').forEach(button => {
+              button.addEventListener('click', addToCart);
           });
       } else {
           contenedor.innerHTML = '<p style="text-align:center; color:red; width:100%;">Error al cargar el catálogo.</p>';
@@ -126,6 +132,26 @@ async function cargarProductos() {
       console.error('Error de red al cargar productos:', error);
       contenedor.innerHTML = '<p style="text-align:center; color:red; width:100%;">No se pudo conectar con el servidor.</p>';
   }
+}
+
+function addToCart(event) {
+  const button = event.target;
+  const id = button.getAttribute('data-id');
+  const name = button.getAttribute('data-name');
+  const price = parseFloat(button.getAttribute('data-price'));
+  const image = button.getAttribute('data-image');
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const existingItem = cart.find(item => item.id === id);
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ id, name, price, image, quantity: 1 });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${name} agregado al carrito!`);
 }
 
 // Escuchamos el evento para que la función arranque apenas cargue la página
