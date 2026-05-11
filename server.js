@@ -1,5 +1,6 @@
 // Importamos las librerías
-require('dotenv').config(); // Para leer el archivo .env
+//require('dotenv').config(); // Para leer el archivo .env
+require('dotenv').config({ override: true });
 const express = require('express');
 const path = require('path');
 const { Pool } = require('pg');
