@@ -1,73 +1,73 @@
-// carrito.js - Funcionalidad del carrito de compras
-
+// Esperar a que cargue el HTML del carrito
 document.addEventListener('DOMContentLoaded', () => {
-  displayCart();
+    renderizarCarrito();
 });
 
-function displayCart() {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  const cartContainer = document.getElementById('cart-items');
-  const cartSummary = document.getElementById('cart-summary');
-  const emptyCart = document.getElementById('empty-cart');
+function renderizarCarrito() {
+    // 1. Obtener los productos guardados en LocalStorage
+    const carrito = JSON.parse(localStorage.getItem('carrito_palmas')) || [];
+    const contenedor = document.getElementById('lista-carrito'); // Asegúrate de tener este ID en carrito.html
+    const totalElemento = document.getElementById('total-carrito');
+    
+    if (!contenedor) return;
 
-  if (cartItems.length === 0) {
-    cartContainer.innerHTML = '';
-    cartSummary.style.display = 'none';
-    emptyCart.style.display = 'block';
-    return;
-  }
+    // Si el carrito está vacío
+    if (carrito.length === 0) {
+        contenedor.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:20px; color:white;">Tu carrito está vacío.</td></tr>';
+        if (totalElemento) totalElemento.innerText = '0.00';
+        return;
+    }
 
-  emptyCart.style.display = 'none';
-  cartSummary.style.display = 'block';
+    // 2. Limpiar el contenedor antes de dibujar
+    contenedor.innerHTML = '';
+    let totalGeneral = 0;
 
-  let subtotal = 0;
-  cartContainer.innerHTML = cartItems.map((item, index) => {
-    const itemTotal = item.price * item.quantity;
-    subtotal += itemTotal;
-    return `
-      <div class="cart-item">
-        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-        <div class="cart-item-details">
-          <h3>${item.name}</h3>
-          <p>Precio: S/ ${item.price}</p>
-          <div class="quantity-controls">
-            <button onclick="updateQuantity(${index}, -1)">-</button>
-            <span>${item.quantity}</span>
-            <button onclick="updateQuantity(${index}, 1)">+</button>
-          </div>
-          <p>Total: S/ ${itemTotal.toFixed(2)}</p>
-          <button onclick="removeItem(${index})">Eliminar</button>
-        </div>
-      </div>
-    `;
-  }).join('');
+    // 3. Recorrer el carrito y crear las filas
+    carrito.forEach((producto, indice) => {
+        const subtotal = producto.precio * producto.cantidad;
+        totalGeneral += subtotal;
 
-  const shipping = subtotal > 100 ? 0 : 10; // Envío gratis si subtotal > 100
-  const total = subtotal + shipping;
+        const fila = document.createElement('tr');
+        fila.style.borderBottom = "1px solid #444";
+        fila.style.color = "white";
 
-  document.getElementById('subtotal').textContent = subtotal.toFixed(2);
-  document.getElementById('shipping').textContent = shipping.toFixed(2);
-  document.getElementById('total').textContent = total.toFixed(2);
+        fila.innerHTML = `
+            <td style="padding:15px;"><img src="${producto.imagen}" width="50" style="border-radius:5px;"></td>
+            <td style="padding:15px;">${producto.nombre}</td>
+            <td style="padding:15px;">S/ ${producto.precio.toFixed(2)}</td>
+            <td style="padding:15px;">${producto.cantidad}</td>
+            <td style="padding:15px;">S/ ${subtotal.toFixed(2)}</td>
+            <td style="padding:15px;">
+                <button onclick="eliminarDelCarrito(${indice})" style="background:red; color:white; border:none; padding:5px 10px; cursor:pointer; border-radius:4px;">
+                    Eliminar
+                </button>
+            </td>
+        `;
+        contenedor.appendChild(fila);
+    });
+
+    // 4. Actualizar el Total General
+    if (totalElemento) {
+        totalElemento.innerText = totalGeneral.toFixed(2);
+    }
 }
 
-function updateQuantity(index, change) {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  cartItems[index].quantity += change;
-  if (cartItems[index].quantity <= 0) {
-    cartItems.splice(index, 1);
-  }
-  localStorage.setItem('cart', JSON.stringify(cartItems));
-  displayCart();
-}
+// Función para eliminar un producto
+window.eliminarDelCarrito = function(indice) {
+    let carrito = JSON.parse(localStorage.getItem('carrito_palmas')) || [];
+    
+    // Eliminar el producto del array según su posición
+    carrito.splice(indice, 1);
+    
+    // Guardar el nuevo carrito y volver a dibujar
+    localStorage.setItem('carrito_palmas', JSON.stringify(carrito));
+    renderizarCarrito();
+};
 
-function removeItem(index) {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  cartItems.splice(index, 1);
-  localStorage.setItem('cart', JSON.stringify(cartItems));
-  displayCart();
-}
-
-document.getElementById('checkout-btn').addEventListener('click', () => {
-  // Lógica para proceder al pago
-  alert('Funcionalidad de pago no implementada aún.');
-});
+// Función para vaciar todo el carrito
+window.vaciarCarrito = function() {
+    if(confirm("¿Estás seguro de que quieres vaciar todo el carrito?")) {
+        localStorage.removeItem('carrito_palmas');
+        renderizarCarrito();
+    }
+};

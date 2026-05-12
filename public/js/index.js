@@ -79,79 +79,82 @@ function resetTimer() {
 
 // =========================================================
 // LÓGICA DEL CATÁLOGO DINÁMICO (CONEXIÓN A LA BASE DE DATOS)
+// Nota: La carga de productos ahora se maneja en dinamica.js
+// para soportar búsqueda dinámica
 // =========================================================
 
-async function cargarProductos() {
-  // Buscamos el div vacío que dejamos en el HTML
-  const contenedor = document.getElementById('contenedor-productos');
-  
-  // Si no estamos en el index.html (por ejemplo, en la página de Nosotros), no hace nada
-  if (!contenedor) return;
+aasync function cargarProductos() {
+    const contenedor = document.getElementById('contenedor-productos');
+    if (!contenedor) return;
 
-  try {
-      // Le pedimos a nuestro servidor Node.js que nos traiga la ropa de Supabase
-      const respuesta = await fetch('/api/main_products');
-      
-      if (respuesta.ok) {
-          const productos = await respuesta.json();
-          
-          // Borramos el texto de "Cargando colección..."
-          contenedor.innerHTML = '';
+    try {
+        const respuesta = await fetch('/api/main_products');
+        if (!respuesta.ok) {
+            throw new Error('Error al conectar con la API');
+        }
 
-          // Si la base de datos está vacía
-          if (productos.length === 0) {
-              contenedor.innerHTML = '<p style="text-align:center; width:100%;">No hay productos disponibles por ahora.</p>';
-              return;
-          }
+        const productos = await respuesta.json();
+        contenedor.innerHTML = ''; // Borra el "Cargando..."
 
-          // Si hay productos, los dibujamos uno por uno
-          productos.forEach(producto => {
-              const tarjetaHTML = `
-                  <article class="product-card">
-                      <img src="${producto.imagen_url}" alt="${producto.nombre}" loading="lazy" />
-                      <div class="product-info">
-                          <h3>${producto.nombre}</h3>
-                          <p>${producto.descripcion}</p>
-                          <p style="font-weight: bold; margin-top: 10px; color: #333;">S/ ${producto.precio}</p>
-                          <button class="btn-add-cart" data-id="${producto.id}" data-name="${producto.nombre}" data-price="${producto.precio}" data-image="${producto.imagen_url}">Agregar al Carrito</button>
-                      </div>
-                  </article>
-              `;
-              // Inyectamos el HTML de la tarjeta dentro del contenedor
-              contenedor.innerHTML += tarjetaHTML;
-          });
+        if (productos.length === 0) {
+            contenedor.innerHTML = '<p style="text-align:center; width:100%; color: white;">No hay productos disponibles.</p>';
+            return;
+        }
 
-          // Agregar event listeners a los botones de agregar al carrito
-          document.querySelectorAll('.btn-add-cart').forEach(button => {
-              button.addEventListener('click', addToCart);
-          });
-      } else {
-          contenedor.innerHTML = '<p style="text-align:center; color:red; width:100%;">Error al cargar el catálogo.</p>';
-      }
-  } catch (error) {
-      console.error('Error de red al cargar productos:', error);
-      contenedor.innerHTML = '<p style="text-align:center; color:red; width:100%;">No se pudo conectar con el servidor.</p>';
-  }
-}
+        productos.forEach(producto => {
+            const article = document.createElement('article');
+            article.classList.add('product-card');
 
-function addToCart(event) {
-  const button = event.target;
-  const id = button.getAttribute('data-id');
-  const name = button.getAttribute('data-name');
-  const price = parseFloat(button.getAttribute('data-price'));
-  const image = button.getAttribute('data-image');
+            // --- AQUÍ CONSTRUIMOS EL PRODUCTO CON EL BOTÓN ---
+            article.innerHTML = `
+                <img src="${producto.imagen_url}" alt="${producto.nombre}" loading="lazy" style="width: 100%; display: block;" />
+                <div class="product-info" style="padding: 20px; background: #1a1a1a; text-align: center;">
+                    <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.2rem;">${producto.nombre}</h3>
+                    <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">${producto.descripcion || ''}</p>
+                    <p style="color: #fff; font-weight: bold; margin-bottom: 15px;">S/ ${producto.precio}</p>
+                    
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <button class="btn-restar" style="background: #333; color: white; border: 1px solid #444; padding: 5px 12px; cursor: pointer; border-radius: 4px;">-</button>
+                        <span class="cantidad-valor" style="color: white; font-weight: bold; font-size: 1.1rem;">1</span>
+                        <button class="btn-sumar" style="background: #333; color: white; border: 1px solid #444; padding: 5px 12px; cursor: pointer; border-radius: 4px;">+</button>
+                    </div>
 
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    <button class="btn-agregar" style="background: white !important; color: black !important; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px; text-transform: uppercase; display: block !important;">
+                        Agregar al carrito
+                    </button>
+                </div>
+            `;
 
-  const existingItem = cart.find(item => item.id === id);
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cart.push({ id, name, price, image, quantity: 1 });
-  }
+            // Lógica de botones internos
+            const btnRestar = article.querySelector('.btn-restar');
+            const btnSumar = article.querySelector('.btn-sumar');
+            const cantidadTexto = article.querySelector('.cantidad-valor');
+            const btnAgregar = article.querySelector('.btn-agregar');
 
-  localStorage.setItem('cart', JSON.stringify(cart));
-  alert(`${name} agregado al carrito!`);
+            let cantidad = 1;
+
+            btnSumar.onclick = () => {
+                cantidad++;
+                cantidadTexto.innerText = cantidad;
+            };
+
+            btnRestar.onclick = () => {
+                if (cantidad > 1) {
+                    cantidad--;
+                    cantidadTexto.innerText = cantidad;
+                }
+            };
+
+            btnAgregar.onclick = () => {
+                alert(`¡Agregado! ${cantidad} unidades de ${producto.nombre}`);
+            };
+
+            contenedor.appendChild(article);
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        contenedor.innerHTML = '<p style="text-align:center; color:red;">Error de carga.</p>';
+    }
 }
 
 // Escuchamos el evento para que la función arranque apenas cargue la página

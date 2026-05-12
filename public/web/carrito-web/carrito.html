@@ -1,98 +1,249 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrito de Compras - Palmas Street</title>
-  <link rel="stylesheet" href="../../css/index.css">
-  <link rel="stylesheet" href="../../css/css-web/carrito.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - Palmas Street</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <style>
+        body {
+            background-color: #000; /* Fondo oscuro como tu tienda */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+
+        .carrito-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0a0a0a;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .btn-regresar {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-regresar:hover {
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tabla-responsiva {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        thead {
+            background: #1a1a1a;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            color: #888;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #222;
+            vertical-align: middle;
+        }
+
+        .img-carrito {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+            background: #222;
+        }
+
+        .carrito-total-seccion {
+            margin-top: 40px;
+            text-align: right;
+            padding: 20px;
+            background: #111;
+            border-radius: 8px;
+        }
+
+        .total-monto {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff00; /* Verde neón para el precio */
+        }
+
+        .acciones-finales {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-vaciar {
+            background: transparent;
+            color: #ff4444;
+            border: 1px solid #ff4444;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-pagar {
+            background: white;
+            color: black;
+            border: none;
+            padding: 12px 40px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-pagar:hover {
+            background: #00ff00;
+        }
+
+        .btn-eliminar {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .btn-eliminar:hover {
+            color: #ff4444;
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <div class="container nav-container">
-      <img src="../../media/media-logos/LogoPS.png" alt="Logo de la tienda" class="logo">
-      <nav class="nav">
-        <ul class="nav-list">
-          <li><a href="../../index.html">Inicio</a></li>
-          <li><a href="#catalogo">Catálogo</a></li>
-          <li><a href="#menu">Productos destacados</a></li>
-          <li><a href="../us.html">Nosotros</a></li>
-          <li><a href="../contact.html">Contacto</a></li>
-        </ul>
-      </nav>
-      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro"></button>
-    </div>
-  </header>
 
-  <main>
-    <section class="section">
-      <div class="container">
-        <h1>Tu Carrito de Compras</h1>
-        <div id="cart-container">
-          <div id="cart-items">
-            <!-- Los items del carrito se cargarán aquí dinámicamente -->
-          </div>
-          <div id="cart-summary">
-            <h2>Resumen del Pedido</h2>
-            <p>Subtotal: S/ <span id="subtotal">0.00</span></p>
-            <p>Envío: S/ <span id="shipping">0.00</span></p>
-            <p><strong>Total: S/ <span id="total">0.00</span></strong></p>
-            <button id="checkout-btn" class="btn">Proceder al Pago</button>
-          </div>
-        </div>
-        <div id="empty-cart" style="display: none;">
-          <p>Tu carrito está vacío. <a href="../../index.html">Volver a la tienda</a></p>
-        </div>
-      </div>
-    </section>
-  </main>
+    <div class="carrito-container">
+        <a href="/" class="btn-regresar">← SEGUIR COMPRANDO</a>
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Palmas Street</h3>
-        <p>Frescura, atrevimiento y moda.</p>
-      </div>
-      <div>
-        <h4>Redes sociales</h4>
-        <ul class="footer-links">
-          <li><a href="https://www.facebook.com/profile.php?id=100075787660504" target="_blank">Facebook</a></li>
-          <li><a href="https://www.instagram.com/palmas.street_/" target="_blank">Instagram</a></li>
-          <li><a href="https://www.tiktok.com/@palmas.street_" target="_blank">TikTok</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contacto</h4>
-        <p>+51 999 999 999</p>
-        <p>contacto@palmastreet.com</p>
-      </div>
-      <div>
-        <h4>Empresas Afiliadas</h4>
-        <div class="miniconteiner-empresas">
-          <div class="emmpresas-card">
-            <a href="https://pe.hm.com/"><img src="../../media/media-logos/hm-symbol-logo.webp" alt="H&M"></a>
-          </div>
-          <div class="emmpresas-card">
-            <a href="https://pe.tommy.com/"><img src="../../media/media-logos/tmLogo.webp" alt="Tommy Hilfiger"></a>
-          </div>
-          <div class="emmpresas-card">
-            <a href="https://www.gap.com.pe/"><img src="../../media/media-logos/gapLogo.webp" alt="Gap"></a>
-          </div>
-          <div class="emmpresas-card">
-            <a href="https://www.tiendasel.com/"><img src="../../media/media-logos/elLogo.webp" alt="El Comercio"></a>
-          </div>
-          <div class="emmpresas-card">
-            <a href="https://www.luvaro.com/"><img src="../../media/media-logos/luvaroLogo.webp" alt="Luvaro"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Palmas Street. Todos los derechos reservados.</p>
-    </div>
-  </footer>
+        <h1>🛒 Tu Carrito</h1>
 
-  <script src="../../js/index.js"></script>
-  <script src="carrito.js"></script> <!-- Asumiendo que crearás un JS específico para el carrito -->
+        <div class="tabla-responsiva">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cant.</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="lista-carrito">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="carrito-total-seccion">
+            <p style="margin:0; color:#888;">Total a pagar:</p>
+            <div class="total-monto">S/ <span id="total-carrito">0.00</span></div>
+            
+            <div class="acciones-finales">
+                <button class="btn-vaciar" onclick="vaciarCarrito()">VACIAR CARRITO</button>
+                <button class="btn-pagar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función principal para cargar y mostrar el carrito
+        function renderizarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito_palmas')) || [];
+            const contenedor = document.getElementById('lista-carrito');
+            const totalElemento = document.getElementById('total-carrito');
+            
+            if (carrito.length === 0) {
+                contenedor.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align:center; padding:50px;">
+                            <p style="color:#666; font-size:1.2rem;">Tu carrito está vacío</p>
+                            <a href="/" style="color:white; text-decoration:underline;">Ir a ver la colección</a>
+                        </td>
+                    </tr>`;
+                totalElemento.innerText = '0.00';
+                return;
+            }
+
+            contenedor.innerHTML = '';
+            let totalGeneral = 0;
+
+            carrito.forEach((producto, indice) => {
+                const subtotal = producto.precio * producto.cantidad;
+                totalGeneral += subtotal;
+
+                contenedor.innerHTML += `
+                    <tr>
+                        <td><img src="${producto.imagen}" class="img-carrito"></td>
+                        <td style="font-weight:bold;">${producto.nombre}</td>
+                        <td>S/ ${producto.precio.toFixed(2)}</td>
+                        <td>${producto.cantidad}</td>
+                        <td style="font-weight:bold;">S/ ${subtotal.toFixed(2)}</td>
+                        <td>
+                            <button class="btn-eliminar" onclick="eliminar(${indice})">✕</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            totalElemento.innerText = totalGeneral.toFixed(2);
+        }
+
+        // Función para eliminar un producto específico
+        function eliminar(index) {
+            let carrito = JSON.parse(localStorage.getItem('carrito_palmas')) || [];
+            carrito.splice(index, 1);
+            localStorage.setItem('carrito_palmas', JSON.stringify(carrito));
+            renderizarCarrito();
+        }
+
+        // Función para limpiar todo el carrito
+        function vaciarCarrito() {
+            if(confirm("¿Estás seguro de que quieres vaciar todo el carrito?")) {
+                localStorage.removeItem('carrito_palmas');
+                renderizarCarrito();
+            }
+        }
+
+        // Simulación de pago
+        function finalizarCompra() {
+            const carrito = JSON.parse(localStorage.getItem('carrito_palmas')) || [];
+            if(carrito.length === 0) return alert("El carrito está vacío.");
+            
+            alert("🚀 Redirigiendo a la pasarela de pago segura...");
+        }
+
+        // Cargar al iniciar la página
+        document.addEventListener('DOMContentLoaded', renderizarCarrito);
+    </script>
+
 </body>
 </html>

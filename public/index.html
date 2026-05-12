@@ -17,9 +17,12 @@
           <li><a href="#menu">Productos destacados</a></li>
           <li><a href="web/us.html">Nosotros</a></li>
           <li><a href="web/contact.html">Contacto</a></li>
-          <li><a href="web/carrito-web/carrito.html">Carrito</a></li>
+
         </ul>
       </nav>
+      <a href="/web/carrito-web/carrito.html" class="carrito-btn" target="_blank">
+  🛒 <span id="contador-carrito">0</span>
+</a>
       <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro"> </button>
     </div>
   </header>
@@ -111,6 +114,14 @@
           <p>Renueva con moda directamente desde la base de datos.</p>
         </div>
         
+        <div class="search-box" style="margin-bottom: 30px; text-align: center;">
+          <input 
+            type="text" 
+            id="buscador-productos" 
+            placeholder="Busca tu producto..." 
+            style="padding: 12px 20px; width: 100%; max-width: 400px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; transition: all 0.3s ease;"
+          />
+        </div>
         
         <div class="products-grid" id="contenedor-productos">
             <p style="text-align: center; width: 100%; color: #666;">Cargando colección de Palmas Street...</p>
@@ -179,5 +190,6 @@
   </footer>
 
   <script src="/js/index.js"></script>
+  <script src="/js/js-search/dinamica.js"></script>
 </body>
 </html>
