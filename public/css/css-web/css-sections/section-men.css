@@ -1,6 +1,61 @@
-/* =========================================
-   ESTILOS PERSONALIZADOS SOBRE BOOTSTRAP
-   ========================================= */
+/* ==========================================
+   🌙 MODO OSCURO (DARK MODE)
+   ========================================== */
+
+/* Header oscuro */
+body.dark .header {
+  background-color: #212529 !important;
+  border-bottom: 1px solid #373b3e !important;
+}
+
+/* Enlaces del Header en modo oscuro */
+body.dark .nav-list a {
+  color: #f8f9fa !important;
+}
+
+/* Títulos y textos custom */
+body.dark .section-title, 
+body.dark .product-title {
+  color: #f8f9fa;
+}
+
+/* Tarjetas (Cards) */
+body.dark .hover-card {
+  background-color: #2b3035 !important;
+  border: 1px solid #495057 !important;
+}
+
+body.dark .card-img-wrapper {
+  background-color: #212529;
+}
+
+/* Buscador oscuro */
+body.dark .search-wrapper input {
+  background-color: #2b3035 !important;
+  color: white !important;
+  border-color: #495057 !important;
+}
+
+body.dark .search-wrapper .search-icon {
+  color: #adb5bd !important;
+}
+
+/* Botones en modo oscuro */
+body.dark .btn-dark {
+  background-color: #f8f9fa !important;
+  color: #212529 !important;
+  border-color: #f8f9fa !important;
+}
+
+body.dark .btn-dark:hover {
+  background-color: #e9ecef !important;
+}
+
+/* Footer (si lo tienes con fondo claro) */
+body.dark .footer {
+  background-color: #1a1d20 !important;
+  color: #dee2e6 !important;
+}
 
 /* Efecto al enfocar la barra de búsqueda */
 .custom-search:focus {
@@ -28,3 +83,75 @@
 .hover-card:hover img {
     transform: scale(1.05);
 }
+
+/* Espaciado del header fijo */
+.section-main {
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+  
+  /* Colores corporativos */
+  .section-title, .product-title {
+    color: #1a2b4c;
+  }
+  
+  /* Contenedor del Buscador (con ícono) */
+  .search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 1.2rem;
+  }
+  
+  .custom-search {
+    padding-left: 55px !important; 
+    padding-right: 25px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    font-size: 1rem;
+  }
+  
+  /* Efectos de la Tarjeta (Card) */
+  .hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .hover-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Contenedor de la Imagen */
+  .card-img-wrapper {
+    height: 380px;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Efecto Zoom en la imagen al hacer hover en la tarjeta */
+  .hover-card:hover .card-img-wrapper img {
+    transform: scale(1.08);
+  }
+  
+  .small-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
