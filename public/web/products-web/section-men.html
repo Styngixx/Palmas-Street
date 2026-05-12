@@ -6,80 +6,63 @@
   <title>Sección Hombres - Palmas Street</title>
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <link rel="stylesheet" href="/css/index.css" />
   <link rel="stylesheet" href="/css/css-web/css-sections/section-men.css" />
 </head>
-<body>
-  <header class="header">
-    <div class="container nav-container">
-      <img src="/media/media-logos/LogoPS.png" alt="Loogo de la tienda" class="logo">
-      <nav class="nav">
-        <ul class="nav-list">
-          <li><a href="/index.html#banner">Inicio</a></li>
-          <li><a href="/index.html#catalogo">Catálogo</a></li>
-          <li><a href="/index.html#menu">Productos destacados</a></li>
-          <li><a href="/web/us.html">Nosotros</a></li>
-          <li><a href="/web/contact.html">Contacto</a></li>
+<body class="bg-light">
+
+  <header class="header shadow-sm bg-white">
+    <div class="container nav-container d-flex justify-content-between align-items-center py-3">
+      <a href="/index.html">
+        <img src="/media/media-logos/LogoPS.png" alt="Logo de Palmas Street" class="logo" style="height: 40px;">
+      </a>
+      <nav class="nav d-none d-lg-block">
+        <ul class="nav-list d-flex gap-4 mb-0 list-unstyled">
+          <li><a href="/index.html#banner" class="text-dark text-decoration-none fw-semibold">Inicio</a></li>
+          <li><a href="/index.html#catalogo" class="text-dark text-decoration-none fw-semibold">Catálogo</a></li>
+          <li><a href="/index.html#menu" class="text-dark text-decoration-none fw-semibold">Productos destacados</a></li>
+          <li><a href="/web/us.html" class="text-dark text-decoration-none fw-semibold">Nosotros</a></li>
+          <li><a href="/web/contact.html" class="text-dark text-decoration-none fw-semibold">Contacto</a></li>
         </ul>
       </nav>
-      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro"> </button>
+      <div class="d-flex align-items-center gap-3">
+        <a href="/web/cart.html" class="btn btn-outline-dark position-relative border-0">
+          <i class="bi bi-cart3 fs-5"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+        </a>
+        <button id="themeToggle" class="theme-toggle btn border-0" aria-label="Cambiar modo oscuro">
+          <i class="bi bi-moon fs-5"></i>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main class="container py-5" style="margin-top: 80px;">
+  <main class="container section-main">
     
     <div class="text-center mb-5">
-      <h2 class="fw-bold" style="color: #1a2b4c;">Sección Hombres</h2>
+      <h2 class="fw-bold section-title">Sección Hombres</h2>
       <p class="text-muted">Encuentra las mejores prendas urbanas para armar tu outfit.</p>
     </div>
 
     <div class="d-flex justify-content-center mb-5">
-      <input type="text" id="searchInput" class="form-control rounded-pill px-4 py-3 shadow-sm custom-search" placeholder="Buscar productos (ej. Camiseta, Pantalón)..." style="max-width: 600px;">
+      <div class="search-wrapper">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" id="searchInput" class="form-control rounded-pill shadow-sm custom-search" placeholder="Buscar prendas (ej. Camiseta, Pantalón)...">
+      </div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4" id="productsGrid">
       
-      <div class="col product-item">
-        <article class="card h-100 border-0 shadow-sm hover-card">
-          <div class="overflow-hidden" style="height: 350px; background-color: #f9f9f9;">
-            <img src="/media/media-sections/men/clothe1.jpeg" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="Camiseta Oversize Negra">
-          </div>
-          <div class="card-body d-flex flex-column text-center p-4">
-            <h5 class="card-title fw-bold product-title" style="color: #1a2b4c;">Camiseta Oversize Negra</h5>
-            <p class="card-text text-muted flex-grow-1" style="font-size: 14px;">Camiseta de algodón 100%, ideal para un look urbano y relajado.</p>
-            <span class="fs-5 fw-bold text-dark">S/ 65.00</span>
-          </div>
-        </article>
+      <div class="col-12 text-center py-5 w-100" id="loadingSpinner">
+        <div class="spinner-border text-dark" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-2 text-muted">Cargando la mejor colección...</p>
       </div>
 
-      <div class="col product-item">
-        <article class="card h-100 border-0 shadow-sm hover-card">
-          <div class="overflow-hidden" style="height: 350px; background-color: #f9f9f9;">
-            <img src="/media/media-sections/men/clothe2.jpeg" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="Pantalón Cargo Beige">
-          </div>
-          <div class="card-body d-flex flex-column text-center p-4">
-            <h5 class="card-title fw-bold product-title" style="color: #1a2b4c;">Pantalón Cargo Beige</h5>
-            <p class="card-text text-muted flex-grow-1" style="font-size: 14px;">Pantalón con múltiples bolsillos, corte holgado y diseño resistente.</p>
-            <span class="fs-5 fw-bold text-dark">S/ 110.00</span>
-          </div>
-        </article>
-      </div>
-
-      <div class="col product-item">
-        <article class="card h-100 border-0 shadow-sm hover-card">
-          <div class="overflow-hidden" style="height: 350px; background-color: #f9f9f9;">
-            <img src="/media/media-sections/men/clothe3.jpeg" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="Casaca Estilo Bomber">
-          </div>
-          <div class="card-body d-flex flex-column text-center p-4">
-            <h5 class="card-title fw-bold product-title" style="color: #1a2b4c;">Casaca Estilo Bomber</h5>
-            <p class="card-text text-muted flex-grow-1" style="font-size: 14px;">Casaca ligera para la temporada, con forro interior y cierre metálico.</p>
-            <span class="fs-5 fw-bold text-dark">S/ 180.00</span>
-          </div>
-        </article>
-      </div>
-
-      </div>
+    </div>
   </main>
 
   <footer class="footer">
@@ -127,25 +110,8 @@
     </div>
   </footer>
 
-  <script src="/js/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script>
-    document.getElementById('searchInput').addEventListener('input', function(e) {
-      const searchTerm = e.target.value.toLowerCase();
-      // Ahora buscamos el contenedor '.product-item' (la columna de Bootstrap)
-      const products = document.querySelectorAll('.product-item');
-
-      products.forEach(product => {
-        const title = product.querySelector('.product-title').textContent.toLowerCase();
-        
-        if (title.includes(searchTerm)) {
-          product.style.display = 'block'; // Block es el display normal de los col en Bootstrap
-        } else {
-          product.style.display = 'none';
-        }
-      });
-    });
-  </script>
+  <script src="/js/index.js"></script>
+  <script src="/js/js-web/js-section/section-men.js"></script> 
 </body>
 </html>
