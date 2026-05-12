@@ -1,20 +1,41 @@
 <html>
     <head>
         <title>Accesorios</title>     
+        <link rel="stylesheet" href="/css/index.css" />
         <link rel="stylesheet" href="/css/css-web/css-sections/section-accesories.css" />
         <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <header>
-            
+        <header class="header">
+            <div class="container nav-container">
+                <img src="/media/media-logos/LogoPS.png" alt="Logo de la tienda" class="logo">
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/#catalogo">Catálogo</a></li>
+                        <li><a href="/#menu">Productos destacados</a></li>
+                        <li><a href="us.html">Nosotros</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </nav>
+                <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro"> </button>
+            </div>
+            <div class="container search-container">
+                <form id="searchForm" class="search-bar" action="javascript:void(0);">
+                    <input id="accessorySearch" type="search" placeholder="Buscar accesorios, marcas o palabras clave..." aria-label="Buscar accesorios">
+                    
+                </form>
+                <p id="noResultsMessage" class="no-results-message">No se encontraron productos con ese término.</p>
+            </div>
         </header>
         <main>
         
             <article class="cartas-grid">
                 <div class="card">
-                    <img class="card-img-top" src="media/media-sections/accesorios/anillodeacero.jpg" alt="Anillo de acero">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/anillodeacero.jpg" alt="Anillo de acero">
                     <div class="card-body">
                       <h5 class="card-title">Anillo de Acero</h5>
+                      <p class="brand"><strong>Marca: Tiffany & Co</strong></p>
                       <p class="card-text">Durabilidad extrema. Banda pulida de perfil bajo, resistente a rayaduras y al uso diario.</p>
                       <p class="price">S/ 50.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -28,9 +49,10 @@
        
                   
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/bandana.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/bandanamulti.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Banda Multiusos</h5>
+                      <p class="brand"><strong>Marca: Buff</strong></p>
                       <p class="card-text">Deporte y estilo en uno. Material ligero que puedes usar como diadema, cuello o protector facial.</p>
                       <p class="price">S/ 25.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -44,9 +66,10 @@
           
                   
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/billeterapasporte.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/billeterapasaporte.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Billetera de Pasaporte</h5>
+                      <p class="brand"><strong>Marca: Montblanc</strong></p>
                       <p class="card-text">Tu compañera de viaje. Compartimentos dedicados para documentos, tickets y tarjetas internacionales.</p>
                       <p class="price">S/ 80.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -60,9 +83,10 @@
             
                   
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/bolsotote.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/bolsotote.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Bolsa Tote</h5>
+                      <p class="brand"><strong>Marca: Baggu</strong></p>
                       <p class="card-text">Resistencia ecológica. Amplio y reforzado, ideal para el uso diario o compras rápidas.</p>
                       <p class="price">S/ 120.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -76,9 +100,10 @@
           
                   
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/bufandagris.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/bufandagris.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Bufanda Gris</h5>
+                      <p class="brand"><strong>Marca: Zara</strong></p>
                       <p class="card-text">Calidad premium. Suave al tacto y cálido, perfecto para días fríos.</p>
                       <p class="price">S/ 60.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -92,9 +117,10 @@
            
                   
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/calcetinespatrones.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/calcetinespatrones.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Calcetines con Patrones</h5>
+                      <p class="brand"><strong>Marca: Stance</strong></p>
                       <p class="card-text">Estilo y comodidad. Diseñados con patrones únicos para destacar en cualquier ocasión.</p>
                       <p class="price">S/ 30.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -108,9 +134,10 @@
            
                   
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/carteraslim.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/carteraslim.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Cartera Slim</h5>
+                      <p class="brand"><strong>Marca: Herschel</strong></p>
                       <p class="card-text">Diseño elegante y funcional. Espacio suficiente para tus pertenencias más importantes.</p>
                       <p class="price">S/ 70.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -124,9 +151,10 @@
                   
 
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/cinturoncuero.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/cinturoncuero.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Cinturón de Cuero</h5>
+                      <p class="brand"><strong>Marca: Levis</strong></p>
                       <p class="card-text">Calidad premium. Diseño clásico y duradero, perfecto para complementar tu estilo.</p>
                       <p class="price">S/ 90.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -140,9 +168,10 @@
 
 
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/collarcadenasplata.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/collarcadenaplata.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Collar de Cadenas de Plata</h5>
+                      <p class="brand"><strong>Marca: Swarovski</strong></p>
                       <p class="card-text">Diseño elegante y sofisticado. Perfecto para agregar un toque de estilo a tu outfit.</p>
                       <p class="price">S/ 150.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -156,9 +185,10 @@
 
 
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/corbataseda.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/corbataseda.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Corbata de Seda</h5>
+                      <p class="brand"><strong>Marca: Hugo Boss</strong></p>
                       <p class="card-text">Elegancia y sofisticación. Perfecta para ocasiones formales y eventos importantes.</p>
                       <p class="price">S/ 100.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -172,9 +202,10 @@
             
 
                 <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/espejobolsillo.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/espejobolsillo.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Espejo de Bolsillo</h5>
+                      <p class="brand"><strong>Marca: Sephora</strong></p>
                       <p class="card-text">Diseño compacto y práctico. Ideal para mantener tu apariencia impecable en cualquier momento.</p>
                       <p class="price">S/ 20.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -187,9 +218,10 @@
                   </div>
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/estucheralentes.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/estucheralentes.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Estuche para Lentes</h5>
+                      <p class="brand"><strong>Marca: Oakley</strong></p>
                       <p class="card-text">Protección y organización. Perfecto para guardar tus lentes con seguridad y comodidad.</p>
                       <p class="price">S/ 40.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -202,9 +234,10 @@
                   </div>
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/gorraclasiccblack.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/gorraclassicblack.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Gorra Clásica Negra</h5>
+                      <p class="brand"><strong>Marca: Nike</strong></p>
                       <p class="card-text">Un básico esencial. Diseño de seis paneles en algodón premium para un look urbano y minimalista.</p>
                       <p class="price">S/ 45.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -217,9 +250,10 @@
                   </div>
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/gorrobeanie.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/gorrobeanie.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Gorro de Beanie</h5>
+                      <p class="brand"><strong>Marca: Adidas</strong></p>
                       <p class="card-text">Estilo relajado y cómodo. Perfecto para días frescos, con un ajuste elástico que no pierde la forma.</p>
                       <p class="price">S/ 35.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -232,9 +266,10 @@
                   </div>
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/guantestacticos.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/guantestacticos.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Guantes Tácticos</h5>
+                      <p class="brand"><strong>Marca: Under Armour</strong></p>
                       <p class="card-text">Tecnología en tus manos. Puntas capacitivas que te permiten usar pantallas sin pasar frío.</p>
                       <p class="price">S/ 55.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -250,9 +285,10 @@
 
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/lamparalectura.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/lamparalectura.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Lámpara de Lectura</h5>
+                      <p class="brand"><strong>Marca: Logitech</strong></p>
                       <p class="card-text">Iluminación ideal para leer en cualquier lugar. Diseño moderno y funcional para una experiencia de lectura cómoda.</p>
                       <p class="price">S/ 85.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -266,9 +302,10 @@
 
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/lentesolavidaro.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/lentesolavidaro.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Lentes de Sol</h5>
+                      <p class="brand"><strong>Marca: Ray-Ban</strong></p>
                       <p class="card-text">Protección solar y estilo. Diseño moderno que te permite ver con claridad y comodidad en cualquier entorno.</p>
                       <p class="price">S/ 110.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -282,9 +319,10 @@
 
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/llaveromultitool.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/llaveromultitool.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Llave Multi-Herramienta</h5>
+                      <p class="brand"><strong>Marca: Victorinox</strong></p>
                       <p class="card-text">Un herramienta versátil para cualquier emergencia. Diseño compacto y resistente para uso diario.</p>
                       <p class="price">S/ 65.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -297,9 +335,10 @@
                   </div>
 
                     <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/mochilaurbana.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/mochilaurbana.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Mochila Urbana</h5>
+                      <p class="brand"><strong>Marca: Samsonite</strong></p>
                       <p class="card-text">Un diseño funcional y moderno. Espacio suficiente para llevar tus pertenencias con comodidad.</p>
                       <p class="price">S/ 140.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -314,9 +353,10 @@
 
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/paraguascompacto.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/paraguascompacto.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Paraguas Compacto</h5>
+                      <p class="brand"><strong>Marca: Totes</strong></p>
                       <p class="card-text">Diseño compacto y resistente. Perfecto para protegerte de la lluvia en cualquier momento.</p>
                       <p class="price">S/ 75.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -330,9 +370,10 @@
 
 
                  <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/pasamontañas.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/pasamontañas.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Pasamontañas</h5>
+                      <p class="brand"><strong>Marca: North Face</strong></p>
                       <p class="card-text">Protección contra el viento y el frío. Diseño cómodo y funcional para usar en climas rigurosos.</p>
                       <p class="price">S/ 50.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -348,9 +389,10 @@
 
 
             <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/pinsola.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/pinsolapa.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Pinsola</h5>
+                      <p class="brand"><strong>Marca: Pinsanity</strong></p>
                       <p class="card-text">Diseño moderno y funcional. Perfecto para protegerte del sol y mantener tu visión clara en cualquier entorno.</p>
                       <p class="price">S/ 15.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -363,9 +405,10 @@
                   </div>
 
                    <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/pulseradecuenta.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/pulseradecuenta.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Pulsera de Cuenta</h5>
+                      <p class="brand"><strong>Marca: Pandora</strong></p>
                       <p class="card-text">Estilo único y funcional. Ideal para complementar tu outfit con un toque de originalidad.</p>
                       <p class="price">S/ 40.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -378,9 +421,10 @@
                   </div>
 
                      <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/relojdigital.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/relojdigital.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Reloj Digital</h5>
+                      <p class="brand"><strong>Marca: Casio</strong></p>
                       <p class="card-text">Iluminación ideal para leer en cualquier lugar. Diseño moderno y funcional para una experiencia de lectura cómoda.</p>
                       <p class="price">S/ 200.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -394,9 +438,10 @@
 
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/casacaimpermiable.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/casacaimpermiable.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Casaca Impermiable</h5>
+                      <p class="brand"><strong>Marca: Columbia</strong></p>
                       <p class="card-text">Diseñada para resistir condiciones climáticas adversas. Fabricada con materiales repelentes al agua y costuras reforzadas que garantizan impermeabilidad.</p>
                       <p class="price">S/ 180.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -409,9 +454,10 @@
                   </div>  
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/riñoneradeportiva.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/riñoneradeportiva.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Riñonera Deportiva</h5>
+                      <p class="brand"><strong>Marca: Reebok</strong></p>
                       <p class="card-text">Diseño ergonómico y resistente. Ideal para actividades físicas intensas.</p>
                       <p class="price">S/ 95.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -426,9 +472,10 @@
 
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/sombrerodepaja.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/sombrerodepaja.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Sombrero de Paja</h5>
+                      <p class="brand"><strong>Marca: Stetson</strong></p>
                       <p class="card-text">Diseño clásico y funcional. Perfecto para protegerte del sol en días calurosos.</p>
                       <p class="price">S/ 55.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -442,9 +489,10 @@
 
 
                   <div class="card">
-                    <img class="card-img-top" src="./media/sections/accesorios/tarjeteroaluminio.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/tarjeteroaluminio.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Tarjetero de Aluminio</h5>
+                      <p class="brand"><strong>Marca: Ridge</strong></p>
                       <p class="card-text">Diseño elegante y resistente. Ideal para guardar tus tarjetas y efectivo de manera segura.</p>
                       <p class="price">S/ 30.00</p>
                       <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
@@ -455,6 +503,43 @@
                       <button class="btn btn-primary add-to-cart">Añadir al Carrito</button>
                     </div>
                   </div>
+
+
+
+                     <div class="card">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/aretes.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Aretes</h5>
+                      <p class="brand"><strong>Marca: Ridge</strong></p>
+                      <p class="card-text">Pendientes de diseño sutil y ligero, ideales para el uso diario. Su acabado pulido aporta un toque de brillo</p>
+                      <p class="price">S/ 30.00</p>
+                      <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
+                        <button class="btn btn-outline-secondary btn-sm minus" type="button">-</button>
+                        <span class="quantity mx-2">1</span>
+                        <button class="btn btn-outline-secondary btn-sm plus" type="button">+</button>
+                      </div>
+                      <button class="btn btn-primary add-to-cart">Añadir al Carrito</button>
+                    </div>
+                  </div>
+
+
+
+                     <div class="card">
+                    <img class="card-img-top" src="/media/media-sections/accesorios/collarconanillo.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Collar con Anillo</h5>
+                      <p class="brand"><strong>Marca: Ridge</strong></p>
+                      <p class="card-text">Una cadena fina de eslabones delicados que sostiene un pequeño anillo central como dije.</p>
+                      <p class="price">S/ 30.00</p>
+                      <div class="quantity-controls d-flex align-items-center justify-content-center mb-2">
+                        <button class="btn btn-outline-secondary btn-sm minus" type="button">-</button>
+                        <span class="quantity mx-2">1</span>
+                        <button class="btn btn-outline-secondary btn-sm plus" type="button">+</button>
+                      </div>
+                      <button class="btn btn-primary add-to-cart">Añadir al Carrito</button>
+                    </div>
+                  </div>
+
      
 
 
@@ -463,10 +548,52 @@
 
 
         </main>
-        <footer>
-
+        <footer class="footer">
+            <div class="container footer-grid">
+                <div>
+                    <h3>Palmas Street</h3>
+                    <p>Frescura, atrevimiento y moda.</p>
+                </div>
+                <div>
+                    <h4>Redes sociales</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.facebook.com/profile.php?id=100075787660504" target="_blank">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/palmas.street_/" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@palmas.street_" target="_blank">TikTok</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contacto</h4>
+                    <p>+51 999 999 999</p>
+                    <p>contacto@palmastreet.com</p>
+                </div>
+                <div>
+                    <h4>Empresas Afiliadas</h4>
+                    <div class="miniconteiner-empresas">
+                        <div class="emmpresas-card">
+                            <a href="https://pe.hm.com/"><img src="/media/media-logos/hm-symbol-logo.webp"></a>
+                        </div>
+                        <div class="emmpresas-card">
+                            <a href="https://pe.tommy.com/"><img src="/media/media-logos/tmLogo.webp"></a>
+                        </div>
+                        <div class="emmpresas-card">
+                            <a href="https://www.gap.com.pe/"><img src="/media/media-logos/gapLogo.webp"></a>
+                        </div>
+                        <div class="emmpresas-card">
+                            <a href="https://www.tiendasel.com/"><img src="/media/media-logos/elLogo.webp"></a>
+                        </div>
+                        <div class="emmpresas-card">
+                            <a href="https://www.luvaro.com/"><img src="/media/media-logos/luvaroLogo.webp"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Palmas Street. Todos los derechos reservados.</p>
+            </div>
         </footer>
         <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/index.js"></script>
         <script src="/js/js-web/accesorios.js"></script>
     </body>
 </html>
