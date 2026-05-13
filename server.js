@@ -81,6 +81,9 @@ app.post('/enviar-contacto', async (req, res) => {
  * Devuelve todos los productos principales de la base de datos en formato JSON
  */
 // --- RUTAS DE LÓGICA (BACKEND) ---
+// --- RUTAS DE LÓGICA (BACKEND) ---
+
+// API para productos principales (Inicio)
 app.get('/api/main_products', async (req, res) => {
     try {
         const resultado = await pool.query('SELECT * FROM main_products ORDER BY created_at DESC');
@@ -91,9 +94,47 @@ app.get('/api/main_products', async (req, res) => {
     }
 });
 
-// --- INICIO DEL SERVIDOR ---
-app.listen(PORT, () => {
-    console.log(`🚀 Servidor ACTUALIZADO corriendo en http://localhost:${PORT}`);
+
+
+// Ruta para el formulario de contacto
+app.post('/enviar-contacto', async (req, res) => {
+    const { nombre, telefono, email, fecha, mensaje } = req.body;
+    try {
+        const querySQL = `
+            INSERT INTO candidatos (nombre, telefono, email, fecha_reserva, mensaje) 
+            VALUES ($1, $2, $3, $4, $5) RETURNING id;
+        `;
+        const values = [nombre, telefono, email, fecha, mensaje];
+        const resultado = await pool.query(querySQL, values);
+        res.send(`<h1>✅ ¡Postulación Recibida!</h1><p>Gracias ${nombre}.</p><a href="/">Volver</a>`);
+    } catch (err) {
+        console.error("❌ Error al insertar:", err);
+        res.status(500).send("Error al procesar solicitud.");
+    }
 });
+
+
+// API para obtener los productos de la categoría accesorios
+app.get('/api/productos/accesorios', async (req, res) => {
+    try {
+        // Asegúrate de que el nombre de la categoría sea el mismo que tienes en la base de datos
+        const querySQL = "SELECT * FROM productos WHERE categoria = 'accesorios' ORDER BY id ASC";
+        const resultado = await pool.query(querySQL);
+        res.json(resultado.rows);
+    } catch (err) {
+        console.error("❌ Error al obtener los accesorios:", err);
+        res.status(500).json({ error: "No se pudo obtener el catálogo de accesorios." });
+    }
+});
+
+
+
+// --- INICIO DEL SERVIDOR (SOLO UNA VEZ) ---
+app.listen(PORT, () => {
+    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+});
+
+
+
 
 
