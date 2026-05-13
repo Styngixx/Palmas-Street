@@ -88,6 +88,19 @@ app.get('/api/main_products', async (req, res) => {
     }
 });
 
+app.get('/api/productos/hombres', async (req, res) => {
+    try {
+        // ILIKE ignora si es mayúscula o minúscula. %hombres% busca que contenga la palabra.
+        const query = "SELECT * FROM productos WHERE categoria ILIKE $1 ORDER BY created_at DESC";
+        const resultado = await pool.query(query, ['%hombre%']); 
+        
+        res.json(resultado.rows);
+    } catch (err) {
+        console.error("❌ Error al obtener productos de hombres:", err);
+        res.status(500).json({ error: "No se pudieron obtener los productos." });
+    }
+});
+
 // --- INICIO DEL SERVIDOR ---
 app.listen(PORT, () => {
     console.log(`🚀 Servidor ACTUALIZADO corriendo en http://localhost:${PORT}`);

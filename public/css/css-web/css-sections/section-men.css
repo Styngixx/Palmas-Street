@@ -28,3 +28,74 @@
 .hover-card:hover img {
     transform: scale(1.05);
 }
+
+/* =========================================
+   ESTILOS MODO OSCURO PARA TARJETAS (Usando variables globales)
+   ========================================= */
+
+/* Fondo de la tarjeta (el contenedor del texto) */
+body.dark .card-body {
+    background-color: var(--surface-2) !important; /* Toma el #2D2D2D de tu index.css */
+    border-bottom-left-radius: var(--bs-border-radius);
+    border-bottom-right-radius: var(--bs-border-radius);
+}
+
+/* Colores de texto para título, marca y precio */
+body.dark .card-title,
+body.dark .card-subtitle,
+body.dark span.text-dark {
+    color: var(--text) !important; /* Toma el #E0E0E0 de tu index.css */
+}
+
+/* Color para la descripción */
+body.dark .card-text.text-muted {
+    color: var(--text-soft) !important; /* Toma el #9E9E9E de tu index.css */
+}
+
+/* =========================================
+   ADAPTACIÓN DEL BUSCADOR Y BOTONES AL MODO OSCURO
+   ========================================= */
+
+body.dark .custom-search {
+    background-color: var(--surface) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+}
+
+body.dark .custom-search::placeholder {
+    color: var(--text-soft) !important;
+}
+
+body.dark .qty-input {
+    background-color: var(--surface) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+
+body.dark .btn-outline-secondary {
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+}
+
+body.dark .btn-outline-secondary:hover {
+    background-color: var(--surface) !important;
+}
+
+/* Ajustar el fondo donde va la imagen para que no desentone si la imagen no cubre todo */
+body.dark .overflow-hidden {
+    background-color: var(--surface) !important; 
+}
+/* =========================================
+   ESTILOS DEL TÍTULO PRINCIPAL EN MODO OSCURO
+   ========================================= */
+
+/* Título "Sección Hombres" */
+body.dark main .text-center h2.fw-bold {
+    color: #587a9a !important; /* El mismo azul claro de index.css */
+}
+
+/* Subtítulo "Encuentra las mejores..." */
+body.dark main .text-center p.text-muted {
+    color: var(--text) !important; /* Aplica el blanco/gris claro de tu index.css */
+    font-weight: 500; /* Le da un poquito más de fuerza para que resalte como en tu ejemplo */
+}
