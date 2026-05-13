@@ -209,3 +209,17 @@ Método de Pago: Tarjeta ${tipoTarjeta} (Terminada en **** ${numTarjeta.slice(-4
 });
 */
 
+
+// API para accesorios (Sección Accesorios)
+app.get('/api/productos/accesorios', async (req, res) => {
+    try {
+        // Usamos una sola consulta que traiga todo lo necesario
+        const querySQL = "SELECT * FROM productos WHERE categoria = 'accesorios' ORDER BY id ASC";
+        const resultado = await pool.query(querySQL);
+        res.json(resultado.rows);
+    } catch (err) {
+        console.error("❌ Error en la base de datos:", err);
+        res.status(500).json({ error: "Error al obtener los datos" });
+    }
+});
+
