@@ -50,60 +50,6 @@ function filtrarProductos(termino) {
   renderizarProductos(productosFiltrados);
 }
 
-// Función para cargar productos desde la API
-async function cargarProductos() {
-    const contenedor = document.getElementById('contenedor-productos');
-    if (!contenedor) return;
-
-    try {
-        const respuesta = await fetch('/api/main_products');
-        const productos = await respuesta.json();
-        
-        contenedor.innerHTML = ''; // Limpiamos el grid
-
-        productos.forEach(producto => {
-            const article = document.createElement('article');
-            article.classList.add('product-card');
-
-            // ESTE ES EL CONTENIDO QUE REALMENTE SE VERÁ
-            article.innerHTML = `
-                <img src="${producto.imagen_url}" alt="${producto.nombre}" loading="lazy">
-                <div class="product-info">
-                    <h3>${producto.nombre}</h3>
-                    <p>${producto.descripcion || ''}</p>
-                    <p style="font-weight: bold; margin-top: 10px; color: #fff;">S/ ${producto.precio}</p>
-                    
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin: 15px 0;">
-                        <button class="btn-restar" style="background: #333; color: white; border: 1px solid #444; padding: 5px 12px; cursor: pointer; border-radius: 4px;">-</button>
-                        <span class="cantidad-valor" style="color: white; font-weight: bold;">1</span>
-                        <button class="btn-sumar" style="background: #333; color: white; border: 1px solid #444; padding: 5px 12px; cursor: pointer; border-radius: 4px;">+</button>
-                    </div>
-
-                    <button class="btn-agregar" style="background: white; color: black; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px; text-transform: uppercase;">
-                        Agregar al carrito
-                    </button>
-                </div>
-            `;
-
-            // Lógica de los botones (Suma/Resta/Agregar)
-            const span = article.querySelector('.cantidad-valor');
-            const btnS = article.querySelector('.btn-sumar');
-            const btnR = article.querySelector('.btn-restar');
-            const btnA = article.querySelector('.btn-agregar');
-
-            let cant = 1;
-
-            btnS.onclick = () => { cant++; span.innerText = cant; };
-            btnR.onclick = () => { if(cant > 1) { cant--; span.innerText = cant; } };
-            btnA.onclick = () => alert(`Agregado: ${cant} x ${producto.nombre}`);
-
-            contenedor.appendChild(article);
-        });
-    } catch (error) {
-        console.error("Error cargando productos:", error);
-    }
-}
-
 // Función para agregar el evento al input de búsqueda
 function agregarEventoBuscador() {
   const buscador = document.getElementById('buscador-productos');
