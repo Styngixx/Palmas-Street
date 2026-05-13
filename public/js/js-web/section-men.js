@@ -26,37 +26,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 const imagen = producto.imagen_url || '/media/media-sections/men/ropa1.jpeg';
                 const marca = producto.marca || 'Palmas Street';
 
-                const article = document.createElement('div');
-                article.className = 'col product-item';
-                
-                article.innerHTML = `
-                    <article class="card h-100 border-0 shadow-sm hover-card">
-                      <div class="overflow-hidden" style="height: 350px; background-color: #f9f9f9;">
+                // Creamos el contenedor de la columna para la cuadrícula
+                const articleCol = document.createElement('div');
+                articleCol.className = 'col product-item';
+
+                // ✅ CORRECCIÓN: HTML limpio, sin estilos "en línea" (style="")
+                articleCol.innerHTML = `
+                    <div class="card h-100 border-0 shadow-sm hover-card">
+                      <div class="product-image-container overflow-hidden">
                         <img src="${imagen}" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="${producto.nombre}">
                       </div>
-                      <div class="card-body d-flex flex-column text-center p-4">
-                        <h5 class="card-title fw-bold product-title mb-1" style="color: #1a2b4c;">${producto.nombre}</h5>
-                        <br>
-                        <h6 class="card-subtitle mb-2 fw-bold" style="color: #333; font-size: 15px;">Marca: ${marca}</h6>
+                      
+                      <div class="card-body d-flex flex-column text-center p-3">
+                        <h5 class="card-title fw-bold product-title mb-1">${producto.nombre}</h5>
+                        <h6 class="card-subtitle mb-2 fw-bold marca-text">Marca: ${marca}</h6>
                         
-                        <p class="card-text text-muted flex-grow-1 mt-2" style="font-size: 14px;">${producto.descripcion || 'Sin descripción disponible.'}</p>
-                        <span class="fs-5 fw-bold text-dark mb-3">S/ ${precioFormateado}</span>
+                        <p class="card-text text-muted flex-grow-1 mt-2 product-description">${producto.descripcion || 'Sin descripción disponible.'}</p>
+                        <span class="fs-5 fw-bold price mb-3">S/ ${precioFormateado}</span>
                         
-                        <div class="d-flex justify-content-center align-items-center mb-3 gap-2">
-                          <button type="button" class="btn btn-outline-secondary btn-sm px-3 btn-minus">-</button>
-                          <input type="text" class="form-control form-control-sm text-center qty-input" value="1" readonly style="width: 50px; background-color: white;">
-                          <button type="button" class="btn btn-outline-secondary btn-sm px-3 btn-plus">+</button>
+                        <div class="d-flex justify-content-center align-items-center mb-3 gap-2 quantity-selector">
+                          <button type="button" class="btn btn-qty btn-minus btn-sm">-</button>
+                          <input type="text" class="form-control form-control-sm text-center qty-input" value="1" readonly style="width: 50px;">
+                          <button type="button" class="btn btn-qty btn-plus btn-sm">+</button>
                         </div>
                         
-                        <button type="button" class="btn btn-primary w-100 fw-bold shadow-sm" style="background-color: #0d6efd; border: none;">Añadir al Carrito</button>
+                        <button type="button" class="btn btn-primary w-100 fw-bold shadow-sm btn-cart-add">Añadir al Carrito</button>
                       </div>
-                    </article>
+                    </div>
                 `;
                 
-                productsGrid.appendChild(article);
+                productsGrid.appendChild(articleCol);
             });
 
-            // Una vez que los productos están en el DOM, inicializamos la lógica de botones
+            // Inicializamos la lógica de botones de cantidad después de que las tarjetas existen
             inicializarBotonesCantidad();
 
         } catch (error) {
@@ -94,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. LÓGICA DEL BUSCADOR
     // ==========================================
     function filterProducts(term) {
-        // Seleccionamos nuevamente los items porque ahora son dinámicos
         const dynamicProducts = document.querySelectorAll('.product-item');
         
         dynamicProducts.forEach(product => {
