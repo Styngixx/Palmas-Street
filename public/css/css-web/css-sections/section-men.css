@@ -1,157 +1,180 @@
 /* ==========================================
-   🌙 MODO OSCURO (DARK MODE)
+   ESTILOS GENERALES Y ESTRUCTURA DE LA TARJETA
    ========================================== */
 
-/* Header oscuro */
-body.dark .header {
-  background-color: #212529 !important;
-  border-bottom: 1px solid #373b3e !important;
+/* Asegura que la cuadrícula de Bootstrap funcione correctamente */
+.product-item {
+  display: block; 
 }
 
-/* Enlaces del Header en modo oscuro */
-body.dark .nav-list a {
-  color: #f8f9fa !important;
+/* Efecto hover en las tarjetas (Elevación) */
+.card.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  overflow: hidden; 
 }
 
-/* Títulos y textos custom */
-body.dark .section-title, 
-body.dark .product-title {
-  color: #f8f9fa;
+.card.hover-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12) !important;
 }
 
-/* Tarjetas (Cards) */
-body.dark .hover-card {
-  background-color: #2b3035 !important;
-  border: 1px solid #495057 !important;
+/* Transición suave y Zoom para la imagen al pasar el mouse */
+.hover-card img {
+  transition: transform 0.5s ease;
 }
 
-body.dark .card-img-wrapper {
-  background-color: #212529;
+.hover-card:hover img {
+  transform: scale(1.05);
 }
 
-/* Buscador oscuro */
-body.dark .search-wrapper input {
-  background-color: #2b3035 !important;
-  color: white !important;
-  border-color: #495057 !important;
+/* Contenedor de imagen compacto */
+.product-image-container {
+  height: 250px; 
+  background-color: #f9f9f9; 
 }
 
-body.dark .search-wrapper .search-icon {
-  color: #adb5bd !important;
+/* Títulos y texto compactos (Modo Claro por defecto) */
+.product-title {
+  color: #1a2b4c;
+  font-size: 1.1rem;
 }
 
-/* Botones en modo oscuro */
-body.dark .btn-dark {
-  background-color: #f8f9fa !important;
-  color: #212529 !important;
-  border-color: #f8f9fa !important;
+.marca-text {
+  color: #333;
+  font-size: 0.9rem;
 }
 
-body.dark .btn-dark:hover {
-  background-color: #e9ecef !important;
+.product-description {
+  font-size: 0.85rem;
+  color: #6c757d; 
 }
 
-/* Footer (si lo tienes con fondo claro) */
-body.dark .footer {
-  background-color: #1a1d20 !important;
-  color: #dee2e6 !important;
+.price {
+  color: #1a2b4c;
 }
 
 /* Efecto al enfocar la barra de búsqueda */
 .custom-search:focus {
-    border-color: #1a2b4c !important;
-    box-shadow: 0 4px 12px rgba(26, 43, 76, 0.15) !important;
+  border-color: #1a2b4c !important;
+  box-shadow: 0 4px 12px rgba(26, 43, 76, 0.15) !important;
 }
 
-/* Transición suave para toda la tarjeta */
-.hover-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+/* ==========================================
+   ESTILOS PARA MODO CLARO (CANTIDADES)
+   ========================================== */
+
+.quantity-selector .btn-qty {
+  background-color: #f8f9fa; 
+  color: #495057;
+  border: 1px solid #ced4da;
+  padding: 0.375rem 0.75rem; 
 }
 
-/* Efecto de elevación al pasar el mouse por la tarjeta */
-.hover-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.12) !important;
+.quantity-selector .btn-qty:hover {
+  background-color: #e2e6ea;
 }
 
-/* Transición suave para la imagen */
-.hover-card img {
-    transition: transform 0.5s ease;
+.quantity-selector .qty-input {
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  color: #495057;
 }
 
-/* Efecto de zoom en la imagen al pasar el mouse */
-.hover-card:hover img {
-    transform: scale(1.05);
+/* ==========================================
+   🌙 ESTILOS PARA MODO OSCURO (body.dark)
+   ========================================== */
+
+/* Título "Sección Hombres" y subtítulo */
+body.dark main .text-center h2.fw-bold {
+    color: #587a9a !important; 
 }
 
-/* Espaciado del header fijo */
-.section-main {
-    margin-top: 100px;
-    margin-bottom: 50px;
-  }
-  
-  /* Colores corporativos */
-  .section-title, .product-title {
-    color: #1a2b4c;
-  }
-  
-  /* Contenedor del Buscador (con ícono) */
-  .search-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .search-icon {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #6c757d;
-    font-size: 1.2rem;
-  }
-  
-  .custom-search {
-    padding-left: 55px !important; 
-    padding-right: 25px !important;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-    font-size: 1rem;
-  }
-  
-  /* Efectos de la Tarjeta (Card) */
-  .hover-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  
-  .hover-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
-  }
-  
-  /* Contenedor de la Imagen */
-  .card-img-wrapper {
-    height: 380px;
-    background-color: #f8f9fa;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .card-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  
-  /* Efecto Zoom en la imagen al hacer hover en la tarjeta */
-  .hover-card:hover .card-img-wrapper img {
-    transform: scale(1.08);
-  }
-  
-  .small-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
+body.dark main .text-center p.text-muted {
+    color: #E0E0E0 !important; 
+    font-weight: 500; 
+}
+
+/* Buscador oscuro */
+body.dark .custom-search {
+    background-color: #1E1E1E !important;
+    color: #E0E0E0 !important;
+    border-color: #333333 !important;
+}
+
+body.dark .custom-search::placeholder {
+    color: #9E9E9E !important;
+}
+
+/* Fondo general de la tarjeta (Gris oscuro elegante) */
+body.dark .card {
+    background-color: #1E1E1E !important; 
+    border: 1px solid #333 !important;
+}
+
+/* Contenedor de la imagen en modo oscuro */
+body.dark .product-image-container {
+    background-color: #2D2D2D !important;
+}
+
+/* Colores de texto en modo oscuro para que resalten */
+body.dark .product-title {
+    color: #FFFFFF !important; /* Blanco puro */
+}
+
+body.dark .marca-text {
+    color: #CCCCCC !important; /* Gris claro */
+}
+
+body.dark .product-description {
+    color: #9E9E9E !important; /* Gris medio */
+}
+
+body.dark .price {
+    color: #9E9E9E !important; /* Gris medio */
+}
+
+/* Selector de cantidad (+ y -) en modo oscuro */
+body.dark .quantity-selector .btn-qty {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+    border-color: #444 !important;
+}
+
+body.dark .quantity-selector .btn-qty:hover {
+    background-color: #444 !important;
+}
+
+body.dark .quantity-selector .qty-input {
+    background-color: #1E1E1E !important;
+    color: #FFFFFF !important;
+    border-color: #444 !important;
+}
+
+/* ✨ SOLUCIÓN AL BOTÓN DE AÑADIR AL CARRITO ✨ */
+body.dark .btn-cart-add {
+    background-color: #000000 !important; /* Fondo Negro Puro */
+    color: #FFFFFF !important;            /* Texto Blanco */
+    border: 1px solid #333 !important;
+}
+
+body.dark .btn-cart-add:hover {
+    background-color: #222222 !important; /* Un poco más claro al pasar el mouse */
+    border-color: #555 !important;
+    color: #FFFFFF !important;
+}
+
+/* ✨ SOLUCIÓN AL ICONO DEL CARRITO EN MODO OSCURO ✨ */
+body.dark .header .btn-outline-dark {
+    color: #FFFFFF !important; /* Vuelve el carrito blanco */
+}
+
+/* Efecto hover sutil para el carrito en modo oscuro */
+body.dark .header .btn-outline-dark:hover {
+    color: #FFFFFF !important;
+    background-color: rgba(255, 255, 255, 0.1) !important; 
+}
+
+/* Asegurar que el botón de la luna/sol también se vea bien si usa icono */
+body.dark .header #themeToggle {
+    color: #FFFFFF !important;
+}

@@ -113,24 +113,20 @@ app.get('/api/main_products', async (req, res) => {
     }
 });
 
-
-
-// Ruta para el formulario de contacto
-app.post('/enviar-contacto', async (req, res) => {
-    const { nombre, telefono, email, fecha, mensaje } = req.body;
+app.get('/api/productos/hombres', async (req, res) => {
     try {
-        const querySQL = `
-            INSERT INTO candidatos (nombre, telefono, email, fecha_reserva, mensaje) 
-            VALUES ($1, $2, $3, $4, $5) RETURNING id;
-        `;
-        const values = [nombre, telefono, email, fecha, mensaje];
-        const resultado = await pool.query(querySQL, values);
-        res.send(`<h1>✅ ¡Postulación Recibida!</h1><p>Gracias ${nombre}.</p><a href="/">Volver</a>`);
+        // ILIKE ignora si es mayúscula o minúscula. %hombres% busca que contenga la palabra.
+        const query = "SELECT * FROM productos WHERE categoria ILIKE $1 ORDER BY created_at DESC";
+        const resultado = await pool.query(query, ['%hombre%']); 
+        
+        res.json(resultado.rows);
     } catch (err) {
-        console.error("❌ Error al insertar:", err);
-        res.status(500).send("Error al procesar solicitud.");
+        console.error("❌ Error al obtener productos de hombres:", err);
+        res.status(500).json({ error: "No se pudieron obtener los productos." });
     }
 });
+
+
 
 
 // API para obtener los productos de la categoría accesorios
