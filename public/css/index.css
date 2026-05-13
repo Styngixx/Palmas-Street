@@ -207,6 +207,18 @@ body.dark .logo { filter: invert(1); }
 .miniconteiner-empresas{display: grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center; align-items: center; gap: 8px; padding: 5px 10px;}
 .emmpresas-card img{width: 100%; height: 10vh;}
 
+.hover-card{
+  transition: all 0.35s ease;
+  cursor: pointer;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.hover-card:hover{
+  transform: translateY(-12px);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.15) !important;
+}
+
 @media (max-width: 768px) {
   .nav-container { flex-direction: column; padding: 15px 0; }
   .nav-list { margin-top: 15px; font-size: 0.9rem; }
