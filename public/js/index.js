@@ -1,18 +1,38 @@
-const themeToggle = document.getElementById("themeToggle");
-const savedTheme = localStorage.getItem("tema");
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('tema');
+  
+  const applyTheme = (isDark) => {
+      if (isDark) {
+          document.body.classList.add('dark'); // Para Tailwind / Custom CSS
+          document.documentElement.setAttribute('data-bs-theme', 'dark'); // Para Bootstrap
+          if(themeToggle) {
+              themeToggle.innerHTML = '☀️'; // Usamos emoji universal
+          }
+      } else {
+          document.body.classList.remove('dark');
+          document.documentElement.setAttribute('data-bs-theme', 'light');
+          if(themeToggle) {
+              themeToggle.innerHTML = '🌙'; // Usamos emoji universal
+          }
+      }
+  };
 
-if (savedTheme === "dark") {
-  document.body.classList.add("dark");
-  themeToggle.textContent = "☀️";
-}
+  // Aplicar el tema guardado al cargar
+  if (savedTheme === 'dark') {
+      applyTheme(true);
+  }
 
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  const darkModeActive = document.body.classList.contains("dark");
-  themeToggle.textContent = darkModeActive ? "☀️" : "🌙";
-  localStorage.setItem("tema", darkModeActive ? "dark" : "light");
+  // Evento del botón
+  if (themeToggle) {
+      themeToggle.addEventListener('click', (e) => {
+          e.preventDefault(); // Evita que la página salte
+          const isDark = !document.body.classList.contains('dark');
+          applyTheme(isDark);
+          localStorage.setItem('tema', isDark ? 'dark' : 'light');
+      });
+  }
 });
-
 
 
 
