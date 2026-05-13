@@ -88,6 +88,19 @@ app.get('/api/main_products', async (req, res) => {
     }
 });
 
+
+app.get('/api/productos/Mujeres', async (req, res) => {
+    try {
+        // Asegúrate de que el nombre de la categoría sea el mismo que tienes en la base de datos
+        const querySQL = "SELECT * FROM productos WHERE categoria = 'Mujeres' ORDER BY id ASC";
+        const resultado = await pool.query(querySQL);
+        res.json(resultado.rows);
+    } catch (err) {
+        console.error("❌ Error al obtener los productos para mujeres:", err);
+        res.status(500).json({ error: "No se pudo obtener el catálogo de productos para mujeres." });
+    }
+});
+
 // --- INICIO DEL SERVIDOR ---
 app.listen(PORT, () => {
     console.log(`🚀 Servidor ACTUALIZADO corriendo en http://localhost:${PORT}`);
