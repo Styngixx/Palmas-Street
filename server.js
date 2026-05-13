@@ -76,12 +76,7 @@ app.post('/enviar-contacto', async (req, res) => {
     }
 });
 
-/**
- * GET /api/main_products
- * Devuelve todos los productos principales de la base de datos en formato JSON
- */
-// --- RUTAS DE LÓGICA (BACKEND) ---
-// --- RUTAS DE LÓGICA (BACKEND) ---
+
 
 // API para productos principales (Inicio)
 app.get('/api/main_products', async (req, res) => {
