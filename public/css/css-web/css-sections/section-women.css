@@ -1,0 +1,263 @@
+/* ==========================================
+   VARIABLES DE COLOR (Manejo de Temas)
+   ========================================== */
+   :root {
+    /* Paleta Clara Pastel */
+    --bg-body: #FFF5F8; /* Rosado pastel muy suave */
+    --bg-header: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --text-main: #4A235A; /* Morado oscuro para textos */
+    --text-muted: #8C6A96;
+    --border-color: #F8BBD0; /* Rosado pastel medio */
+    
+    /* Botones y acentos */
+    --color-primary: #DDA0DD; /* Plum / Morado pastel */
+    --color-primary-hover: #BA68C8;
+    --color-secondary: #F48FB1; /* Rosado */
+    --color-secondary-hover: #F06292;
+    
+    /* Buscador */
+    --bg-search: #FFFFFF;
+    --text-search: #4A235A;
+}
+
+body.dark-mode {
+    /* Paleta Oscura */
+    --bg-body: #121212;
+    --bg-header: #1E1E1E;
+    --bg-card: #242424;
+    --text-main: #F3E5F5;
+    --text-muted: #BDBDBD;
+    --border-color: #333333;
+    
+    /* Botones y acentos (adaptados para oscuro) */
+    --color-primary: #9C27B0;
+    --color-primary-hover: #AB47BC;
+    --color-secondary: #D81B60;
+    --color-secondary-hover: #E91E63;
+    
+    /* Buscador */
+    --bg-search: #2A2A2A;
+    --text-search: #F3E5F5;
+}
+
+/* ==========================================
+   ESTILOS GENERALES
+   ========================================== */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header, .footer {
+    background-color: var(--bg-header);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.footer {
+    border-bottom: none;
+    border-top: 1px solid var(--border-color);
+}
+
+.nav-link-custom {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.nav-link-custom:hover { color: var(--color-primary-hover); }
+
+body.dark-mode .logo { filter: brightness(0) invert(1); }
+
+.section-title { color: var(--text-main); }
+.subtitle-text { color: var(--text-muted); }
+.price-text { color: var(--color-secondary-hover); }
+.color-primary { color: var(--color-primary); }
+
+/* ==========================================
+   COMPONENTES: TARJETAS
+   ========================================== */
+.custom-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    overflow: hidden;
+}
+.custom-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08) !important;
+}
+
+.card-img-wrapper {
+    height: 300px;
+    background-color: var(--bg-body);
+    overflow: hidden;
+}
+.card-img-wrapper img {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.custom-card:hover .card-img-wrapper img {
+    transform: scale(1.08);
+}
+
+.product-title { color: var(--text-main); }
+
+/* ==========================================
+   COMPONENTES: BOTONES E INPUTS
+   ========================================== */
+/* Buscador */
+.search-wrapper { position: relative; }
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+.custom-search {
+    padding-left: 50px !important;
+    background-color: var(--bg-search);
+    border: 1px solid var(--border-color);
+    color: var(--text-search);
+    transition: background-color 0.3s, color 0.3s;
+}
+.custom-search:focus {
+    box-shadow: 0 0 0 0.25rem rgba(221, 160, 221, 0.25);
+    border-color: var(--color-primary);
+    background-color: var(--bg-search);
+    color: var(--text-search);
+}
+
+/* Botones de Cantidad (+ / -) */
+.qty-btn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+.qty-btn:hover {
+    background-color: var(--border-color);
+}
+.qty-val { color: var(--text-main); }
+
+/* Botón Añadir Carrito */
+.custom-add-btn {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.2s;
+}
+.custom-add-btn:hover {
+    background-color: var(--color-primary-hover);
+    color: #ffffff;
+}
+
+/* Íconos Navbar */
+.btn-cart, .btn-theme {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: all 0.2s;
+}
+.btn-cart:hover, .btn-theme:hover {
+    background-color: var(--border-color);
+}
+
+.section-main { margin-top: 60px; margin-bottom: 50px; }
+
+
+/* ==========================================
+   FOOTER ADAPTABLE (MODO CLARO Y OSCURO)
+   ========================================== */
+
+   .footer {
+    background-color: var(--bg-body); /* Usa el fondo rosadito en claro y oscuro en dark */
+    color: var(--text-main);
+    padding-top: 50px;
+    border-top: 1px solid var(--border-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer h3, .footer h4 {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.footer p, .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Contenedor de empresas */
+.miniconteiner-empresas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 250px;
+}
+
+.emmpresas-card {
+    background-color: #ffffff; /* Se mantiene blanco para que resalten los logos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    aspect-ratio: 1 / 1;
+    transition: transform 0.3s ease;
+}
+
+.emmpresas-card:hover {
+    transform: scale(1.05);
+}
+
+.emmpresas-card img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+}
+
+/* Copyright con tono diferenciado */
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.05); /* Un tono sutilmente distinto al fondo */
+    border-top: 1px solid var(--border-color);
+}
+
+body.dark-mode .footer-bottom {
+    background-color: #1a1a1a; /* Más oscuro en modo dark */
+}
+
+.footer-bottom p {
+    color: var(--text-muted);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Ajuste para los logos en Modo Oscuro si es necesario */
+body.dark-mode .emmpresas-card {
+    background-color: #f0f0f0; /* Un blanco roto para que no brille tanto en el dark mode */
+    border-color: #444;
+}
