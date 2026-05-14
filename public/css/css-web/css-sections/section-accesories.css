@@ -1,217 +1,217 @@
 /* ============================================================
    VARIABLES DE COLORES (MODO CLARO Y OSCURO)
    ============================================================ */
-:root {
-  --bg: #f8f9fa;
-  --surface: #FFFFFF;
-  --surface-2: #F0F3F4;
-  --text: #2C3E50;
-  --text-soft: #7F8C8D;
-  --primary: #1A252F;
-  --border: #E5E7E9;
-  --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-}
-
-body.dark {
-  --bg: #121212;
-  --surface: #1E1E1E;       /* Fondo de las tarjetas */
-  --surface-2: #2D2D2D;     /* Gris elegante para la barra de búsqueda */
-  --text: #E0E0E0;
-  --text-soft: #9E9E9E;
-  --border: #333333;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* ============================================================
-   ESTILOS GENERALES
-   ============================================================ */
-body {
-    background-color: var(--bg);
-    font-family: 'Roboto', sans-serif;
-    color: var(--text);
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-main {
-    padding-top: 160px; /* Espacio para el header fijo */
-    min-height: 80vh;
-}
-
-/* ============================================================
-   HEADER Y ACCIONES (CARRITO Y TEMA)
-   ============================================================ */
-.header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 10px 0;
-    transition: background 0.3s ease;
-}
-
-.nav-list a {
-    color: var(--text) !important;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.logo { 
-    height: 45px; 
-    transition: filter 0.3s ease; 
-}
-
-body.dark .logo { 
-    filter: invert(1); 
-}
-
-/* Botón de cambio de tema */
-.theme-toggle {
-    background: var(--surface-2);
-    color: var(--text);
-    border: 2px solid var(--border);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-.theme-toggle:hover {
-    transform: scale(1.1);
-    background: var(--primary);
-    color: white;
-}
-
-/* Icono de carrito */
-.fa-cart-shopping {
-    color: var(--text);
-    font-size: 1.3rem;
-    transition: transform 0.2s ease;
-}
-
-.fa-cart-shopping:hover {
-    transform: scale(1.1);
-}
-
-/* ============================================================
-   BARRA DE BÚSQUEDA (GRIS ELEGANTE)
-   ============================================================ */
-.search-container {
-    width: min(90%, 1200px);
-    margin: 0 auto;
-}
-
-#accessorySearch.form-control {
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
-    padding: 12px 20px;
-    border: 1px solid var(--border) !important;
-    border-radius: 999px;
-    background-color: var(--surface) !important;
-    color: var(--text) !important;
-    transition: all 0.3s ease;
-}
-
-/* El gris elegante que pediste para el modo oscuro */
-body.dark #accessorySearch.form-control {
-    background-color: var(--surface-2) !important; 
-    border-color: #444444 !important;
-}
-
-body.dark #accessorySearch::placeholder {
-    color: var(--text-soft) !important;
-}
-
-/* ============================================================
-   GRID Y TARJETAS (NEGRO EN MODO OSCURO)
-   ============================================================ */
-.cartas-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    padding: 40px;
-    max-width: 1300px;
-    margin: 0 auto;
-    justify-content: center;
-}
-
-.card {
-    width: 100%;
-    max-width: 280px;
-    border: 1px solid var(--border) !important;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    background-color: var(--surface) !important; /* Cambia a --surface (negro) en dark */
-    color: var(--text) !important;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-}
-
-.card-img-top {
-    height: 220px;
-    object-fit: cover;
-}
-
-.card-body {
-    background-color: transparent !important;
-    text-align: center;
-    padding: 20px;
-}
-
-.card-title {
-    font-weight: bold;
-    font-size: 1.15rem;
-    margin-bottom: 8px;
-}
-
-.price {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text);
-    margin: 10px 0;
-}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.footer {
-    background: var(--surface-2);
-    padding: 50px 0 20px;
-    border-top: 1px solid var(--border);
-    color: var(--text);
-}
-
-.footer-links a {
-    color: var(--text);
-    text-decoration: none;
-    transition: opacity 0.2s;
-}
-
-.footer-links a:hover {
-    opacity: 0.7;
-}
-
-.emmpresas-card {
-    background: var(--surface);
-    padding: 5px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    main { padding-top: 180px; }
-    .cartas-grid { padding: 15px; }
-}
+   :root {
+    --bg: #f8f9fa;
+    --surface: #FFFFFF;
+    --surface-2: #F0F3F4;
+    --text: #2C3E50;
+    --text-soft: #7F8C8D;
+    --primary: #1A252F;
+    --border: #E5E7E9;
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  body.dark {
+    --bg: #121212;
+    --surface: #1E1E1E;       /* Fondo de las tarjetas */
+    --surface-2: #2D2D2D;     /* Gris elegante para la barra de búsqueda */
+    --text: #E0E0E0;
+    --text-soft: #9E9E9E;
+    --border: #333333;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* ============================================================
+     ESTILOS GENERALES
+     ============================================================ */
+  body {
+      background-color: var(--bg);
+      font-family: 'Roboto', sans-serif;
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  main {
+      padding-top: 160px; /* Espacio para el header fijo */
+      min-height: 80vh;
+  }
+  
+  /* ============================================================
+     HEADER Y ACCIONES (CARRITO Y TEMA)
+     ============================================================ */
+  .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      transition: background 0.3s ease;
+  }
+  
+  .nav-list a {
+      color: var(--text) !important;
+      text-decoration: none;
+      font-weight: 600;
+  }
+  
+  .logo { 
+      height: 45px; 
+      transition: filter 0.3s ease; 
+  }
+  
+  body.dark .logo { 
+      filter: invert(1); 
+  }
+  
+  /* Botón de cambio de tema */
+  .theme-toggle {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 2px solid var(--border);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+  }
+  
+  .theme-toggle:hover {
+      transform: scale(1.1);
+      background: var(--primary);
+      color: white;
+  }
+  
+  /* Icono de carrito */
+  .fa-cart-shopping {
+      color: var(--text);
+      font-size: 1.3rem;
+      transition: transform 0.2s ease;
+  }
+  
+  .fa-cart-shopping:hover {
+      transform: scale(1.1);
+  }
+  
+  /* ============================================================
+     BARRA DE BÚSQUEDA (GRIS ELEGANTE)
+     ============================================================ */
+  .search-container {
+      width: min(90%, 1200px);
+      margin: 0 auto;
+  }
+  
+  #accessorySearch.form-control {
+      width: 100%;
+      max-width: 450px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      border: 1px solid var(--border) !important;
+      border-radius: 999px;
+      background-color: var(--surface) !important;
+      color: var(--text) !important;
+      transition: all 0.3s ease;
+  }
+  
+  /* El gris elegante que pediste para el modo oscuro */
+  body.dark #accessorySearch.form-control {
+      background-color: var(--surface-2) !important; 
+      border-color: #444444 !important;
+  }
+  
+  body.dark #accessorySearch::placeholder {
+      color: var(--text-soft) !important;
+  }
+  
+  /* ============================================================
+     GRID Y TARJETAS (NEGRO EN MODO OSCURO)
+     ============================================================ */
+  .cartas-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 40px;
+      max-width: 1300px;
+      margin: 0 auto;
+      justify-content: center;
+  }
+  
+  .card {
+      width: 100%;
+      max-width: 280px;
+      border: 1px solid var(--border) !important;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      background-color: var(--surface) !important; /* Cambia a --surface (negro) en dark */
+      color: var(--text) !important;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+      transform: translateY(-8px);
+  }
+  
+  .card-img-top {
+      height: 220px;
+      object-fit: cover;
+  }
+  
+  .card-body {
+      background-color: transparent !important;
+      text-align: center;
+      padding: 20px;
+  }
+  
+  .card-title {
+      font-weight: bold;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+  }
+  
+  .price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 10px 0;
+  }
+  
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .footer {
+      background: var(--surface-2);
+      padding: 50px 0 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text);
+  }
+  
+  .footer-links a {
+      color: var(--text);
+      text-decoration: none;
+      transition: opacity 0.2s;
+  }
+  
+  .footer-links a:hover {
+      opacity: 0.7;
+  }
+  
+  .emmpresas-card {
+      background: var(--surface);
+      padding: 5px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+      main { padding-top: 180px; }
+      .cartas-grid { padding: 15px; }
+  }
