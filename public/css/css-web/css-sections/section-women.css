@@ -1,0 +1,268 @@
+/* =========================================
+   VARIABLES Y BASE
+   ========================================= */
+:root {
+    --primary-pink: #d63384;
+    --dark-pink: #f48fb1; 
+    
+    /* Modo Claro */
+    --bg-main: #ffffff;
+    --bg-card: #ffffff;
+    --bg-img-container: #f9f9f9;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --btn-dark-bg: #212529;
+    --btn-dark-text: #ffffff;
+
+    /* Nuevos colores para el widget de carrito */
+    --cart-badge-bg: var(--bg-main);
+    --cart-badge-text: var(--primary-pink);
+    --cart-badge-border: var(--border-color);
+}
+
+body.dark-mode {
+    /* Modo Oscuro */
+    --bg-main: #121212;
+    --bg-card: #1e1e1e;
+    --bg-img-container: #2a2a2a;
+    --text-main: #f8f9fa;
+    --text-muted: #adb5bd;
+    --border-color: #444444;
+    --btn-dark-bg: #f8f9fa;
+    --btn-dark-text: #121212;
+
+    --cart-badge-bg: #212529;
+    --cart-badge-text: var(--dark-pink);
+    --cart-badge-border: #444444;
+}
+
+.transition-theme {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+/* =========================================
+   HEADER Y NAVEGACIÓN
+   ========================================= */
+.header {
+    background-color: var(--bg-main);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1050;
+}
+
+.nav-list a {
+    color: var(--text-main);
+}
+
+.nav-list a:hover {
+    color: var(--primary-pink);
+}
+
+.theme-icon {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.theme-icon:hover {
+    color: var(--primary-pink);
+}
+
+/* NUEVO WIDGET DE CARRITO ESTILIZADO */
+.stylized-cart-widget {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.stylized-cart-widget:hover {
+    color: var(--primary-pink);
+}
+
+.stylized-cart-badge {
+    background-color: var(--cart-badge-bg) !important;
+    color: var(--cart-badge-text) !important;
+    border: 1px solid var(--cart-badge-border);
+    font-size: 0.7rem;
+    font-weight: bold;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    padding: 0; /* Asegurar que no hay padding extra */
+}
+
+/* =========================================
+   COMPONENTES
+   ========================================= */
+.product-main-title { color: var(--primary-pink); }
+body.dark-mode .product-main-title { color: var(--dark-pink); }
+
+.custom-search {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.custom-search:focus {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 0.25rem rgba(214, 51, 132, 0.25);
+}
+
+/* NUEVO DISEÑO DE TARJETA HORIZONTAL */
+/* El grid container ahora es de 1 columna */
+#productsGrid {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-wrapper {
+    margin-bottom: 2rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    height: 100%; /* Asegurar que las tarjetas tomen toda la altura */
+}
+
+.card-content-wrapper {
+    display: flex; /* Layout horizontal */
+    width: 100%;
+}
+
+.image-container {
+    background-color: var(--bg-img-container);
+    width: 40%; /* Imagen a la izquierda, 40% del ancho */
+    max-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card-img-horizontal {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-container {
+    width: 60%; /* Detalles a la derecha, 60% del ancho */
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title { 
+    color: var(--primary-pink); 
+    font-size: 1.5rem; 
+    margin-bottom: 1rem;
+}
+body.dark-mode .product-title { color: var(--dark-pink); }
+
+.price-text {
+    font-size: 1.8rem;
+    color: var(--text-main) !important;
+    margin-bottom: 1rem;
+}
+
+.description-text { 
+    color: var(--text-muted) !important; 
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1; /* Permite que la descripción empuje el resto de elementos hacia abajo */
+}
+
+.text-dark { color: var(--text-main) !important; }
+
+/* NUEVO ESTILO DE SELECTOR DE CANTIDAD */
+/* Se eliminaron los estilos para .quantity-container, .decrease-btn, .increase-btn */
+
+.quantity-input {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    padding: 0.5rem;
+    width: 100px; /* Ancho específico como en el ejemplo */
+    align-self: center; /* Centrar horizontalmente el input */
+}
+
+.quantity-input:focus {
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 0.15rem rgba(214, 51, 132, 0.2);
+}
+
+/* BOTÓN DE AÑADIR (Bloque completo) */
+.btn-add-to-cart {
+    background-color: var(--btn-dark-bg);
+    color: var(--btn-dark-text);
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn-add-to-cart:hover {
+    opacity: 0.85;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer {
+    background-color: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-links a {
+    color: var(--text-muted);
+}
+
+.footer-links a:hover {
+    color: var(--primary-pink);
+}
+
+/* =========================================
+   MEDIA QUERIES (Asegurar responsividad horizontal)
+   ========================================= */
+@media (max-width: 991px) {
+    .card-content-wrapper {
+        flex-direction: column; /* Apilar en pantallas más pequeñas */
+    }
+
+    .image-container, .details-container {
+        width: 100%;
+    }
+
+    .image-container {
+        height: 300px;
+    }
+}
