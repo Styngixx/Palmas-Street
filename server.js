@@ -73,12 +73,41 @@ app.post('/enviar-contacto', async (req, res) => {
     }
 });
 
+// Ruta para obtener productos de la categoría 'hombres'
+app.get('/api/productos/hombres', async (req, res) => {
+    try {
+        // ILIKE ignora si es mayúscula o minúscula. %hombres% busca que contenga la palabra.
+        const query = "SELECT * FROM productos WHERE categoria ILIKE $1 ORDER BY created_at DESC";
+        const resultado = await pool.query(query, ['%hombre%']); 
+        
+        res.json(resultado.rows);
+    } catch (err) {
+        console.error("❌ Error al obtener productos de hombres:", err);
+        res.status(500).json({ error: "No se pudieron obtener los productos." });
+    }
+});
+
 app.use('/api/auth', authRoutes); 
+
+
+// API para obtener los productos de la categoría accesorios
+app.get('/api/productos/accesorios', async (req, res) => {
+    try {
+        // Asegúrate de que el nombre de la categoría sea el mismo que tienes en la base de datos
+        const querySQL = "SELECT * FROM productos WHERE categoria = 'accesorios' ORDER BY id ASC";
+        const resultado = await pool.query(querySQL);
+        res.json(resultado.rows);
+    } catch (err) {
+        console.error("❌ Error al obtener los accesorios:", err);
+        res.status(500).json({ error: "No se pudo obtener el catálogo de accesorios." });
+    }
+});
 
 // Manejo de errores 404 para rutas no encontradas (Evita el error de token '<')
 app.use((req, res) => {
     res.status(404).json({ error: "Ruta no encontrada" });
 });
+
 
 app.listen(PORT, () => {
     console.log(`🚀 Servidor en http://localhost:${PORT}`);
