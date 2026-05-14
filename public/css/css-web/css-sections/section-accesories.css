@@ -1,220 +1,203 @@
 /* ============================================================
-   VARIABLES DE COLORES (MODO CLARO Y OSCURO)
+   GRILLA DE PRODUCTOS
    ============================================================ */
-:root {
-  --bg: #f8f9fa;
-  --surface: #FFFFFF;
-  --surface-2: #F0F3F4;
-  --text: #2C3E50;
-  --text-soft: #7F8C8D;
-  --primary: #1A252F;
-  --border: #E5E7E9;
-  --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+   .cartas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
 }
 
-body.dark {
-  --bg: #121212;
-  --surface: #1E1E1E;       /* Fondo de las tarjetas */
-  --surface-2: #2D2D2D;     /* Gris elegante para la barra de búsqueda */
-  --text: #E0E0E0;
-  --text-soft: #9E9E9E;
-  --border: #333333;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+.accesorio-card {
+    background-color: #1a1a1a; 
+    color: white;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.accesorio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+body:not(.dark) .accesorio-card {
+    background-color: #f8f9fa;
+    color: #212529;
+    border: 1px solid #dee2e6;
 }
 
 /* ============================================================
-   ESTILOS GENERALES
+   ESTILOS DE BOTONES (CANTIDAD Y AÑADIR)
    ============================================================ */
-body {
-    background-color: var(--bg);
-    font-family: 'Roboto', sans-serif;
-    color: var(--text);
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
+/* --- NUEVOS ESTILOS PARA CENTRAR Y DISPONER HORIZONTALMENTE --- */
+.quantity-controls-group {
+    display: flex;
+    justify-content: center; /* Centra todo el grupo horizontalmente */
+    align-items: center; /* Alinea los elementos verticalmente */
+    gap: 15px; /* Espaciado entre [-], [1], [+] */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
 }
 
-main {
-    padding-top: 160px; /* Espacio para el header fijo */
-    min-height: 80vh;
+.quantity-display {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text, white);
+    width: 30px; /* Ancho fijo para que el número permanezca centrado */
+    text-align: center;
+    display: inline-block;
 }
 
-/* ============================================================
-   HEADER Y ACCIONES (CARRITO Y TEMA)
-   ============================================================ */
-.header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 10px 0;
-    transition: background 0.3s ease;
+body:not(.dark) .quantity-display {
+    color: #212529;
 }
 
-.nav-list a {
-    color: var(--text) !important;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.logo { 
-    height: 45px; 
-    transition: filter 0.3s ease; 
-}
-
-body.dark .logo { 
-    filter: invert(1); 
-}
-
-/* Botón de cambio de tema */
-.theme-toggle {
-    background: var(--surface-2);
-    color: var(--text);
-    border: 2px solid var(--border);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
+/* Estilos base de los botones cuadrados de +/- */
+.btn-qty {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
+    padding: 0; /* Asegura que sean cuadrados perfectos */
 }
 
-.theme-toggle:hover {
-    transform: scale(1.1);
-    background: var(--primary);
-    color: white;
+body:not(.dark) .btn-qty {
+    background-color: #e9ecef;
+    color: black;
+    border-color: #ced4da;
 }
 
-/* Icono de carrito */
-.fa-cart-shopping {
-    color: var(--text);
-    font-size: 1.3rem;
-    transition: transform 0.2s ease;
+.btn-qty:hover {
+    background-color: #555;
 }
 
-.fa-cart-shopping:hover {
-    transform: scale(1.1);
+body:not(.dark) .btn-qty:hover {
+    background-color: #ced4da;
+}
+
+/* Botón principal de añadir al carrito */
+.btn-add-cart {
+    background-color: #f8f9fa; 
+    color: #212529;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    transition: all 0.2s;
+}
+
+.btn-add-cart:hover {
+    background-color: #e2e6ea;
 }
 
 /* ============================================================
-   BARRA DE BÚSQUEDA (GRIS ELEGANTE)
+   CORRECCIÓN DE ALINEACIÓN HEADER
    ============================================================ */
-.search-container {
-    width: min(90%, 1200px);
-    margin: 0 auto;
+.header-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 1.5rem !important;
 }
 
-#accessorySearch.form-control {
+/* ============================================================
+   ESTÉTICA DEL BUSCADOR Y FILTROS ESTÁTICOS
+   ============================================================ */
+.search-and-filter-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
-    padding: 12px 20px;
-    border: 1px solid var(--border) !important;
-    border-radius: 999px;
-    background-color: var(--surface) !important;
-    color: var(--text) !important;
+    margin-bottom: 30px;
+}
+
+.search-input-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-input-container .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+#searchInputJS {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border: 2px solid #444;
+    border-radius: 25px;
+    background-color: #222;
+    color: white;
+    font-size: 1rem;
     transition: all 0.3s ease;
 }
 
-/* El gris elegante que pediste para el modo oscuro */
-body.dark #accessorySearch.form-control {
-    background-color: var(--surface-2) !important; 
-    border-color: #444444 !important;
+body:not(.dark) #searchInputJS {
+    background-color: #fff;
+    border-color: #ced4da;
+    color: #212529;
 }
 
-body.dark #accessorySearch::placeholder {
-    color: var(--text-soft) !important;
+#searchInputJS:focus {
+    outline: none;
+    border-color: #888;
 }
 
-/* ============================================================
-   GRID Y TARJETAS (NEGRO EN MODO OSCURO)
-   ============================================================ */
-.cartas-grid {
+.categorias-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
-    padding: 40px;
-    max-width: 1300px;
-    margin: 0 auto;
     justify-content: center;
+    gap: 10px;
+    max-width: 800px;
 }
 
-.card {
-    width: 100%;
-    max-width: 280px;
-    border: 1px solid var(--border) !important;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    background-color: var(--surface) !important; /* Cambia a --surface (negro) en dark */
-    color: var(--text) !important;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+.btn-categoria {
+    background-color: transparent;
+    color: var(--text, white);
+    border: 2px solid #555;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.card:hover {
-    transform: translateY(-8px);
+body:not(.dark) .btn-categoria {
+    color: #212529;
+    border-color: #ced4da;
 }
 
-.card-img-top {
-    display: block;
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    margin: 0 auto;
+.btn-categoria:hover {
+    background-color: #333;
 }
 
-.card-body {
-    background-color: transparent !important;
-    text-align: center;
-    padding: 20px;
+body:not(.dark) .btn-categoria:hover {
+    background-color: #e9ecef;
 }
 
-.card-title {
-    font-weight: bold;
-    font-size: 1.15rem;
-    margin-bottom: 8px;
+.btn-categoria.activo {
+    background-color: white;
+    color: black;
+    border-color: white;
 }
 
-.price {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text);
-    margin: 10px 0;
-}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.footer {
-    background: var(--surface-2);
-    padding: 50px 0 20px;
-    border-top: 1px solid var(--border);
-    color: var(--text);
-}
-
-.footer-links a {
-    color: var(--text);
-    text-decoration: none;
-    transition: opacity 0.2s;
-}
-
-.footer-links a:hover {
-    opacity: 0.7;
-}
-
-.emmpresas-card {
-    background: var(--surface);
-    padding: 5px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    main { padding-top: 180px; }
-    .cartas-grid { padding: 15px; }
+body:not(.dark) .btn-categoria.activo {
+    background-color: #212529;
+    color: white;
+    border-color: #212529;
 }

@@ -17,13 +17,15 @@
 <body>
     <header class="header">
         <div class="container nav-container d-flex justify-content-between align-items-center">
-            <img src="/media/media-logos/LogoPS.png" alt="Palmas Street Logo" class="logo">
+            <a href="/index.html">
+                <img src="/media/media-logos/LogoPS.png" alt="Palmas Street Logo" class="logo">
+            </a>
             
             <nav class="nav">
                 <ul class="nav-list d-flex list-unstyled m-0 gap-4">
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="/#catalogo">Catálogo</a></li>
-                    <li><a href="contact.html">Contacto</a></li>
+                    <li><a href="/index.html">Inicio</a></li>
+                    <li><a href="/index.html#catalogo">Catálogo</a></li>
+                    <li><a href="/web/contact.html">Contacto</a></li>
                 </ul>
             </nav>
 
@@ -41,13 +43,11 @@
             </div>
         </div>
         
-        <div class="container search-container mt-3">
-            <input id="accessorySearch" type="search" class="form-control" placeholder="Buscar accesorios por nombre, marca...">
-            <p id="noResultsMessage" style="display: none; margin-top: 10px; text-align: center;">
-                No se encontraron accesorios que coincidan con tu búsqueda.
-            </p>
-        </div>
+        
     </header>
+
+    <div class="container filter-section-container mt-4" id="filtrosContainer">
+    </div>
 
     <main>
         <article class="cartas-grid" id="accesoriosGrid"></article>
