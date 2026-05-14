@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Carga inicial desde la BD (Ajusta 'masculino' si en tu BD es diferente)
-    cargarProductosHombres('masculino'); 
+    cargarProductosHombres('Hombres'); 
 
     // 2. Lógica de Búsqueda Instantánea
     const searchInput = document.getElementById('searchInput');
