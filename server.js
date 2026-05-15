@@ -44,7 +44,7 @@ app.get('/api/productos', async (req, res) => {
             params.push(categoria);
         }
 
-        sql += ' ORDER BY created_at DESC';
+        sql += ' ORDER BY id DESC';
         const result = await pool.query(sql, params);
         
         // Console log para que veas en la terminal si encuentra productos
@@ -116,7 +116,7 @@ app.get('/api/main_products', async (req, res) => {
 app.get('/api/productos/hombres', async (req, res) => {
     try {
         // ILIKE ignora si es mayúscula o minúscula. %hombres% busca que contenga la palabra.
-        const query = "SELECT * FROM productos WHERE categoria ILIKE $1 ORDER BY created_at DESC";
+        const query = "SELECT * FROM productos WHERE categoria ILIKE $1 ORDER BY id DESC";
         const resultado = await pool.query(query, ['%hombre%']); 
         
         res.json(resultado.rows);

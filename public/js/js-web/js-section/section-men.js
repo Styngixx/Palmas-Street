@@ -1,134 +1,135 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const productsGrid = document.getElementById('productsGrid');
-    const searchInput = document.getElementById('searchInput');
-    const clearSearchBtn = document.getElementById('clearSearchBtn');
+  const productsGrid = document.getElementById('productsGrid');
+  const searchInput = document.getElementById('searchInput');
+  const clearSearchBtn = document.getElementById('clearSearchBtn');
+  const themeToggle = document.getElementById('themeToggle');
 
-    // ==========================================
-    // 1. CARGAR PRODUCTOS DESDE LA BASE DE DATOS
-    // ==========================================
-    async function cargarProductos() {
-        try {
-            // Llamamos al endpoint que ya tienes en server.js
-            const response = await fetch('/api/productos/hombres');
-            if (!response.ok) throw new Error('Error en la red');
-            
-            const productos = await response.json();
+  if (localStorage.getItem('tema') === 'dark') {
+    document.body.classList.add('dark');
+    const icon = themeToggle ? themeToggle.querySelector('i') : null;
+    if (icon) icon.className = 'bi bi-sun fs-5';
+  }
 
-            // Limpiamos el grid por si hubiera contenido previo
-            productsGrid.innerHTML = '';
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      const icon = themeToggle.querySelector('i');
 
-            // Iteramos sobre los productos obtenidos de Supabase
-            productos.forEach(producto => {
-                // Formateamos el precio para que tenga 2 decimales
-                const precioFormateado = parseFloat(producto.precio).toFixed(2);
-                
-                // Si no hay imagen en la BD, ponemos una por defecto
-                const imagen = producto.imagen_url || '/media/media-sections/men/ropa1.jpeg';
-                const marca = producto.marca || 'Palmas Street';
+      if (icon) icon.className = isDark ? 'bi bi-sun fs-5' : 'bi bi-moon fs-5';
+      localStorage.setItem('tema', isDark ? 'dark' : 'light');
+    });
+  }
 
-                // Creamos el contenedor de la columna para la cuadrícula
-                const articleCol = document.createElement('div');
-                articleCol.className = 'col product-item';
+  async function cargarProductos() {
+    try {
+      const response = await fetch('/api/productos/hombres');
+      if (!response.ok) throw new Error('Error al obtener productos de hombres');
 
-                // ✅ CORRECCIÓN: HTML limpio, sin estilos "en línea" (style="")
-                articleCol.innerHTML = `
-                    <div class="card h-100 border-0 shadow-sm hover-card">
-                      <div class="product-image-container overflow-hidden">
-                        <img src="${imagen}" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="${producto.nombre}">
-                      </div>
-                      
-                      <div class="card-body d-flex flex-column text-center p-3">
-                        <h5 class="card-title fw-bold product-title mb-1">${producto.nombre}</h5>
-                        <h6 class="card-subtitle mb-2 fw-bold marca-text">Marca: ${marca}</h6>
-                        
-                        <p class="card-text text-muted flex-grow-1 mt-2 product-description">${producto.descripcion || 'Sin descripción disponible.'}</p>
-                        <span class="fs-5 fw-bold price mb-3">S/ ${precioFormateado}</span>
-                        
-                        <div class="d-flex justify-content-center align-items-center mb-3 gap-2 quantity-selector">
-                          <button type="button" class="btn btn-qty btn-minus btn-sm">-</button>
-                          <input type="text" class="form-control form-control-sm text-center qty-input" value="1" readonly style="width: 50px;">
-                          <button type="button" class="btn btn-qty btn-plus btn-sm">+</button>
-                        </div>
-                        
-                        <button type="button" class="btn btn-primary w-100 fw-bold shadow-sm btn-cart-add">Añadir al Carrito</button>
-                      </div>
-                    </div>
-                `;
-                
-                productsGrid.appendChild(articleCol);
-            });
+      const productos = await response.json();
+      productsGrid.innerHTML = '';
 
-            // Inicializamos la lógica de botones de cantidad después de que las tarjetas existen
-            inicializarBotonesCantidad();
+      if (!productos.length) {
+        productsGrid.innerHTML = '<div class="col-12 text-center text-muted"><p>No hay productos disponibles.</p></div>';
+        return;
+      }
 
-        } catch (error) {
-            console.error("❌ Error al cargar los productos:", error);
-            productsGrid.innerHTML = '<div class="col-12 text-center text-muted"><p>No se pudieron cargar los productos en este momento.</p></div>';
-        }
-    }
+      productos.forEach(producto => {
+        const precioFormateado = Number(producto.precio || 0).toFixed(2);
+        const imagen = producto.imagen_url || '/media/media-logos/LogoPS.png';
+        const marca = producto.marca || 'Palmas Street';
 
-    // ==========================================
-    // 2. LÓGICA DE CANTIDAD (+ y -)
-    // ==========================================
-    function inicializarBotonesCantidad() {
-        document.querySelectorAll('.product-item').forEach(item => {
-            const btnMinus = item.querySelector('.btn-minus');
-            const btnPlus = item.querySelector('.btn-plus');
-            const qtyInput = item.querySelector('.qty-input');
+        const articleCol = document.createElement('div');
+        articleCol.className = 'col product-item';
 
-            if (btnPlus && btnMinus && qtyInput) {
-                btnPlus.addEventListener('click', () => {
-                    let currentValue = parseInt(qtyInput.value);
-                    qtyInput.value = currentValue + 1;
-                });
+        articleCol.innerHTML = `
+          <div class="card h-100 border-0 shadow-sm hover-card">
+            <div class="product-image-container overflow-hidden">
+              <img src="${PalmasCart.escapeHTML(imagen)}" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="${PalmasCart.escapeHTML(producto.nombre)}" onerror="this.src='/media/media-logos/LogoPS.png'">
+            </div>
 
-                btnMinus.addEventListener('click', () => {
-                    let currentValue = parseInt(qtyInput.value);
-                    if (currentValue > 1) {
-                        qtyInput.value = currentValue - 1;
-                    }
-                });
-            }
-        });
-    }
+            <div class="card-body d-flex flex-column text-center p-3">
+              <h5 class="card-title fw-bold product-title mb-1">${PalmasCart.escapeHTML(producto.nombre)}</h5>
+              <h6 class="card-subtitle mb-2 fw-bold marca-text">Marca: ${PalmasCart.escapeHTML(marca)}</h6>
+              <p class="card-text text-muted flex-grow-1 mt-2 product-description">${PalmasCart.escapeHTML(producto.descripcion || 'Sin descripción disponible.')}</p>
+              <span class="fs-5 fw-bold price mb-3">S/ ${precioFormateado}</span>
 
-    // ==========================================
-    // 3. LÓGICA DEL BUSCADOR
-    // ==========================================
-    function filterProducts(term) {
-        const dynamicProducts = document.querySelectorAll('.product-item');
-        
-        dynamicProducts.forEach(product => {
-            const title = product.querySelector('.product-title').textContent.toLowerCase();
-            if (title.includes(term)) {
-                product.style.display = 'block'; 
-            } else {
-                product.style.display = 'none';
-            }
-        });
-    }
+              <div class="d-flex justify-content-center align-items-center mb-3 gap-2 quantity-selector">
+                <button type="button" class="btn btn-qty btn-minus btn-sm">-</button>
+                <input type="text" class="form-control form-control-sm text-center qty-input" value="1" readonly style="width: 50px;">
+                <button type="button" class="btn btn-qty btn-plus btn-sm">+</button>
+              </div>
 
-    if (searchInput && clearSearchBtn) {
-        searchInput.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            if (searchTerm.length > 0) {
-                clearSearchBtn.classList.remove('d-none');
-            } else {
-                clearSearchBtn.classList.add('d-none');
-            }
+              <button type="button" class="btn btn-primary w-100 fw-bold shadow-sm btn-cart-add">
+                Añadir al Carrito
+              </button>
+            </div>
+          </div>
+        `;
 
-            filterProducts(searchTerm);
+        const btnMinus = articleCol.querySelector('.btn-minus');
+        const btnPlus = articleCol.querySelector('.btn-plus');
+        const qtyInput = articleCol.querySelector('.qty-input');
+        const btnAdd = articleCol.querySelector('.btn-cart-add');
+
+        btnPlus.addEventListener('click', () => {
+          qtyInput.value = Number(qtyInput.value) + 1;
         });
 
-        clearSearchBtn.addEventListener('click', function() {
-            searchInput.value = ''; 
-            clearSearchBtn.classList.add('d-none'); 
-            filterProducts(''); 
-            searchInput.focus(); 
+        btnMinus.addEventListener('click', () => {
+          const currentValue = Number(qtyInput.value);
+          if (currentValue > 1) qtyInput.value = currentValue - 1;
         });
-    }
 
-    // Inicializamos la carga al levantar la página
-    cargarProductos();
+        btnAdd.addEventListener('click', () => {
+          PalmasCart.addToCart(producto, Number(qtyInput.value));
+
+          const originalText = btnAdd.innerHTML;
+          btnAdd.innerHTML = '¡Añadido!';
+          btnAdd.classList.remove('btn-primary');
+          btnAdd.classList.add('btn-success');
+          btnAdd.disabled = true;
+
+          setTimeout(() => {
+            btnAdd.innerHTML = originalText;
+            btnAdd.classList.remove('btn-success');
+            btnAdd.classList.add('btn-primary');
+            btnAdd.disabled = false;
+          }, 1200);
+        });
+
+        productsGrid.appendChild(articleCol);
+      });
+    } catch (error) {
+      console.error('❌ Error al cargar los productos:', error);
+      productsGrid.innerHTML = '<div class="col-12 text-center text-muted"><p>No se pudieron cargar los productos en este momento.</p></div>';
+    }
+  }
+
+  function filterProducts(term) {
+    const normalizedTerm = term.toLowerCase().trim();
+    const dynamicProducts = document.querySelectorAll('.product-item');
+
+    dynamicProducts.forEach(product => {
+      const title = product.querySelector('.product-title').textContent.toLowerCase();
+      product.style.display = title.includes(normalizedTerm) ? 'block' : 'none';
+    });
+  }
+
+  if (searchInput && clearSearchBtn) {
+    searchInput.addEventListener('input', event => {
+      const searchTerm = event.target.value;
+      clearSearchBtn.classList.toggle('d-none', searchTerm.length === 0);
+      filterProducts(searchTerm);
+    });
+
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearchBtn.classList.add('d-none');
+      filterProducts('');
+      searchInput.focus();
+    });
+  }
+
+  cargarProductos();
 });

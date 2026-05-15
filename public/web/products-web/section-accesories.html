@@ -30,12 +30,12 @@
             </nav>
 
             <div class="header-actions d-flex align-items-center gap-3">
-                <div class="cart-icon-container" style="position: relative; cursor: pointer;">
+                <a href="/web/carrito-web/carrito.html" class="cart-icon-container text-decoration-none text-reset" style="position: relative; cursor: pointer;" aria-label="Ver carrito">
                     <i class="fa-solid fa-cart-shopping" style="font-size: 1.4rem;"></i>
-                    <span id="cart-count" class="badge rounded-pill bg-danger" style="position: absolute; top: -8px; right: -10px; font-size: 0.7rem;">
+                    <span id="cart-count" class="js-cart-count badge rounded-pill bg-danger" style="position: absolute; top: -8px; right: -10px; font-size: 0.7rem;">
                         0
                     </span>
-                </div>
+                </a>
 
                 <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
@@ -88,6 +88,7 @@
         </div>
     </footer>
 
+    <script src="/js/js-web/cart-utils.js"></script>
     <script src="/js/js-web/js-section/accesorios.js"></script>
 </body>
 </html>

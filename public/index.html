@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Palmas Street</title>
   <link rel="stylesheet" href="/css/index.css" />
-  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
   <header class="header">
@@ -18,8 +17,12 @@
           <li><a href="#menu">Productos destacados</a></li>
           <li><a href="web/us.html">Nosotros</a></li>
           <li><a href="web/contact.html">Contacto</a></li>
+
         </ul>
       </nav>
+      <a href="/web/carrito-web/carrito.html" class="carrito-btn" target="_blank">
+  🛒 <span id="contador-carrito" class="js-cart-count">0</span>
+</a>
       <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro"> </button>
     </div>
   </header>
@@ -187,7 +190,7 @@
     </div>
   </footer>
 
-  <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/js-web/cart-utils.js"></script>
   <script src="/js/index.js"></script>
   <script src="/js/js-search/dinamica.js"></script>
 </body>

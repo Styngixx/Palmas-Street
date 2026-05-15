@@ -1,2 +1,5 @@
 # Ignorar archivo de variables de entorno
 node_modules/
+.env
+.env.local
+.git/
