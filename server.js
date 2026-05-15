@@ -40,7 +40,7 @@ app.get('/api/productos', async (req, res) => {
 
         if (categoria) {
             // ILIKE es vital para que 'Femenina' o 'femenina' funcionen igual
-            sql += ' ORDER BY id DESC';
+            sql += ' WHERE categoria ILIKE $1';
             params.push(categoria);
         }
 
