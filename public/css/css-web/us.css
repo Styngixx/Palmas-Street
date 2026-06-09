@@ -19,7 +19,6 @@ body.dark {
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
   font-family: Arial, sans-serif; 
@@ -34,10 +33,7 @@ a { text-decoration: none; color: inherit; }
 
 .container { width: min(90%, 1200px); margin: 0 auto; }
 
-
 .header {
-  /*position: sticky;
-  top: 0;*/
   z-index: 1000;
   background: var(--surface);
   backdrop-filter: blur(10px);
@@ -54,11 +50,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .nav-list { display: flex; gap: 1.2rem; font-weight: 600; }
-
-.nav-list a {
-  color: var(--text) !important;
-  transition: color 0.3s ease;
-}
+.nav-list a { color: var(--text) !important; transition: color 0.3s ease; }
 
 .logo { height: 45px; transition: filter 0.3s ease; }
 body.dark .logo { filter: invert(1); }
@@ -78,7 +70,6 @@ body.dark .logo { filter: invert(1); }
   transition: all 0.3s ease;
 }
 
-
 .section { padding: 60px 0; }
 
 .section-title { 
@@ -86,8 +77,8 @@ body.dark .logo { filter: invert(1); }
   margin-bottom: 40px; 
   padding: 30px 12px;
 }
-
-.section-title h2 { font-size: 2.5rem; color: var(--text); }
+.section-title h2 { font-size: 2.5rem; color: var(--text); font-weight: bold; }
+.section-title span { color: #6783af; font-size: 1.2rem; font-weight: bold; }
 
 .contact-grid { 
   display: grid; 
@@ -98,7 +89,6 @@ body.dark .logo { filter: invert(1); }
   border-radius: 20px;
 }
 
-
 .text h3 { margin-bottom: 15px; color: var(--text); font-size: 1.5rem; }
 .text p { color: var(--text-soft); font-size: 1.1rem; }
 
@@ -106,134 +96,222 @@ body.dark .logo { filter: invert(1); }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
 .footer-bottom { text-align: center; padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--border); }
 
-.bg{display: grid; place-items: center; height: 600px;}
-.banner-container { width: 100%; height: 100%; overflow: hidden; position: relative;}
-.banner-container img{width: 100%; height: 100%; object-fit: cover;}
+.bg { display: grid; place-items: center; height: 600px; }
+.banner-container { width: 100%; height: 100%; overflow: hidden; position: relative; }
+.banner-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
 
-.ingredientes-title{text-align: center;padding: 40px 25px;}
+.ingredientes-title { text-align: center; padding: 40px 25px; }
+.ingredientes-title h1 { color: var(--text); }
 
-.ingredientes-contenedor{display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 45px; padding-top: 10px;}
-.ingredientes-cards{background-color: #383f3f; border-radius: 20px;}
-.ingredientes-text{font-family: Roboto, sans-serif; font-size: 1.0em; font-weight: bold; text-align: center;padding: 20px 12px; color: #dad6d6;}
-.ingredientes-text p{font-size: 0.9em;}
-.rositateamo{padding-top: 18px;}
-.ingredientes-cards img{width: 100%;}
+.ingredientes-contenedor { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  gap: 45px; 
+  padding-top: 10px; 
+}
+
+/* --- CARDS DE INTEGRANTES CORREGIDAS --- */
+.ingredientes-cards {
+  background-color: var(--surface-2); 
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden; 
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 .ingredientes-cards:hover { 
-  transform: scale(1.05); 
-  z-index: 10;
+  transform: translateY(-10px); 
   box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
+.ingredientes-cards img {
+  width: 100%;
+  height: 350px; 
+  object-fit: cover; 
+  object-position: top; 
+  border-radius: 0; 
+}
+.ingredientes-text {
+  font-family: Roboto, sans-serif; 
+  text-align: center;
+  padding: 25px 15px; 
+  color: var(--text);
+}
+.ingredientes-text h2 { font-size: 1.4em; color: var(--text); margin-bottom: 5px; }
+.ingredientes-text h3 { font-size: 1.1em; color: var(--text-soft); font-weight: 500; }
 
-.miniconteiner-empresas{display: grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center; align-items: center; gap: 8px; padding: 5px 10px;}
-.emmpresas-card img{width: 100%; height: 10vh;}
+.rositateamo {
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.rositateamo p { font-size: 0.95em; color: var(--text-soft); margin-bottom: 5px; }
+
+.miniconteiner-empresas { display: grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center; align-items: center; gap: 8px; padding: 5px 10px; }
+.emmpresas-card img { width: 100%; height: 10vh; object-fit: contain; }
+
+/* --- SECCIÓN MISIÓN / VISIÓN Y OBJETIVOS --- */
+.section-mision-vision {
+  background-color: var(--surface-2); 
+  padding: 50px 0;
+  transition: background-color 0.3s ease;
+}
+.container-mision-vison { width: min(90%, 1200px); margin: 0 auto; }
+.section-title-mv { text-align: center; margin-bottom: 40px; padding: 55px 35px 20px; }
+.section-title-mv h2 { font-size: 2.5rem; color: var(--text); font-weight: bold; }
+.section-title-mv span { color: #6783af; font-size: 1.2em; font-weight: bold; }
 
 
-
-.section-title{text-align: center; font-weight: bold;padding: 25px 20px;}
-.section-title h2{font-size: 2.5em;}
-
-.section-title-mv{text-align: center;margin-bottom: 40px; padding: 55px 35px; margin: 0;}
-.section-title-mv h2 { font-size: 2.5rem; color: #587a9a;font-weight: bold; }
-.section-title-mv span{color: #6783af;}
-.section-mision-vision{background-color: #191e21;}
-.section-mision-vision span{color: #7a9fc1; font-size: 1.2em; font-weight: bold;}
-.container-mision-vison{display: grid; grid-template-columns: 1fr; justify-content: center;align-items: center;}
-.section-title h2 { font-size: 2.8rem; color: #587a9a; font-weight: bold; }
-
-@media (max-width: 768px) {
-  .nav-container { flex-direction: column; padding: 15px 0; }
-  .nav-list { margin-top: 15px; font-size: 0.9rem; }
-  .contact-grid { grid-template-columns: 1fr; text-align: center; }
+/* --- NUEVA ESTRUCTURA DEL MAPA JERÁRQUICO PROFESIONAL --- */
+.org-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+  margin-bottom: 4rem;
 }
 
-@media (max-width: 1024px) {
-  .ingredientes-contenedor {
-    grid-template-columns: repeat(2, 1fr); 
-  }
+.row-root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .ingredientes-contenedor {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-  
-  .bg {
-    height: 400px; 
-  }
-
-  .section {
-    padding: 40px 0; 
-  }
-
-  .section-title h2 {
-    font-size: 2rem; 
-  }
-  
-  .ingredientes-title {
-    padding: 20px 15px; 
-  }
-  
-  .nav-list {
-    flex-wrap: wrap; 
-    justify-content: center;
-  }
+.org-box {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 28px;
+  text-align: center;
+  min-width: 250px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
 }
 
-@media (max-width: 480px) {
-  .bg {
-    height: 300px; 
-  }
-  
-  .section-title h2 {
-    font-size: 1.75rem; 
-  }
+.org-box:hover {
+  transform: translateY(-6px);
+  border-color: #6783af;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
-/* Contenedor principal */
-.container {
-  max-width: 900px;
-  margin: 20px auto;
-  font-family: 'Segoe UI', sans-serif;
+.box-ceo {
+  border-color: #2c3e50;
+  background: var(--surface);
 }
 
-h2 { text-align: center; color: #2c3e50; }
+.org-badge {
+  background: #2c3e50;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.badge-backend { background: #2980b9; }
+.badge-frontend { background: #27ae60; }
+.badge-uxui { background: #9b59b6; }
+.badge-dba { background: #e67e22; }
+.badge-qa { background: #d35400; }
+
+.org-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.org-role {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+/* Líneas Conectoras Estilo Org Chart */
+.org-line-vertical {
+  width: 2px;
+  height: 35px;
+  background: var(--border);
+  margin: 0 auto;
+}
+
+.org-grid-branches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 35px;
+  border-top: 2px solid var(--border);
+}
+
+
+/* --- SECCIÓN MATRIZ RACI (TÍTULO MEJORADO) --- */
+.raci-main-title {
+  text-align: center;
+  font-size: 2.8rem; /* Más grande */
+  font-weight: 900;  /* Super negrita */
+  color: var(--text);
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
 
 .raci-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem; /* Tamaño más compacto */
+  font-size: 0.95rem; 
+  background-color: var(--surface);
+  color: var(--text);
 }
-
 .raci-table th, .raci-table td {
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   padding: 10px;
   text-align: center;
 }
+.raci-table th { background-color: #2c3e50; color: white; }
 
-.raci-table th {
-  background-color: #2c3e50;
-  color: white;
-}
-
-/* Letras de colores compactas */
 .cell-r, .cell-a, .cell-c, .cell-i {
   font-weight: bold;
   color: white !important;
   padding: 6px !important;
   border-radius: 4px;
 }
+.cell-r { background-color: #e74c3c; } 
+.cell-a { background-color: #f39c12; } 
+.cell-c { background-color: #27ae60; } 
+.cell-i { background-color: #3498db; } 
 
-.cell-r { background-color: #e74c3c; } /* Responsable */
-.cell-a { background-color: #f39c12; } /* Accountable */
-.cell-c { background-color: #27ae60; } /* Consulted */
-.cell-i { background-color: #3498db; } /* Informed */
-
-/* Leyenda minimalista */
 .raci-legend {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-top: 15px;
   font-size: 0.85rem;
+  color: var(--text);
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 1024px) {
+  .ingredientes-contenedor { grid-template-columns: repeat(2, 1fr); }
+  .org-grid-branches { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-container { flex-direction: column; padding: 15px 0; }
+  .nav-list { margin-top: 15px; font-size: 0.9rem; flex-wrap: wrap; justify-content: center; }
+  .contact-grid { grid-template-columns: 1fr; text-align: center; gap: 20px;}
+  .ingredientes-contenedor { grid-template-columns: 1fr; gap: 25px; }
+  .org-grid-branches { grid-template-columns: 1fr; padding-top: 20px; border-top: none; }
+  .org-line-vertical { display: none; }
+  .bg { height: 400px; }
+  .section { padding: 40px 0; }
+  .section-title h2, .section-title-mv h2 { font-size: 2rem; }
+  .raci-main-title { font-size: 2rem; }
 }
