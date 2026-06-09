@@ -176,3 +176,51 @@ body.dark .logo { filter: invert(1); }
     font-size: 1.75rem; 
   }
 }
+
+/* Contenedor principal */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2 { text-align: center; color: #2c3e50; }
+
+.raci-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem; /* Tamaño más compacto */
+}
+
+.raci-table th, .raci-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.raci-table th {
+  background-color: #2c3e50;
+  color: white;
+}
+
+/* Letras de colores compactas */
+.cell-r, .cell-a, .cell-c, .cell-i {
+  font-weight: bold;
+  color: white !important;
+  padding: 6px !important;
+  border-radius: 4px;
+}
+
+.cell-r { background-color: #e74c3c; } /* Responsable */
+.cell-a { background-color: #f39c12; } /* Accountable */
+.cell-c { background-color: #27ae60; } /* Consulted */
+.cell-i { background-color: #3498db; } /* Informed */
+
+/* Leyenda minimalista */
+.raci-legend {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  font-size: 0.85rem;
+}
