@@ -127,6 +127,19 @@ body.dark .logo { filter: invert(1); }
 .miniconteiner-empresas{display: grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center; align-items: center; gap: 8px; padding: 5px 10px;}
 .emmpresas-card img{width: 100%; height: 10vh;}
 
+
+
+.section-title{text-align: center; font-weight: bold;padding: 25px 20px;}
+.section-title h2{font-size: 2.5em;}
+
+.section-title-mv{text-align: center;margin-bottom: 40px; padding: 55px 35px; margin: 0;}
+.section-title-mv h2 { font-size: 2.5rem; color: #587a9a;font-weight: bold; }
+.section-title-mv span{color: #6783af;}
+.section-mision-vision{background-color: #191e21;}
+.section-mision-vision span{color: #7a9fc1; font-size: 1.2em; font-weight: bold;}
+.container-mision-vison{display: grid; grid-template-columns: 1fr; justify-content: center;align-items: center;}
+.section-title h2 { font-size: 2.8rem; color: #587a9a; font-weight: bold; }
+
 @media (max-width: 768px) {
   .nav-container { flex-direction: column; padding: 15px 0; }
   .nav-list { margin-top: 15px; font-size: 0.9rem; }
