@@ -46,7 +46,7 @@ const dotsContainer = document.getElementById('dots');
 let counter = 0;
 const size = 100;
 const totalSlides = slides.length;
-const intervalTime = 8000;
+const intervalTime = 5000; // 5 segundos para mejor experiencia
 
 slides.forEach((_, i) => {
   const dot = document.createElement('div');
@@ -64,13 +64,21 @@ function updateDots() {
 }
 
 function moveSlide() {
-  if (counter >= totalSlides - 1) { counter = 0; } else { counter++; }
+  if (counter >= totalSlides - 1) { 
+    counter = 0; 
+  } else { 
+    counter++; 
+  }
   slider.style.transform = `translateX(${-size * counter}%)`;
   updateDots();
 }
 
 function prevSlide() {
-  if (counter <= 0) { counter = totalSlides - 1; } else { counter--; }
+  if (counter <= 0) { 
+    counter = totalSlides - 1; 
+  } else { 
+    counter--; 
+  }
   slider.style.transform = `translateX(${-size * counter}%)`;
   updateDots();
   resetTimer();
@@ -88,13 +96,28 @@ function goToSlide(index) {
   resetTimer();
 }
 
+// Event listeners con mejor control
 nextBtn.addEventListener('click', nextSlide);
 prevBtn.addEventListener('click', prevSlide);
 
+// Iniciar auto-play
 let timer = setInterval(moveSlide, intervalTime);
+
 function resetTimer() {
   clearInterval(timer);
   timer = setInterval(moveSlide, intervalTime);
+}
+
+// Pausar auto-play cuando el mouse está sobre el banner
+const bannerContainer = document.querySelector('.banner-container');
+if (bannerContainer) {
+  bannerContainer.addEventListener('mouseenter', () => {
+    clearInterval(timer);
+  });
+  
+  bannerContainer.addEventListener('mouseleave', () => {
+    timer = setInterval(moveSlide, intervalTime);
+  });
 }
 
 // =========================================================

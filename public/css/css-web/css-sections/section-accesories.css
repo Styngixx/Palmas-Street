@@ -201,3 +201,176 @@ body:not(.dark) .btn-categoria.activo {
     color: white;
     border-color: #212529;
 }
+/* ===== BANNER ===== */
+
+.accesorios-slider { 
+  width: 100%; 
+  height: 600px; 
+  overflow: hidden; 
+  position: relative; 
+  background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+}
+
+.slider-track { 
+  display: flex; 
+  width: 100%; 
+  height: 100%; 
+  animation: autoSlide 18s infinite ease-in-out;
+}
+
+@keyframes autoSlide {
+  0% { transform: translateX(0%); }
+  33% { transform: translateX(0%); }
+  34% { transform: translateX(-100%); }
+  67% { transform: translateX(-100%); }
+  68% { transform: translateX(-200%); }
+  100% { transform: translateX(-200%); }
+}
+
+.slide { 
+  min-width: 100%; 
+  height: 100%; 
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slide::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.15) 100%);
+}
+
+.btn-nav {
+  display: none;
+}
+
+.dots-container {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .accesorios-slider {
+    height: 400px; 
+  }
+  
+  .btn-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .btn-nav.prev {
+    left: 15px;
+  }
+
+  .btn-nav.next {
+    right: 15px;
+  }
+  
+  .dots-container {
+    bottom: 20px;
+    gap: 8px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .dot.active {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr; 
+    padding: 0 15px; 
+  }
+  
+  .text p {
+    padding: 15px 10px;
+  }
+  
+  .contact-grid img {
+    width: 100%; 
+    height: auto;
+    max-height: 40vh;
+  }
+  
+  .map-wrapper {
+    height: 300px; 
+  }
+  
+  .section-title h2, 
+  .section-title-mv h2 {
+    font-size: 2rem; 
+  }
+  
+  .section-title-mv {
+    padding: 30px 15px; 
+  }
+
+  .video-referencial {
+    padding: 40px 0; 
+  }
+  
+  .nav-list {
+    flex-wrap: wrap; 
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .accesorios-slider {
+    height: 300px; 
+  }
+  
+  .btn-nav {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+  
+  .btn-nav.prev {
+    left: 10px;
+  }
+
+  .btn-nav.next {
+    right: 10px;
+  }
+  
+  .dots-container {
+    bottom: 15px;
+    gap: 6px;
+  }
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .dot.active {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .section-title h2, 
+  .section-title-mv h2 {
+    font-size: 1.75rem; 
+  }
+  
+  .contact-grid {
+    gap: 20px; 
+  }
+}
+
