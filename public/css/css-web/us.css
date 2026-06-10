@@ -447,3 +447,93 @@ body.dark .raci-table tbody tr:nth-child(even) {
   .section-title h2, .section-title-mv h2 { font-size: 2rem; }
   .raci-main-title { font-size: 2rem; }
 }
+
+
+
+
+
+
+  /* =======================================================
+   DIAGRAMA SCRUM V5 - EDICIÓN ULTRA GIGANTE PARA ZOOM
+   ======================================================= */
+
+.scrum-v3-wrapper {
+  width: max-content;
+  margin: 0 auto;
+}
+
+.scrum-v3-container {
+  position: relative;
+  width: 1400px; /* Tamaño masivo horizontal */
+  height: 680px; /* Más alto para dar aire al texto gigante */
+  background-color: transparent;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+/* Flechas Planas Grandes de Entrada (Product y Sprint Backlog) */
+.arrow-block {
+  position: absolute;
+  background-color: #bccc24;
+  color: #000000;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.15);
+  clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%, 6% 50%);
+}
+
+/* Flecha de Salida Ancha (Producto Entregable) */
+.arrow-deliverable {
+  position: absolute;
+  background-color: #bccc24;
+  color: #000000;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.15);
+  clip-path: polygon(0% 35%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+}
+
+/* Cartel de Reunión Diaria */
+.daily-badge {
+  position: absolute;
+  background-color: #bccc24;
+  color: #000000;
+  font-weight: 900;
+  font-size: 18px; /* Texto muy grande */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  z-index: 30;
+  box-shadow: 4px 4px 15px rgba(0,0,0,0.25);
+  clip-path: polygon(0% 0%, 100% 15%, 85% 85%, 0% 100%, 15% 50%);
+}
+
+/* Llave gruesa de preguntas diarias */
+.questions-bracket {
+  position: absolute;
+  border-left: 4px solid #64748b; /* Línea súper marcada */
+  border-top: 4px solid #64748b;
+  border-bottom: 4px solid #64748b;
+  width: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
