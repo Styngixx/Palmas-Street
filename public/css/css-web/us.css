@@ -251,11 +251,11 @@ body.dark .logo { filter: invert(1); }
 }
 
 
-/* --- SECCIÓN MATRIZ RACI (TÍTULO MEJORADO) --- */
+/* --- SECCIÓN MATRIZ RACI (SISTEMA DE TABS) --- */
 .raci-main-title {
   text-align: center;
-  font-size: 2.8rem; /* Más grande */
-  font-weight: 900;  /* Super negrita */
+  font-size: 2.8rem; 
+  font-weight: 900;  
   color: var(--text);
   margin-top: 4rem;
   margin-bottom: 2rem;
@@ -263,38 +263,170 @@ body.dark .logo { filter: invert(1); }
   text-transform: uppercase;
 }
 
+/* Estilos de los Botones (Tabs) */
+.sprint-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 0; /* Sin margen para que se pegue a la tabla */
+}
+
+.sprint-tab {
+  background: var(--surface-2);
+  color: var(--text-soft);
+  border: 2px solid var(--border);
+  border-bottom: none;
+  padding: 12px 30px;
+  border-radius: 12px 12px 0 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.sprint-tab span {
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+.sprint-tab:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Pestaña Activa con colores corporativos */
+.sprint-tab.active {
+  background: #2c3e50;
+  color: white;
+  border-color: #2c3e50;
+  z-index: 3;
+  transform: translateY(2px); /* Efecto de que se empuja hacia adelante */
+}
+.sprint-tab.active span {
+  color: #aab7c4;
+}
+
+/* Contenedor de las Tablas */
+.sprints-content {
+  background: var(--surface);
+  border: 2px solid #2c3e50; /* Borde del color de la pestaña activa */
+  border-radius: 0 15px 15px 15px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 2;
+}
+
+/* Ocultar secciones por defecto y animar la que entra */
+.sprint-section {
+  display: none;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.sprint-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; 
+}
+
+/* Diseño colorido de la Tabla */
 .raci-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem; 
+  font-size: 0.9rem; 
   background-color: var(--surface);
   color: var(--text);
+  min-width: 600px;
 }
+
 .raci-table th, .raci-table td {
   border: 1px solid var(--border);
-  padding: 10px;
+  padding: 12px 8px;
   text-align: center;
 }
-.raci-table th { background-color: #2c3e50; color: white; }
 
-.cell-r, .cell-a, .cell-c, .cell-i {
-  font-weight: bold;
-  color: white !important;
-  padding: 6px !important;
-  border-radius: 4px;
+.raci-table th { 
+  background-color: #2c3e50; 
+  color: white; 
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
-.cell-r { background-color: #e74c3c; } 
-.cell-a { background-color: #f39c12; } 
-.cell-c { background-color: #27ae60; } 
-.cell-i { background-color: #3498db; } 
+
+/* Filas intercaladas para mejor lectura */
+.raci-table tbody tr:nth-child(even) {
+  background-color: rgba(44, 62, 80, 0.03); /* Un gris muy sutil */
+}
+body.dark .raci-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03); 
+}
+
+/* Efecto hover al pasar el ratón por la fila */
+.raci-table tbody tr:hover {
+  background-color: rgba(39, 174, 96, 0.1); /* Tono verde claro transparente */
+  transition: background-color 0.2s ease;
+}
+
+.cell-check {
+  color: #27ae60; /* Verde vibrante */
+  font-weight: 900;
+  font-size: 1.3rem;
+  display: inline-block;
+  text-shadow: 0 2px 4px rgba(39, 174, 96, 0.3);
+}
 
 .raci-legend {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 15px;
-  font-size: 0.85rem;
+  margin-top: 25px;
+  font-size: 0.95rem;
   color: var(--text);
+  background: var(--surface-2);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .sprint-tabs {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .sprint-tab {
+    border-radius: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  .sprints-content {
+    border-radius: 15px;
+    border: 1px solid var(--border);
+  }
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVE DE LA TABLA --- */
+@media (max-width: 1300px) {
+  .sprints-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .sprints-container {
+    grid-template-columns: 1fr;
+  }
+  .raci-main-title { 
+    font-size: 2rem; 
+  }
 }
 
 /* --- MEDIA QUERIES --- */
