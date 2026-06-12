@@ -218,5 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gridContainer.innerHTML = '<div class="col-12 text-center text-muted"><p>No se pudieron cargar los accesorios en este momento.</p></div>';
       }
     }
+  
     cargarAccesorios();
 });
