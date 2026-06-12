@@ -133,6 +133,97 @@ body.dark .btn-enviar { background: #E0E0E0; color: #121212; }
 .miniconteiner-empresas{display: grid; grid-template-columns: 1fr 1fr 1fr; justify-items: center; align-items: center; gap: 8px; padding: 5px 10px;}
 .emmpresas-card img{width: 100%; height: 10vh;}
 
+/* =======================================================
+   SECCIÓN DE RESEÑAS (REVIEWS)
+   ======================================================= */
+
+   .reviews-section {
+    background-color: var(--surface-2); /* Fondo ligeramente diferente para separar del contacto */
+    padding: 60px 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  .review-card {
+    background: var(--surface);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .review-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  }
+  
+  .review-stars {
+    color: #f1c40f; /* Color dorado estilo Amazon */
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 4px rgba(241, 196, 15, 0.3);
+  }
+  
+  .review-text {
+    color: var(--text-soft);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Empuja el autor hacia abajo si los textos tienen diferente altura */
+  }
+  
+  .review-author {
+    font-weight: 900;
+    color: var(--text);
+    font-size: 1.1rem;
+    text-align: right;
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+  }
+  
+  /* --- Contenedor del Formulario de Reseñas --- */
+  .review-form-container {
+    background: var(--surface);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    max-width: 850px;
+    margin: 0 auto;
+  }
+  
+  .select-calificacion {
+    padding: 12px; 
+    border: 1px solid var(--border); 
+    border-radius: 10px; 
+    background: var(--surface-2); 
+    color: var(--text);
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  /* Ajuste Responsivo para el formulario de reseñas */
+  @media (max-width: 768px) {
+    .review-form-container {
+      padding: 25px;
+    }
+  }
+
+
 @media (max-width: 768px) {
   .contact-grid { grid-template-columns: 1fr; padding: 20px; }
   .contact-form { grid-template-columns: 1fr; }
