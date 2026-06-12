@@ -71,9 +71,22 @@ body.dark .logo { filter: brightness(0) invert(1); }
 .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .slide::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.15) 100%); }
 
-/* SIDEBAR DE FILTROS */
-.filter-sidebar { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; position: sticky; top: 90px; }
+/* SIDEBAR DE FILTROS CON SCROLL GENERAL */
+.filter-sidebar { 
+    background-color: var(--bg-card); 
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
+    position: sticky; 
+    top: 90px; 
+    max-height: calc(100vh - 110px); 
+    overflow-y: auto; 
+}
+.filter-sidebar::-webkit-scrollbar { width: 6px; }
+.filter-sidebar::-webkit-scrollbar-track { background: transparent; }
+.filter-sidebar::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 10px; }
+body.dark .filter-sidebar::-webkit-scrollbar-thumb { background-color: #555; }
 body.dark .filter-sidebar { background-color: #1E1E1E !important; border-color: #333333 !important; }
+
 .filter-group h6 { color: var(--text-main); }
 body.dark .filter-group h6 { color: #FFFFFF !important; }
 body.dark .filter-group h5 { color: #FFFFFF !important; }
