@@ -175,7 +175,7 @@ async function cargarProductosMujeres(categoria) {
             <img src="${PalmasCart.escapeHTML(imgUrl)}" class="card-img-top w-100 h-100" style="object-fit: cover; transition: transform 0.5s ease;" alt="${PalmasCart.escapeHTML(prod.nombre)}" onerror="this.src='/media/media-logos/LogoPS.png'">
           </div>
           <div class="card-body d-flex flex-column p-3">
-            <h6 class="card-title fw-bold product-title mb-1">${PalmasCart.escapeHTML(prod.nombre)}</h6>
+            <h6 class="card-title fw-bold product-title mb-1 text-dark">${PalmasCart.escapeHTML(prod.nombre)}</h6>
             <small class="mb-2 d-block text-muted">Marca: ${PalmasCart.escapeHTML(marca)}</small>
             <p class="card-text flex-grow-1 text-secondary" style="font-size: 0.85rem;">${PalmasCart.escapeHTML(prod.descripcion || 'Sin descripción disponible.')}</p>
             <div class="mt-auto pt-2">

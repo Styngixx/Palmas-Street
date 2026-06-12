@@ -35,12 +35,29 @@
             </div>
         </div>
     </header>
-    <section class="accesorios-slider" id="banner">
-    <div class="slider-track" id="slider">
 
-      <div class="slide">
-        <img src="/media/media-banners/banner_accesorios1.jpg" alt="">
-      </div>
+    <section class="accesorios-slider" id="banner">
+        <div class="slider-track" id="slider">
+            <div class="slide"><img src="/media/media-banners/banner_accesorios1.jpg" alt=""></div>
+            <div class="slide"><img src="/media/media-banners/banner_accesorios2.jpg" alt=""></div>
+            <div class="slide"><img src="/media/media-banners/banner_accesorios3.jpg" alt=""></div>
+        </div>
+    </section>
+
+    <main class="container-fluid px-4 section-main mt-5 mb-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold section-title">Sección Accesorios</h2>
+            <p class="text-muted">Complementa tu estilo con los mejores accesorios urbanos.</p>
+        </div>
+
+        <!-- BUSCADOR CENTRADO Y ALINEADO -->
+        <div class="d-flex justify-content-center mb-5">
+            <div class="position-relative w-100" style="max-width: 600px;">
+                <i class="bi bi-search position-absolute" style="left: 20px; top: 50%; transform: translateY(-50%); color: #6c757d; z-index: 10; font-size: 1.2rem;"></i>
+                <input type="text" id="searchInput" class="form-control rounded-pill shadow-sm custom-search py-3" style="padding-left: 3.5rem !important; padding-right: 3rem !important;" placeholder="Buscar accesorios (ej. Gorra, Reloj)...">
+                <button type="button" id="clearSearchBtn" class="position-absolute top-50 translate-middle-y end-0 me-3 border-0 bg-transparent text-muted fs-4 d-none" style="cursor: pointer; outline: none; z-index: 10;">&times;</button>
+            </div>
+        </div>
 
         <div class="row">
           <aside class="col-lg-3 col-xl-2 mb-4">

@@ -22,7 +22,7 @@
 .quantity-selector .qty-input { border: 1px solid #ced4da; background-color: #fff; color: #495057; }
 
 /* === SOLUCIONES FUERTES MODO OSCURO === */
-body.dark { color: #E0E0E0; }
+body.dark { color: #E0E0E0; background-color: #121212; }
 body.dark .header { background-color: #1E1E1E !important; border-bottom: 1px solid #333 !important; }
 body.dark .nav-link-custom { color: #E0E0E0 !important; }
 body.dark .nav-link-custom:hover { color: #FFFFFF !important; }
