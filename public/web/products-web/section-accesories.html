@@ -4,107 +4,178 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accesorios - Palmas Street</title>
-    
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/css-web/css-sections/section-accesories.css" />
-    
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container nav-container d-flex justify-content-between align-items-center">
-            <a href="/index.html">
-                <img src="/media/media-logos/LogoPS.png" alt="Palmas Street Logo" class="logo">
-            </a>
-            
-            <nav class="nav">
-                <ul class="nav-list d-flex list-unstyled m-0 gap-4">
-                    <li><a href="/index.html">Inicio</a></li>
-                    <li><a href="/index.html#catalogo">Catálogo</a></li>
-                    <li><a href="/web/contact.html">Contacto</a></li>
+    <header class="header shadow-sm">
+        <div class="container nav-container d-flex justify-content-between align-items-center py-3">
+            <a href="/index.html"><img src="/media/media-logos/LogoPS.png" alt="Palmas Street Logo" class="logo" style="height: 40px;"></a>
+            <nav class="nav d-none d-lg-block">
+                <ul class="nav-list d-flex gap-4 mb-0 list-unstyled">
+                    <li><a href="/index.html#banner" class="nav-link-custom fw-semibold">Inicio</a></li>
+                    <li><a href="/index.html#catalogo" class="nav-link-custom fw-semibold">Catálogo</a></li>
+                    <li><a href="/index.html#menu" class="nav-link-custom fw-semibold">Productos destacados</a></li>
+                    <li><a href="/web/us.html" class="nav-link-custom fw-semibold">Nosotros</a></li>
+                    <li><a href="/web/contact.html" class="nav-link-custom fw-semibold">Contacto</a></li>
                 </ul>
             </nav>
-
-            <div class="header-actions d-flex align-items-center gap-3">
-                <a href="/web/carrito-web/carrito.html" class="cart-icon-container text-decoration-none text-reset" style="position: relative; cursor: pointer;" aria-label="Ver carrito">
-                    <i class="fa-solid fa-cart-shopping" style="font-size: 1.4rem;"></i>
-                    <span id="cart-count" class="js-cart-count badge rounded-pill bg-danger" style="position: absolute; top: -8px; right: -10px; font-size: 0.7rem;">
-                        0
-                    </span>
+            <div class="d-flex align-items-center gap-3">
+                <a href="/web/carrito-web/carrito.html" class="btn btn-outline-dark position-relative border-0" aria-label="Ver carrito">
+                    <i class="bi bi-cart3 fs-5"></i>
+                    <span id="cart-count" class="js-cart-count position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
                 </a>
-
-                <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro">
-                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                <button id="themeToggle" class="btn border-0" aria-label="Cambiar modo oscuro">
+                    <i id="themeIcon" class="bi bi-moon fs-5"></i>
                 </button>
             </div>
         </div>
-        
-        
     </header>
+
     <section class="accesorios-slider" id="banner">
-    <div class="slider-track" id="slider">
+        <div class="slider-track" id="slider">
+            <div class="slide"><img src="/media/media-banners/banner_accesorios1.jpg" alt=""></div>
+            <div class="slide"><img src="/media/media-banners/banner_accesorios2.jpg" alt=""></div>
+            <div class="slide"><img src="/media/media-banners/banner_accesorios3.jpg" alt=""></div>
+        </div>
+    </section>
 
-      <div class="slide">
-        <img src="/media/media-banners/banner_accesorios1.jpg" alt="">
-      </div>
+    <main class="container-fluid px-4 section-main mt-5 mb-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold section-title">Sección Accesorios</h2>
+            <p class="text-muted">Complementa tu estilo con los mejores accesorios urbanos.</p>
+        </div>
 
-      <div class="slide">
-        <img src="/media/media-banners/banner_accesorios2.jpg" alt="">
-      </div>
-
-      <div class="slide">
-        <img src="/media/media-banners/banner_accesorios3.jpg" alt="">
-      </div>
-    </div>
-  </section>
-
-    <div class="container filter-section-container mt-4" id="filtrosContainer">
-    </div>
-
-    <main>
-        <article class="cartas-grid" id="accesoriosGrid"></article>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div>
-                <h3>Palmas Street</h3>
-                <p>Frescura, atrevimiento y moda.</p>
-            </div>
-            <div>
-                <h4>Redes sociales</h4>
-                <ul class="footer-links list-unstyled">
-                    <li><a href="https://www.facebook.com/profile.php?id=100075787660504" target="_blank"><i class="fab fa-facebook me-2"></i>Facebook</a></li>
-                    <li><a href="https://www.instagram.com/palmas.street_/" target="_blank"><i class="fab fa-instagram me-2"></i>Instagram</a></li>
-                    <li><a href="https://www.tiktok.com/@palmas.street_" target="_blank"><i class="fab fa-tiktok me-2"></i>TikTok</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Contacto</h4>
-                <p><i class="fas fa-phone me-2"></i>+51 999 999 999</p>
-                <p><i class="fas fa-envelope me-2"></i>contacto@palmastreet.com</p>
-            </div>
-            <div>
-                <h4>Empresas Afiliadas</h4>
-                <div class="miniconteiner-empresas d-flex flex-wrap gap-2">
-                    <div class="emmpresas-card"><a href="https://pe.hm.com/"><img src="/media/media-logos/hm-symbol-logo.webp" alt="H&M"></a></div>
-                    <div class="emmpresas-card"><a href="https://pe.tommy.com/"><img src="/media/media-logos/tmLogo.webp" alt="Tommy"></a></div>
-                    <div class="emmpresas-card"><a href="https://www.gap.com.pe/"><img src="/media/media-logos/gapLogo.webp" alt="Gap"></a></div>
-                    <div class="emmpresas-card"><a href="https://www.tiendasel.com/"><img src="/media/media-logos/elLogo.webp" alt="El"></a></div>
-                    <div class="emmpresas-card"><a href="https://www.luvaro.com/"><img src="/media/media-logos/luvaroLogo.webp" alt="Luvaro"></a></div>
-                </div>
+        <!-- BUSCADOR CENTRADO Y ALINEADO -->
+        <div class="d-flex justify-content-center mb-5">
+            <div class="position-relative w-100" style="max-width: 600px;">
+                <i class="bi bi-search position-absolute" style="left: 20px; top: 50%; transform: translateY(-50%); color: #6c757d; z-index: 10; font-size: 1.2rem;"></i>
+                <input type="text" id="searchInput" class="form-control rounded-pill shadow-sm custom-search py-3" style="padding-left: 3.5rem !important; padding-right: 3rem !important;" placeholder="Buscar accesorios (ej. Gorra, Reloj)...">
+                <button type="button" id="clearSearchBtn" class="position-absolute top-50 translate-middle-y end-0 me-3 border-0 bg-transparent text-muted fs-4 d-none" style="cursor: pointer; outline: none; z-index: 10;">&times;</button>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Palmas Street. Todos los derechos reservados.</p>
+
+        <div class="row">
+          <aside class="col-lg-3 col-xl-2 mb-4">
+            <div class="filter-sidebar p-4 shadow-sm rounded border">
+              <h5 class="fw-bold mb-4"><i class="bi bi-funnel"></i> Filtros</h5>
+              
+              <div class="filter-group mb-4">
+                <h6 class="fw-bold mb-3">Categoría</h6>
+                <div class="d-flex flex-column gap-2" style="max-height: 250px; overflow-y: auto;">
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Gorras y Sombreros"><span class="form-check-label">Gorras y Sombreros</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Lentes"><span class="form-check-label">Lentes</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Relojes"><span class="form-check-label">Relojes</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Mochilas y Bolsos"><span class="form-check-label">Mochilas y Bolsos</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Carteras y Billeteras"><span class="form-check-label">Carteras y Billeteras</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Cinturones"><span class="form-check-label">Cinturones</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Cuellos y Corbatas"><span class="form-check-label">Cuellos y Corbatas</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Joyería"><span class="form-check-label">Joyería</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Ropa"><span class="form-check-label">Ropa</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-category" type="checkbox" value="Varios"><span class="form-check-label">Varios</span></label>
+                </div>
+              </div>
+
+              <div class="filter-group mb-4">
+                <h6 class="fw-bold mb-3">Marca</h6>
+                <div class="d-flex flex-column gap-2" style="max-height: 200px; overflow-y: auto;">
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Nike"><span class="form-check-label">Nike</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Ray-Ban"><span class="form-check-label">Ray-Ban</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Casio"><span class="form-check-label">Casio</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Samsonite"><span class="form-check-label">Samsonite</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Levis"><span class="form-check-label">Levis</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Zara"><span class="form-check-label">Zara</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Pandora"><span class="form-check-label">Pandora</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Herschel"><span class="form-check-label">Herschel</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Adidas"><span class="form-check-label">Adidas</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Tiffany & Co"><span class="form-check-label">Tiffany & Co</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Stance"><span class="form-check-label">Stance</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Reebok"><span class="form-check-label">Reebok</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Victorinox"><span class="form-check-label">Victorinox</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Swarovski"><span class="form-check-label">Swarovski</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Oakley"><span class="form-check-label">Oakley</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Under Armour"><span class="form-check-label">Under Armour</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Totes"><span class="form-check-label">Totes</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Montblanc"><span class="form-check-label">Montblanc</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Pinsanity"><span class="form-check-label">Pinsanity</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Hugo Boss"><span class="form-check-label">Hugo Boss</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Buff"><span class="form-check-label">Buff</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Ridge"><span class="form-check-label">Ridge</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Stetson"><span class="form-check-label">Stetson</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Baggu"><span class="form-check-label">Baggu</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="North Face"><span class="form-check-label">North Face</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Sephora"><span class="form-check-label">Sephora</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Logitech"><span class="form-check-label">Logitech</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Columbia"><span class="form-check-label">Columbia</span></label>
+                  <label class="form-check custom-checkbox"><input class="form-check-input filter-brand" type="checkbox" value="Genérico"><span class="form-check-label">Genérico</span></label>
+                </div>
+              </div>
+
+              <div class="filter-group mb-4">
+                <h6 class="fw-bold mb-3">Precio (S/)</h6>
+                <div class="d-flex align-items-center gap-2">
+                  <input type="number" class="form-control form-control-sm" id="minPrice" placeholder="Mín" min="0">
+                  <span class="text-muted">-</span>
+                  <input type="number" class="form-control form-control-sm" id="maxPrice" placeholder="Máx" min="0">
+                </div>
+              </div>
+
+              <button class="btn btn-primary w-100 fw-bold py-2 custom-filter-btn" id="btnFiltrar">Filtrar</button>
+              <button class="btn btn-outline-secondary w-100 fw-bold py-2 mt-2 custom-clear-btn" id="btnQuitarFiltros">Quitar Filtros</button>
+            </div>
+          </aside>
+
+          <div class="col-lg-9 col-xl-10">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4" id="accesoriosGrid"></div>
+          </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-5 border-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+              <h4 class="fw-bold mb-3">Palmas Street</h4>
+              <p class="text-muted">Frescura, atrevimiento y moda.</p>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+              <h4 class="fw-bold mb-3">Redes sociales</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="https://www.facebook.com/profile.php?id=100075787660504" target="_blank" class="text-muted text-decoration-none"><i class="bi bi-facebook me-2"></i> Facebook</a></li>
+                <li class="mb-2"><a href="https://www.instagram.com/palmas.street_/" target="_blank" class="text-muted text-decoration-none"><i class="bi bi-instagram me-2"></i> Instagram</a></li>
+                <li class="mb-2"><a href="https://www.tiktok.com/@palmas.street_" target="_blank" class="text-muted text-decoration-none"><i class="bi bi-tiktok me-2"></i> TikTok</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+              <h4 class="fw-bold mb-3">Contacto</h4>
+              <ul class="list-unstyled text-muted">
+                <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i> +51 999 999 999</li>
+                <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i> contacto@palmastreet.com</li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <h4 class="fw-bold mb-3">Empresas Afiliadas</h4>
+              <div class="d-flex flex-wrap gap-2">
+                <div class="bg-white border rounded p-1 d-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px;"><a href="https://pe.hm.com/"><img src="/media/media-logos/hm-symbol-logo.webp" alt="H&M" class="img-fluid" style="max-height: 40px; object-fit: contain;"></a></div>
+                <div class="bg-white border rounded p-1 d-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px;"><a href="https://pe.tommy.com/"><img src="/media/media-logos/tmLogo.webp" alt="Tommy" class="img-fluid" style="max-height: 40px; object-fit: contain;"></a></div>
+                <div class="bg-white border rounded p-1 d-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px;"><a href="https://www.gap.com.pe/"><img src="/media/media-logos/gapLogo.webp" alt="Gap" class="img-fluid" style="max-height: 40px; object-fit: contain;"></a></div>
+                <div class="bg-white border rounded p-1 d-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px;"><a href="https://www.tiendasel.com/"><img src="/media/media-logos/elLogo.webp" alt="Tiendas El" class="img-fluid" style="max-height: 40px; object-fit: contain;"></a></div>
+                <div class="bg-white border rounded p-1 d-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px;"><a href="https://www.luvaro.com/"><img src="/media/media-logos/luvaroLogo.webp" alt="Luvaro" class="img-fluid" style="max-height: 40px; object-fit: contain;"></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container mt-4 pt-4 border-top text-center text-muted">
+          <p class="mb-0">&copy; 2026 Palmas Street. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script src="/js/js-web/cart-utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/js-web/js-section/accesorios.js"></script>
 </body>
 </html>
