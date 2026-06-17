@@ -46,7 +46,7 @@ const dotsContainer = document.getElementById('dots');
 let counter = 0;
 const size = 100;
 const totalSlides = slides.length;
-const intervalTime = 5000; // 5 segundos para mejor experiencia
+const intervalTime = 5000; 
 
 slides.forEach((_, i) => {
   const dot = document.createElement('div');

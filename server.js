@@ -1,9 +1,7 @@
-// Ruta: server.js
 require('dotenv').config({ override: true });
 const express = require('express');
 const path = require('path');
 
-// --- IMPORTACIONES MODULARES ---
 const pool = require('./src/config/db'); 
 const authRoutes = require('./src/routes/auth'); 
 const verificarToken = require('./src/middlewares/authMiddleware');
@@ -11,27 +9,20 @@ const verificarToken = require('./src/middlewares/authMiddleware');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// --- MIDDLEWARES ---
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Servir archivos estáticos desde la carpeta 'public'
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Servir Bootstrap desde node_modules
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
-// --- RUTAS DE NAVEGACIÓN ---
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// --- RUTAS MODULARES (AUTENTICACIÓN) ---
 app.use('/api/auth', authRoutes); 
 
-// --- RUTAS DE LÓGICA (BACKEND PÚBLICO) ---
 
-// Ruta para el catálogo general y filtrado por categoría
 app.get('/api/productos', async (req, res) => {
     const { categoria } = req.query;
     try {
@@ -39,7 +30,6 @@ app.get('/api/productos', async (req, res) => {
         let params = [];
 
         if (categoria) {
-            // ILIKE es vital para que 'Femenina' o 'femenina' funcionen igual
             sql += ' WHERE categoria ILIKE $1';
             params.push(categoria);
         }
@@ -47,7 +37,6 @@ app.get('/api/productos', async (req, res) => {
         sql += ' ORDER BY id DESC';
         const result = await pool.query(sql, params);
         
-        // Console log para que veas en la terminal si encuentra productos
         console.log(`🔍 Buscando: ${categoria || 'Todo'} | Encontrados: ${result.rows.length}`);
         
         res.json(result.rows); 
@@ -93,8 +82,6 @@ app.post('/enviar-contacto', async (req, res) => {
 });
 
 
-
-// API para productos principales (Inicio)
 app.get('/api/main_products', async (req, res) => {
     try {
         const query = `
@@ -115,7 +102,6 @@ app.get('/api/main_products', async (req, res) => {
 
 app.get('/api/productos/hombres', async (req, res) => {
     try {
-        // ILIKE ignora si es mayúscula o minúscula. %hombres% busca que contenga la palabra.
         const query = "SELECT * FROM productos WHERE categoria ILIKE $1 ORDER BY id DESC";
         const resultado = await pool.query(query, ['%hombre%']); 
         
@@ -126,13 +112,8 @@ app.get('/api/productos/hombres', async (req, res) => {
     }
 });
 
-
-
-
-// API para obtener los productos de la categoría accesorios
 app.get('/api/productos/accesorios', async (req, res) => {
     try {
-        // Asegúrate de que el nombre de la categoría sea el mismo que tienes en la base de datos
         const querySQL = "SELECT * FROM productos WHERE categoria = 'accesorios' ORDER BY id ASC";
         const resultado = await pool.query(querySQL);
         res.json(resultado.rows);
@@ -142,9 +123,6 @@ app.get('/api/productos/accesorios', async (req, res) => {
     }
 });
 
-
-
-// --- INICIO DEL SERVIDOR (SOLO UNA VEZ) ---
 app.listen(PORT, () => {
     console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
