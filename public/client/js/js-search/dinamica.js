@@ -1,10 +1,5 @@
-// ========================================
-// BÚSQUEDA DINÁMICA DE PRODUCTOS POR NOMBRE
-// ========================================
+let todosLosProductos = []; 
 
-let todosLosProductos = []; // Almacenamos todos los productos
-
-// Función para renderizar productos
 function renderizarProductos(productosAMostrar) {
   const contenedor = document.getElementById('contenedor-productos');
   
@@ -21,8 +16,7 @@ function renderizarProductos(productosAMostrar) {
     const article = document.createElement('article');
     article.classList.add('product-card');
 
-    // AQUÍ ESTÁ LA MAGIA: Cambiamos 'white' por 'var(--text)' para que respete el modo claro/oscuro
-    article.innerHTML = `
+       article.innerHTML = `
         <img src="${producto.imagen_url}" alt="${producto.nombre}" loading="lazy" style="width: 100%; height: 350px; object-fit: cover;">
         <div class="product-info" style="padding: 15px; text-align: center; background: var(--surface);">
             <h3 style="color: var(--text);">${producto.nombre}</h3>
@@ -47,11 +41,9 @@ function renderizarProductos(productosAMostrar) {
     const btnA = article.querySelector('.btn-agregar');
     let cant = 1;
 
-    // Botones de cantidad
     btnS.onclick = () => { cant++; span.innerText = cant; };
     btnR.onclick = () => { if(cant > 1) { cant--; span.innerText = cant; } };
 
-    // Botón Agregar al Carrito Global
     btnA.onclick = () => {
         if (window.PalmasCart) {
             const productoEstandar = {
@@ -68,10 +60,9 @@ function renderizarProductos(productosAMostrar) {
             console.error("Falta el archivo cart-utils.js o PalmasCart no está definido.");
         }
 
-        // Feedback visual
         const textoOriginal = btnA.innerText;
         btnA.innerText = "¡AÑADIDO!";
-        btnA.style.background = "#28a745"; // Un verde un poco más profesional
+        btnA.style.background = "#28a745"; 
         setTimeout(() => {
             btnA.innerText = textoOriginal;
             btnA.style.background = "var(--primary)";
@@ -84,7 +75,6 @@ function renderizarProductos(productosAMostrar) {
   });
 }
 
-// Función para filtrar productos por nombre
 function filtrarProductos(termino) {
   const terminoBusqueda = termino.toLowerCase().trim();
 
@@ -100,8 +90,6 @@ function filtrarProductos(termino) {
 
   renderizarProductos(productosFiltrados);
 }
-
-// Función para agregar el evento al input de búsqueda
 function agregarEventoBuscador() {
   const buscador = document.getElementById('buscador-productos');
 
@@ -122,7 +110,6 @@ function agregarEventoBuscador() {
   }
 }
 
-// CARGA DE PRODUCTOS DESDE LA API
 async function cargarProductos() {
     const contenedor = document.getElementById('contenedor-productos');
     if (!contenedor) return;
@@ -139,7 +126,6 @@ async function cargarProductos() {
     }
 }
 
-// ARRANQUE
 document.addEventListener('DOMContentLoaded', () => {
     cargarProductos();
     agregarEventoBuscador(); 

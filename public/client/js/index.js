@@ -4,38 +4,33 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const applyTheme = (isDark) => {
       if (isDark) {
-          document.body.classList.add('dark'); // Para Tailwind / Custom CSS
-          document.documentElement.setAttribute('data-bs-theme', 'dark'); // Para Bootstrap
+          document.body.classList.add('dark'); 
+          document.documentElement.setAttribute('data-bs-theme', 'dark'); 
           if(themeToggle) {
-              themeToggle.innerHTML = '☀️'; // Usamos emoji universal
+              themeToggle.innerHTML = '☀️';
           }
       } else {
           document.body.classList.remove('dark');
           document.documentElement.setAttribute('data-bs-theme', 'light');
           if(themeToggle) {
-              themeToggle.innerHTML = '🌙'; // Usamos emoji universal
+              themeToggle.innerHTML = '🌙'; 
           }
       }
   };
 
-  // Aplicar el tema guardado al cargar
   if (savedTheme === 'dark') {
       applyTheme(true);
   }
 
-  // Evento del botón
   if (themeToggle) {
       themeToggle.addEventListener('click', (e) => {
-          e.preventDefault(); // Evita que la página salte
+          e.preventDefault(); 
           const isDark = !document.body.classList.contains('dark');
           applyTheme(isDark);
           localStorage.setItem('tema', isDark ? 'dark' : 'light');
       });
   }
 });
-
-
-
 
 const slider = document.getElementById('slider');
 const slides = document.querySelectorAll('.slide');
@@ -96,11 +91,9 @@ function goToSlide(index) {
   resetTimer();
 }
 
-// Event listeners con mejor control
 nextBtn.addEventListener('click', nextSlide);
 prevBtn.addEventListener('click', prevSlide);
 
-// Iniciar auto-play
 let timer = setInterval(moveSlide, intervalTime);
 
 function resetTimer() {
@@ -108,7 +101,6 @@ function resetTimer() {
   timer = setInterval(moveSlide, intervalTime);
 }
 
-// Pausar auto-play cuando el mouse está sobre el banner
 const bannerContainer = document.querySelector('.banner-container');
 if (bannerContainer) {
   bannerContainer.addEventListener('mouseenter', () => {
@@ -119,12 +111,6 @@ if (bannerContainer) {
     timer = setInterval(moveSlide, intervalTime);
   });
 }
-
-// =========================================================
-// LÓGICA DEL CATÁLOGO DINÁMICO (CONEXIÓN A LA BASE DE DATOS)
-// Nota: La carga de productos ahora se maneja en dinamica.js
-// para soportar búsqueda dinámica
-// =========================================================
 
 async function cargarProductos() {
     const contenedor = document.getElementById('contenedor-productos');
@@ -137,7 +123,7 @@ async function cargarProductos() {
         }
 
         const productos = await respuesta.json();
-        contenedor.innerHTML = ''; // Borra el "Cargando..."
+        contenedor.innerHTML = ''; 
 
         if (productos.length === 0) {
             contenedor.innerHTML = '<p style="text-align:center; width:100%; color: white;">No hay productos disponibles.</p>';
@@ -148,7 +134,6 @@ async function cargarProductos() {
             const article = document.createElement('article');
             article.classList.add('product-card');
 
-            // --- AQUÍ CONSTRUIMOS EL PRODUCTO CON EL BOTÓN ---
             article.innerHTML = `
                 <img src="${producto.imagen_url}" alt="${producto.nombre}" loading="lazy" style="width: 100%; display: block;" />
                 <div class="product-info" style="padding: 20px; background: #1a1a1a; text-align: center;">
@@ -168,7 +153,6 @@ async function cargarProductos() {
                 </div>
             `;
 
-            // Lógica de botones internos
             const btnRestar = article.querySelector('.btn-restar');
             const btnSumar = article.querySelector('.btn-sumar');
             const cantidadTexto = article.querySelector('.cantidad-valor');
@@ -205,63 +189,7 @@ async function cargarProductos() {
     }
 }
 
-// Escuchamos el evento para que la función arranque apenas cargue la página
 document.addEventListener('DOMContentLoaded', () => {
   cargarProductos();
 });
 
-/* 
-const botonesComprar = document.querySelectorAll('.btn-comprar');
-const resumenCarrito = document.getElementById('carrito-resumen');
-const formCompra = document.getElementById('formulario-compra');
-let productoSeleccionado = null;
-
-botonesComprar.forEach(boton => {
-  boton.addEventListener('click', (e) => {
-    const nombre = e.target.getAttribute('data-nombre');
-    const precio = e.target.getAttribute('data-precio');
-    productoSeleccionado = { nombre, precio };
-
-   
-    resumenCarrito.innerHTML = `<strong>Prenda seleccionada:</strong> ${nombre} <br> <strong>Total a pagar:</strong> S/ ${precio}`;
-    formCompra.style.display = 'block';
-
-    document.getElementById('carrito-section').scrollIntoView({ behavior: 'smooth' });
-  });
-});
-
-formCompra.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const nombreCliente = document.getElementById('cliente-nombre').value;
-  const tipoTarjeta = document.getElementById('cliente-tarjeta').value;
-
- 
-  let numTarjeta = '';
-  for (let i = 0; i < 16; i++) {
-    numTarjeta += Math.floor(Math.random() * 10);
-  }
-
-  alert("Comprando...");
-
-  const fechaActual = new Date().toLocaleString();
-  const mensajeRecibo = `==========================
-🛒 TICKET DE COMPRA
-==========================
-Fecha y Hora: ${fechaActual}
-Cliente: ${nombreCliente}
-Producto: ${productoSeleccionado.nombre}
-Monto Pagado: S/ ${productoSeleccionado.precio}
-Método de Pago: Tarjeta ${tipoTarjeta} (Terminada en **** ${numTarjeta.slice(-4)})
-==========================
-¡Gracias por tu compra en Palmas Street!`;
-
-  alert(mensajeRecibo);
-
- 
-  formCompra.reset();
-  formCompra.style.display = 'none';
-  resumenCarrito.innerHTML = 'No hay prendas seleccionadas.';
-  productoSeleccionado = null;
-});
-*/

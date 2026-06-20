@@ -1,0 +1,180 @@
+/* =========================================
+   carrito.css - Estilos Premium Palmas Street
+   ========================================= */
+
+/* --- Estilos Generales --- */
+.cart-page {
+  min-height: 70vh;
+}
+
+/* Efectos sutiles para los links del nav */
+.nav-link-custom {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover {
+  color: #555 !important;
+}
+
+/* --- Elementos del Carrito (Cards creadas por JS) --- */
+#cartItemsContainer .card {
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+#cartItemsContainer .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cart-item-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  background-color: #fafafa;
+}
+
+/* --- Resumen (Sticky) --- */
+.cart-summary {
+  position: sticky;
+  top: 90px; /* Ajustado para que no choque con el header */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* --- Botones --- */
+.btn-checkout {
+  transition: all 0.3s ease;
+}
+
+.btn-checkout:hover {
+  background-color: #222;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-clear {
+  transition: all 0.3s ease;
+}
+
+.btn-clear:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* --- Enlaces de Redes Sociales Footer --- */
+.social-link {
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: inline-block;
+}
+
+.social-link:hover {
+  color: #111 !important;
+  transform: scale(1.1);
+}
+
+/* --- Recibo --- */
+.receipt-box {
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+  background: #fff;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  margin-top: 2rem;
+}
+
+/* =========================================
+   DARK MODE (Modo Oscuro)
+   ========================================= */
+body.dark {
+  background-color: #121212 !important;
+  color: #e0e0e0;
+}
+
+body.dark .bg-white,
+body.dark .bg-light {
+  background-color: #121212 !important;
+}
+
+body.dark .header,
+body.dark .footer {
+  background-color: #1e1e1e !important;
+  border-color: #333 !important;
+}
+
+body.dark .nav-link-custom,
+body.dark .text-dark,
+body.dark h1, body.dark h3, body.dark h4, body.dark h5 {
+  color: #ffffff !important;
+}
+
+body.dark .text-muted {
+  color: #a0a0a0 !important;
+}
+
+body.dark .card,
+body.dark .receipt-box,
+body.dark .cart-summary {
+  background: #1e1e1e !important;
+  border-color: #2a2a2a !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .cart-item-img {
+  border-color: #333;
+}
+
+body.dark .btn-dark {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark .btn-dark:hover {
+  background-color: #e0e0e0;
+}
+
+/* Parches de contraste para los precios y textos en la tarjeta del producto */
+body.dark .cart-item-details p,
+body.dark .text-muted {
+  color: #b3b3b3 !important; 
+}
+
+body.dark .cart-item-price,
+body.dark .cart-item span {
+  color: #e0e0e0 !important; 
+}
+
+/* =========================================
+   MODO IMPRESIÓN (@media print)
+   ========================================= */
+@media print {
+  header,
+  footer,
+  .no-print,
+  .cart-summary,
+  #cartItemsContainer,
+  #emptyCartMessage {
+    display: none !important;
+  }
+
+  #receiptContainer {
+    display: block !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .receipt-box {
+    box-shadow: none;
+    border: 1px solid #000 !important;
+    padding: 0;
+  }
+}

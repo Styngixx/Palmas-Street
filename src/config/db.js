@@ -15,10 +15,10 @@ const pool = new Pool({
 // Test de conexión inicial
 pool.query('SELECT NOW()')
   .then(res => {
-    console.log('✅ Conexión exitosa a la base de datos (Pool activo)');
+    console.log('Conexión exitosa a la base de datos (Pool activo)');
   })
   .catch(err => {
-    console.error('❌ Error conectando a Supabase:', err.stack);
+    console.error('Error conectando a Supabase:', err.stack);
   });
 
 module.exports = pool;
