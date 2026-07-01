@@ -35,6 +35,32 @@ router.post('/registro', async (req, res) => {
     }
 });
 
+// GET /api/auth/me — verificar sesión activa
+router.get('/me', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ error: 'No autenticado.' });
+    }
+
+    try {
+        const payload = jwt.verify(token, JWT_SECRET);
+        const userResult = await pool.query(
+            'SELECT id, nombre, email, rol FROM usuarios WHERE id = $1',
+            [payload.id]
+        );
+
+        if (!userResult.rows.length) {
+            return res.status(401).json({ error: 'Usuario no encontrado.' });
+        }
+
+        res.json({ usuario: userResult.rows[0] });
+    } catch (err) {
+        res.status(401).json({ error: 'Token inválido o expirado.' });
+    }
+});
+
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
