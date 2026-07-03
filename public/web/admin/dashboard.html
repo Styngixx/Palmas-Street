@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Palmas Street</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/css-web/admin.css">
+</head>
+<body>
+    <nav class="admin-navbar navbar navbar-expand-lg shadow-sm">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/web/admin/dashboard.html">
+                <img src="/media/media-logos/LogoPS.png" alt="Palmas Street" height="36">
+                <span class="fw-bold">Admin Palmas Street</span>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-muted small d-none d-md-inline" id="adminWelcome"></span>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-dark btn-sm active" id="btnAdminView">
+                        <i class="bi bi-table"></i> Gestión
+                    </button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" id="btnClientView">
+                        <i class="bi bi-eye"></i> Vista Cliente
+                    </button>
+                </div>
+                <a href="/index.html" target="_blank" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-box-arrow-up-right"></i> Tienda
+                </a>
+                <button class="btn btn-dark btn-sm" id="btnLogout">
+                    <i class="bi bi-box-arrow-right"></i> Salir
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Vista Admin -->
+    <main class="container-fluid px-4 py-4" id="adminPanel">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+            <div>
+                <h2 class="fw-bold mb-1">Productos</h2>
+                <p class="text-muted mb-0">CRUD completo: crear, editar, buscar, ocultar, standby y eliminar</p>
+            </div>
+            <button class="btn btn-dark fw-bold" id="btnNewProduct">
+                <i class="bi bi-plus-lg"></i> Nuevo producto
+            </button>
+        </div>
+
+        <div class="admin-toolbar card border-0 shadow-sm mb-4">
+            <div class="card-body">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Buscar</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Nombre, descripción o marca...">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold">Categoría</label>
+                        <select class="form-select" id="filterCategoria">
+                            <option value="">Todas</option>
+                            <option value="Mujeres">Mujeres</option>
+                            <option value="hombre">Hombres</option>
+                            <option value="accesorios">Accesorios</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold">Estado</label>
+                        <select class="form-select" id="filterEstado">
+                            <option value="">Todos</option>
+                            <option value="activo">Activo</option>
+                            <option value="standby">Standby (baja)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold">Visibilidad</label>
+                        <select class="form-select" id="filterVisible">
+                            <option value="">Todos</option>
+                            <option value="true">Visible</option>
+                            <option value="false">Oculto</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-secondary w-100" id="btnClearFilters">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="statsBar" class="row g-3 mb-4"></div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0 admin-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Marca</th>
+                            <th>Precio</th>
+                            <th>Estado</th>
+                            <th>Visible</th>
+                            <th>Destacado</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <tr><td colspan="8" class="text-center py-5 text-muted">Cargando productos...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Vista Cliente (preview) -->
+    <section class="container-fluid px-4 py-4 d-none" id="clientPreview">
+        <div class="alert alert-info border-0 shadow-sm">
+            <i class="bi bi-info-circle"></i>
+            <strong>Vista Cliente:</strong> Solo se muestran productos activos y visibles, tal como los ve un cliente en la tienda.
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4" id="clientGrid"></div>
+    </section>
+
+    <!-- Modal Producto -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="productModalTitle">Nuevo producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="productForm">
+                    <div class="modal-body">
+                        <input type="hidden" id="productId">
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label class="form-label fw-semibold">Nombre *</label>
+                                <input type="text" class="form-control" id="productNombre" required maxlength="150">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Precio (S/) *</label>
+                                <input type="number" class="form-control" id="productPrecio" required min="0" step="0.01">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Descripción</label>
+                                <textarea class="form-control" id="productDescripcion" rows="3"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Categoría *</label>
+                                <select class="form-select" id="productCategoria" required>
+                                    <option value="Mujeres">Mujeres</option>
+                                    <option value="hombre">Hombres</option>
+                                    <option value="accesorios">Accesorios</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Marca</label>
+                                <input type="text" class="form-control" id="productMarca" placeholder="Palmas Street">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">URL de imagen</label>
+                                <input type="text" class="form-control" id="productImagen" placeholder="/media/media-products/ejemplo.jpg">
+                                <div class="form-text">Ruta relativa dentro de /public o URL externa</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch mt-2">
+                                    <input class="form-check-input" type="checkbox" id="productVisible" checked>
+                                    <label class="form-check-label" for="productVisible">Visible para clientes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch mt-2">
+                                    <input class="form-check-input" type="checkbox" id="productDestacado">
+                                    <label class="form-check-label" for="productDestacado">Producto destacado</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Estado</label>
+                                <select class="form-select" id="productEstado">
+                                    <option value="activo">Activo</option>
+                                    <option value="standby">Standby (de baja)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-dark fw-bold" id="btnSaveProduct">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar eliminación -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-danger">Eliminar producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de eliminar permanentemente <strong id="deleteProductName"></strong>?</p>
+                    <p class="text-muted small mb-0">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger fw-bold" id="btnConfirmDelete">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/js-web/admin/admin-auth.js"></script>
+    <script src="/js/js-web/admin/admin-dashboard.js"></script>
+</body>
+</html>
