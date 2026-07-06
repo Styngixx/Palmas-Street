@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let products = [];
     let deleteTargetId = null;
     let searchTimeout = null;
+    let currentBase64Image = null; // Variable para guardar la foto en texto
 
     const productModal = new bootstrap.Modal(document.getElementById('productModal'));
     const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
@@ -25,7 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
         clientPreview: document.getElementById('clientPreview'),
         clientGrid: document.getElementById('clientGrid'),
         btnAdminView: document.getElementById('btnAdminView'),
-        btnClientView: document.getElementById('btnClientView')
+        btnClientView: document.getElementById('btnClientView'),
+        inputImagen: document.getElementById('productImagen'),
+        previewContainer: document.getElementById('previewContainer'),
+        imagePreview: document.getElementById('imagePreview')
     };
 
     function escapeHTML(str) {
@@ -184,6 +188,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
     }
 
+    // Convertir la imagen seleccionada a Base64
+    elements.inputImagen.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentBase64Image = e.target.result; // Aquí se guarda la imagen en texto
+                elements.imagePreview.src = currentBase64Image;
+                elements.previewContainer.classList.remove('d-none');
+            };
+            reader.readAsDataURL(file);
+        } else {
+            currentBase64Image = null;
+            elements.imagePreview.src = '';
+            elements.previewContainer.classList.add('d-none');
+        }
+    });
+
     function openProductModal(producto = null) {
         document.getElementById('productModalTitle').textContent = producto ? 'Editar producto' : 'Nuevo producto';
         document.getElementById('productId').value = producto ? producto.id : '';
@@ -192,10 +214,22 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('productPrecio').value = producto ? producto.precio : '';
         document.getElementById('productCategoria').value = producto ? producto.categoria : 'Mujeres';
         document.getElementById('productMarca').value = producto ? (producto.marca || '') : '';
-        document.getElementById('productImagen').value = producto ? (producto.imagen_url || '') : '';
         document.getElementById('productVisible').checked = producto ? producto.visible !== false : true;
         document.getElementById('productDestacado').checked = producto ? Boolean(producto.destacado) : false;
         document.getElementById('productEstado').value = producto ? (producto.estado || 'activo') : 'activo';
+
+        elements.inputImagen.value = '';
+        currentBase64Image = null; // Reseteamos la imagen al abrir el modal
+
+        if (producto && producto.imagen_url) {
+            currentBase64Image = producto.imagen_url;
+            elements.imagePreview.src = producto.imagen_url;
+            elements.previewContainer.classList.remove('d-none');
+        } else {
+            elements.imagePreview.src = '';
+            elements.previewContainer.classList.add('d-none');
+        }
+
         productModal.show();
     }
 
@@ -203,24 +237,29 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const id = document.getElementById('productId').value;
+        const url = id ? `/api/admin/productos/${id}` : '/api/admin/productos';
+        const method = id ? 'PUT' : 'POST';
+
+        // Volvemos a armar el JSON puro
         const payload = {
             nombre: document.getElementById('productNombre').value.trim(),
             descripcion: document.getElementById('productDescripcion').value.trim(),
             precio: parseFloat(document.getElementById('productPrecio').value),
             categoria: document.getElementById('productCategoria').value,
             marca: document.getElementById('productMarca').value.trim() || 'Palmas Street',
-            imagen_url: document.getElementById('productImagen').value.trim() || '/media/media-logos/LogoPS.png',
+            imagen_url: currentBase64Image || '/media/media-logos/LogoPS.png', // Enviamos el texto Base64
             visible: document.getElementById('productVisible').checked,
             destacado: document.getElementById('productDestacado').checked,
             estado: document.getElementById('productEstado').value
         };
 
-        const url = id ? `/api/admin/productos/${id}` : '/api/admin/productos';
-        const method = id ? 'PUT' : 'POST';
-
         try {
+            // Hacemos el fetch enviando JSON
             const response = await AdminAuth.apiFetch(url, {
                 method,
+                headers: {
+                    'Content-Type': 'application/json' // Especificamos que es JSON de nuevo
+                },
                 body: JSON.stringify(payload)
             });
             const data = await response.json();
@@ -239,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await AdminAuth.apiFetch(`/api/admin/productos/${id}/visible`, {
                 method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ visible: !currentVisible })
             });
             const data = await response.json();
@@ -255,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await AdminAuth.apiFetch(`/api/admin/productos/${id}/estado`, {
                 method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ estado: nuevoEstado })
             });
             const data = await response.json();

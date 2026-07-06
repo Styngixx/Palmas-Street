@@ -12,8 +12,10 @@ const PORT = process.env.PORT || 3000;
 
 const PUBLIC_FILTER = `COALESCE(visible, TRUE) = TRUE AND COALESCE(estado, 'activo') = 'activo'`;
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// AQUI ESTÁ LA SOLUCIÓN: Aumentamos el límite a 50mb para soportar las fotos en Base64
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json({ limit: '50mb' }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
