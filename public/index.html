@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="/css/index.css" />
 </head>
 <body>
-  <header class="header">
+  
+  <!-- CORRECCIÓN 1: Se agrega position relative y z-index gigante para que pase por encima del banner -->
+  <header class="header" style="position: relative; z-index: 9999;">
     <div class="container nav-container">
       <img src="/media/media-logos/LogoPS.png" alt="Loogo de la tienda" class="logo">
       <nav class="nav">
@@ -18,13 +20,45 @@
           <li><a href="#menu">Productos destacados</a></li>
           <li><a href="web/us.html">Nosotros</a></li>
           <li><a href="web/contact.html">Contacto</a></li>
-
         </ul>
       </nav>
-      <a href="/web/carrito-web/carrito.html" class="carrito-btn" target="_blank">
-  🛒 <span id="contador-carrito" class="js-cart-count">0</span>
-</a>
-      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro"> </button>
+      
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="/web/carrito-web/carrito.html" class="carrito-btn" target="_blank">
+          🛒 <span id="contador-carrito" class="js-cart-count">0</span>
+        </a>
+        
+        <button id="themeToggle" class="theme-toggle" aria-label="Cambiar modo oscuro"> </button>
+        
+        <!-- CORRECCIÓN 2: Se ajusta el padding y el top:100% para que no haya huecos al bajar el mouse -->
+        <div style="position: relative; display: flex; align-items: center; cursor: pointer; padding-bottom: 5px; margin-bottom: -5px;" onmouseenter="document.getElementById('user-menu').style.display='block'" onmouseleave="document.getElementById('user-menu').style.display='none'">
+            
+            <div style="display: flex; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </div>
+            
+            <div id="user-menu" style="display: none; position: absolute; right: 0; top: 100%; background-color: #ffffff; min-width: 170px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; z-index: 1000; padding: 8px 0; font-family: sans-serif; border: 1px solid #ddd;">
+                <div style="padding: 8px 16px; font-size: 12px; font-weight: bold; color: #888; border-bottom: 1px solid #eee; margin-bottom: 4px;">Mi Cuenta</div>
+                <a href="/web/admin/login.html" style="color: #333; padding: 10px 16px; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 14px;" onmouseover="this.style.backgroundColor='#f1f1f1'" onmouseout="this.style.backgroundColor='transparent'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                    </svg> Ingresar
+                </a>
+                <a href="/web/register.html" style="color: #333; padding: 10px 16px; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 14px;" onmouseover="this.style.backgroundColor='#f1f1f1'" onmouseout="this.style.backgroundColor='transparent'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                    </svg> Registrarse
+                </a>
+            </div>
+        </div>
+        
+      </div>
+      
     </div>
   </header>
 
@@ -43,7 +77,6 @@
       </div>
     </section>
 
-
     <section class="nuestros-productos">
       <div class="prods">
         <div class="title">
@@ -51,19 +84,19 @@
         </div>
         <div class="products-grid">
           <article class="product-card" href="web/products-web/section-men.html">
-            <a href='web/products-web/section-men.html'">
+            <a href="web/products-web/section-men.html">
               <img src="/media/media-sections/logo-hombre.webp" alt="Hombre">
               <h3>Sección Hombres</h3>
             </a>
           </article>
           <article class="product-card" href="web/products-web/section-women.html">
-            <a href='web/products-web/section-women.html'">
+            <a href="web/products-web/section-women.html">
               <img src="/media/media-sections/logo-dama.jpg" alt="Dama">
               <h3>Sección Damas</h3>
             </a>
           </article>
-          <article class="product-card" href='web/products-web/section-accesories.html'">
-            <a href='web/products-web/section-accesories.html'">
+          <article class="product-card" href="web/products-web/section-accesories.html">
+            <a href="web/products-web/section-accesories.html">
               <img src="/media/media-sections/accesorio.webp" alt="Joyas">
               <h3 >Accesorios</h3> 
             </a>
