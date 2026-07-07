@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearSearchBtn = document.getElementById('clearSearchBtn');
   const themeToggle = document.getElementById('themeToggle');
 
-  // Sincronizar el Tema con el resto del sitio
   const applyTheme = (isDark) => {
     if (isDark) {
       document.body.classList.add('dark');
@@ -19,11 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(true);
     const icon = themeToggle ? themeToggle.querySelector('i') : null;
     if (icon) {
-      if (icon.classList.contains('bi-moon-fill')) {
-        icon.className = 'bi bi-sun-fill text-warning fs-5';
-      } else {
-        icon.className = 'bi bi-sun fs-5';
-      }
+      if (icon.classList.contains('bi-moon-fill')) icon.className = 'bi bi-sun-fill text-warning fs-5';
+      else icon.className = 'bi bi-sun fs-5';
     }
   }
 
@@ -32,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const isDark = !document.body.classList.contains('dark');
       applyTheme(isDark);
       localStorage.setItem('tema', isDark ? 'dark' : 'light');
-
       const icon = themeToggle.querySelector('i');
       if (icon) {
         if (icon.classList.contains('bi-moon-fill') || icon.classList.contains('bi-sun-fill')) {
@@ -49,23 +44,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function inicializarFiltros() {
     const btnFiltrar = document.getElementById('btnFiltrar');
     const btnQuitarFiltros = document.getElementById('btnQuitarFiltros');
-    
+         
     function renderizarFiltros() {
       const searchTerm = (searchInput ? searchInput.value : '').toLowerCase().trim();
       const products = document.querySelectorAll('.product-item');
       let hasResults = false;
-
       products.forEach(product => {
         const cat = product.getAttribute('data-categoria');
         const marca = product.getAttribute('data-marca');
         const precio = parseFloat(product.getAttribute('data-precio'));
         const title = product.querySelector('.product-title').textContent.toLowerCase();
-
+        
         const matchCat = filtrosActivos.categorias.length === 0 || filtrosActivos.categorias.includes(cat);
         const matchBrand = filtrosActivos.marcas.length === 0 || filtrosActivos.marcas.includes(marca);
         const matchPrice = precio >= filtrosActivos.minPrice && precio <= filtrosActivos.maxPrice;
         const matchSearch = title.includes(searchTerm);
-
+        
         if (matchCat && matchBrand && matchPrice && matchSearch) {
           product.style.display = 'block';
           hasResults = true;
@@ -73,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
           product.style.display = 'none';
         }
       });
-
+      
       let noResultsMsg = document.getElementById('noResultsMessage');
       if (!hasResults) {
         if (!noResultsMsg) {
@@ -99,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarFiltros();
       });
     }
-
     if (btnQuitarFiltros) {
       btnQuitarFiltros.addEventListener('click', () => {
         document.querySelectorAll('.filter-category, .filter-brand').forEach(cb => cb.checked = false);
@@ -113,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarFiltros();
       });
     }
-
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         if (clearSearchBtn) clearSearchBtn.classList.toggle('d-none', e.target.value.length === 0);
@@ -136,18 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!response.ok) throw new Error('Error al obtener productos de hombres');
       const productos = await response.json();
       productsGrid.innerHTML = '';
-
       if (!productos.length) {
         productsGrid.innerHTML = '<div class="col-12 text-center text-muted"><p>No hay productos disponibles.</p></div>';
         return;
       }
-
+      
       productos.forEach(producto => {
-        const precioFormateado = Number(producto.precio || 0).toFixed(2);
         const imagen = producto.imagen_url || '/media/media-logos/LogoPS.png';
         const marca = producto.marca || 'Palmas Street';
-
         const nombreLower = (producto.nombre || '').toLowerCase();
+        
         let categoriaItem = 'Otros';
         if(nombreLower.includes('polo')) categoriaItem = 'Polo';
         else if(nombreLower.includes('camiseta')) categoriaItem = 'Camiseta';
@@ -161,14 +151,37 @@ document.addEventListener('DOMContentLoaded', () => {
         else if(nombreLower.includes('polera')) categoriaItem = 'Polera';
         else if(nombreLower.includes('jogger')) categoriaItem = 'Jogger';
 
+        let originalPrice = Number(producto.precio || 0);
+        let finalPrice = originalPrice;
+        let badgeHtml = '';
+        let priceHtml = `<span class="fs-5 fw-bold price mb-3 text-dark">S/ ${originalPrice.toFixed(2)}</span>`;
+
+        if (categoriaItem === 'Polo') {
+          finalPrice = originalPrice * 0.90; 
+          badgeHtml = `<span class="badge bg-danger position-absolute top-0 start-0 m-2 z-3 shadow-sm" style="font-size: 0.8rem;">Mundial 2026 (-10%)</span>`;
+          priceHtml = `
+            <div class="mb-3">
+              <span class="text-muted text-decoration-line-through me-2">S/ ${originalPrice.toFixed(2)}</span>
+              <span class="fs-5 fw-bold text-danger">S/ ${finalPrice.toFixed(2)}</span>
+            </div>`;
+        } else if (categoriaItem === 'Casaca') {
+          finalPrice = originalPrice * 0.85; 
+          badgeHtml = `<span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2 z-3 shadow-sm" style="font-size: 0.8rem;">Fiestas Patrias (-15%)</span>`;
+          priceHtml = `
+            <div class="mb-3">
+              <span class="text-muted text-decoration-line-through me-2">S/ ${originalPrice.toFixed(2)}</span>
+              <span class="fs-5 fw-bold text-danger">S/ ${finalPrice.toFixed(2)}</span>
+            </div>`;
+        }
+
         const articleCol = document.createElement('div');
         articleCol.className = 'col product-item';
         articleCol.setAttribute('data-categoria', categoriaItem);
         articleCol.setAttribute('data-marca', marca);
         articleCol.setAttribute('data-precio', producto.precio);
-
         articleCol.innerHTML = `
-          <div class="card h-100 border-0 shadow-sm hover-card">
+          <div class="card h-100 border-0 shadow-sm hover-card position-relative">
+            ${badgeHtml}
             <div class="product-image-container overflow-hidden">
               <img src="${PalmasCart.escapeHTML(imagen)}" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="${PalmasCart.escapeHTML(producto.nombre)}" onerror="this.src='/media/media-logos/LogoPS.png'">
             </div>
@@ -176,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <h5 class="card-title fw-bold product-title mb-1">${PalmasCart.escapeHTML(producto.nombre)}</h5>
               <h6 class="card-subtitle mb-2 fw-bold marca-text">Marca: ${PalmasCart.escapeHTML(marca)}</h6>
               <p class="card-text text-muted flex-grow-1 mt-2 product-description">${PalmasCart.escapeHTML(producto.descripcion || 'Sin descripción disponible.')}</p>
-              <span class="fs-5 fw-bold price mb-3">S/ ${precioFormateado}</span>
+              ${priceHtml}
               <div class="d-flex justify-content-center align-items-center mb-3 gap-2 quantity-selector">
                 <button type="button" class="btn btn-qty btn-minus btn-sm">-</button>
                 <input type="text" class="form-control form-control-sm text-center qty-input" value="1" readonly style="width: 50px;">
@@ -191,15 +204,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnPlus = articleCol.querySelector('.btn-plus');
         const qtyInput = articleCol.querySelector('.qty-input');
         const btnAdd = articleCol.querySelector('.btn-cart-add');
-
+        
         btnPlus.addEventListener('click', () => { qtyInput.value = Number(qtyInput.value) + 1; });
         btnMinus.addEventListener('click', () => {
-          const currentValue = Number(qtyInput.value);
-          if (currentValue > 1) qtyInput.value = currentValue - 1;
+          if (Number(qtyInput.value) > 1) qtyInput.value = Number(qtyInput.value) - 1;
         });
-
+        
         btnAdd.addEventListener('click', () => {
-          PalmasCart.addToCart(producto, Number(qtyInput.value));
+          // INYECCIÓN DE LA CATEGORÍA PARA QUE EL CARRITO APLIQUE DESCUENTO
+          const productoCarrito = { ...producto, categoria: categoriaItem };
+          PalmasCart.addToCart(productoCarrito, Number(qtyInput.value));
+          
           const originalText = btnAdd.innerHTML;
           btnAdd.innerHTML = '¡Añadido!';
           btnAdd.classList.remove('btn-primary');
@@ -212,11 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
             btnAdd.disabled = false;
           }, 1200);
         });
+
         productsGrid.appendChild(articleCol);
       });
       inicializarFiltros();
     } catch (error) {
-      console.error('❌ Error al cargar los productos:', error);
       productsGrid.innerHTML = '<div class="col-12 text-center text-muted"><p>No se pudieron cargar los productos en este momento.</p></div>';
     }
   }
