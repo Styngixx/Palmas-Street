@@ -9,9 +9,9 @@
 </head>
 <body>
   
-  <header class="header" style="position: relative; z-index: 9999;">
+  <header class="header">
     <div class="container nav-container">
-      <img src="/media/media-logos/LogoPS.png" alt="Loogo de la tienda" class="logo">
+      <img src="/media/media-logos/LogoPS.png" alt="Loogo de la tienda" class="logo  menu-logo-3d">
       <nav class="nav">
         <ul class="nav-list">
           <li><a href="#banner">Inicio</a></li>
@@ -55,6 +55,22 @@
         <div class="dots-container" id="dots"></div>
       </div>
     </section>
+    <br>
+    <br>
+
+    <div class="promo-marquee">
+  <div class="promo-marquee-track">
+    <span>★ DESCUENTO TODOS LOS VIERNES ★</span>
+    <span>★ DESCUENTO TODOS LOS VIERNES ★</span>
+    <span>★ DESCUENTO TODOS LOS VIERNES ★</span>
+    <span>★ DESCUENTO TODOS LOS VIERNES ★</span>
+
+    <span>★ DESCUENTO TODOS LOS VIERNES ★</span>
+    <span>★ DESCUENTO TODOS LOS VIERNES ★</span>
+    <span>★ DESCUENTO TODOS LOS VIERNES ★</span>
+    <span>★ DESCUENTO TODOS LOS VIERNES ★</span>
+  </div>
+</div>
 
     <section class="nuestros-productos">
       <div class="prods">
@@ -86,7 +102,7 @@
 
     <section id="video" class="video-referencial">
       <div class="vid-container">
-        <video src="/media/media-vid/WhatsApp Video 2026-04-13 at 18.30.50.mp4" autoplay loop controls muted></video>
+        <video src="/media/media-vid/WhatsApp Video 2026-04-13 at 18.30.50.mp4" autoplay loop muted></video>
       </div>
     </section>
 
@@ -127,7 +143,7 @@
 
   </main>
 
-  <footer class="footer">
+  <footer id="siteFooter" class="footer">
     <div class="container footer-grid">
       <div>
         <h3>Palmas Street</h3>
@@ -176,5 +192,71 @@
   <script src="/js/js-web/cart-utils.js"></script>
   <script src="/js/index.js"></script>
   <script src="/js/js-search/dinamica.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const footer = document.getElementById('siteFooter');
+
+    if (!footer) return;
+
+    let lastTime = 0;
+
+    footer.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+
+      // Controla cada cuánto aparece el logo
+      if (now - lastTime < 110) return;
+
+      lastTime = now;
+
+      const logo = document.createElement('img');
+
+      logo.src = '/media/media-logos/LogoPS.png';
+      logo.className = 'footer-logo-trail';
+
+      logo.style.left = `${e.clientX}px`;
+      logo.style.top = `${e.clientY}px`;
+
+      document.body.appendChild(logo);
+
+      setTimeout(() => {
+        logo.remove();
+      }, 1000);
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('.header');
+
+    if (!header) return;
+
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+
+      // Si estamos casi arriba, siempre mostrar el header
+      if (currentScrollY <= 80) {
+        header.classList.remove('header-hidden');
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // Si baja, ocultar header
+      if (currentScrollY > lastScrollY) {
+        header.classList.add('header-hidden');
+      } 
+      // Si sube, mostrar header
+      else {
+        header.classList.remove('header-hidden');
+      }
+
+      lastScrollY = currentScrollY;
+    });
+  });
+</script>
+
+  
+</script>
 </body>
 </html>
