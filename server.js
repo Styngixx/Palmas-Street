@@ -5,6 +5,7 @@ const path = require('path');
 const pool = require('./src/config/db');
 const authRoutes = require('./src/routes/auth');
 const adminProductsRoutes = require('./src/routes/adminProducts');
+const ventasRoutes = require('./src/routes/ventas');
 const { runMigrations } = require('./src/db/migrate');
 
 const app = express();
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/admin/productos', adminProductsRoutes);
+app.use('/api/ventas', ventasRoutes);
 
 app.get('/api/productos', async (req, res) => {
     const { categoria } = req.query;
