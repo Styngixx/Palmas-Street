@@ -39,14 +39,19 @@ a { text-decoration: none; color: inherit; }
 .container { width: min(90%, 1200px); margin: 0 auto; }
 
 .header {
-  /*position: sticky;
-  top: 0;*/
+  position: sticky;
+  top: 0;
   z-index: 1000;
   background: var(--surface); 
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   padding: 10px 0;
-  transition: background 0.3s ease;
+  transition: transform 0.35s ease, background 0.3s ease;
+}
+
+/* Cuando baja el scroll, ocultamos el header */
+.header.header-hidden {
+  transform: translateY(-100%);
 }
 
 .nav-container { 
@@ -205,22 +210,21 @@ body.dark .logo { filter: invert(1); }
   justify-content: center;
   align-items: center;
   padding: 80px 0; 
-  background-color: #191e21;
 }
 
 .vid-container {
-  width: 95%; 
-  max-width: 1300px; 
-  border-radius: 15px;
+  width: 100%; 
+  max-width: 1920px; 
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+
 }
 
 .vid-container video { 
   width: 100%; 
   display: block;
   max-height: 80vh; 
-  object-fit: cover; 
+  object-fit: cover;
+  height: auto; 
 }
 
 .nuestros-productos { padding: 50px 0; }
@@ -550,4 +554,107 @@ body.dark .logo { filter: invert(1); }
 
 .btn-agregar:hover {
   background: #444;
+}
+
+.footer-logo-trail {
+  position: fixed;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  animation: footerLogoFadeUp 1s ease-out forwards;
+}
+
+@keyframes footerLogoFadeUp {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  45% {
+    opacity: 0.75;
+    transform: translate(-50%, -80%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -130%) scale(0.6);
+  }
+}
+
+.promo-marquee {
+  width: 100%;
+  overflow: hidden;
+  background: #111111;
+  color: #ffffff;
+  padding: 14px 0;
+  white-space: nowrap;
+  position: relative;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.promo-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 45px;
+  animation: promoMarqueeMove 18s linear infinite;
+}
+
+.promo-marquee-track span {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+@keyframes promoMarqueeMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.promo-marquee:hover .promo-marquee-track {
+  animation-play-state: paused;
+}
+
+.menu-logo-3d {
+  display: inline-block;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  animation: logoMenuRotate3D 6s ease-in-out infinite;
+}
+
+@keyframes logoMenuRotate3D {
+  0% {
+    transform: perspective(700px) rotateY(0deg);
+  }
+
+  35% {
+    transform: perspective(700px) rotateY(360deg);
+  }
+
+  100% {
+    transform: perspective(700px) rotateY(360deg);
+  }
 }
