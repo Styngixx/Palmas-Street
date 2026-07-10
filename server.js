@@ -6,6 +6,8 @@ const pool = require('./src/config/db');
 const authRoutes = require('./src/routes/auth');
 const adminProductsRoutes = require('./src/routes/adminProducts');
 const ventasRoutes = require('./src/routes/ventas');
+// 1. NUEVO: Importamos el archivo de rutas de los reportes
+const adminReportesRoutes = require('./src/routes/adminReportes'); 
 const { runMigrations } = require('./src/db/migrate');
 
 const app = express();
@@ -13,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 const PUBLIC_FILTER = `COALESCE(visible, TRUE) = TRUE AND COALESCE(estado, 'activo') = 'activo'`;
 
-// AQUI ESTÁ LA SOLUCIÓN: Aumentamos el límite a 50mb para soportar las fotos en Base64
+// Aumentamos el límite a 50mb para soportar las fotos en Base64
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json({ limit: '50mb' }));
 
@@ -24,10 +26,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// ==========================================
+// CONFIGURACIÓN DE RUTAS DE LA API
+// ==========================================
 app.use('/api/auth', authRoutes);
 app.use('/api/admin/productos', adminProductsRoutes);
 app.use('/api/ventas', ventasRoutes);
 
+// 2. NUEVO: Le decimos al servidor que use la ruta de reportes
+app.use('/api/admin/reportes', adminReportesRoutes); 
+
+// ==========================================
+// OTRAS RUTAS PÚBLICAS
+// ==========================================
 app.get('/api/productos', async (req, res) => {
     const { categoria } = req.query;
     try {

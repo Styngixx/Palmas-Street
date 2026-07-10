@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/css-web/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <nav class="admin-navbar navbar navbar-expand-lg shadow-sm">
@@ -25,6 +26,9 @@
                     </button>
                     <button type="button" class="btn btn-outline-dark btn-sm" id="btnClientView">
                         <i class="bi bi-eye"></i> Vista Cliente
+                    </button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" id="btnReportesView">
+                        <i class="bi bi-bar-chart-fill"></i> Reportes
                     </button>
                 </div>
                 <a href="/index.html" target="_blank" class="btn btn-outline-secondary btn-sm">
@@ -116,7 +120,7 @@
         </div>
     </main>
 
-    <!-- Vista Cliente (preview) -->
+    <!-- Vista Cliente -->
     <section class="container-fluid px-4 py-4 d-none" id="clientPreview">
         <div class="alert alert-info border-0 shadow-sm">
             <i class="bi bi-info-circle"></i>
@@ -125,10 +129,53 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4" id="clientGrid"></div>
     </section>
 
-    <!-- Modal Producto -->
+    <!-- Vista Reportes -->
+    <section class="container-fluid px-4 py-4 d-none" id="reportsPanel">
+        <div class="mb-4">
+            <h2 class="fw-bold mb-1">Panel de Estadísticas</h2>
+            <p class="text-muted mb-0">Rendimiento general de la tienda en tiempo real</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Gráfico 1: Evolución de Ingresos -->
+            <div class="col-12">
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0">Evolución de Ingresos Totales</h5>
+                        <select class="form-select fw-bold w-auto bg-light border-0" id="filtroEvolucion">
+                            <option value="dia">Día (Últimas 24h)</option>
+                            <option value="semana">Esta Semana</option>
+                            <option value="mes" selected>Este Mes</option>
+                        </select>
+                    </div>
+                    <div style="position: relative; height: 350px; width: 100%;">
+                        <canvas id="graficoEvolucion"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico 2: Productos más vendidos -->
+            <div class="col-12">
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0">Top Productos Más Vendidos</h5>
+                        <select class="form-select fw-bold w-auto bg-light border-0" id="filtroTopProductos">
+                            <option value="dia">Día (Últimas 24h)</option>
+                            <option value="semana">Esta Semana</option>
+                            <option value="mes" selected>Este Mes</option>
+                        </select>
+                    </div>
+                    <div style="position: relative; height: 350px; width: 100%;">
+                        <canvas id="graficoVentas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modales -->
     <div class="modal fade" id="productModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <!-- La etiqueta form ahora engloba todo el modal-content para no romper el scroll de Bootstrap -->
             <form id="productForm" class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold" id="productModalTitle">Nuevo producto</h5>
@@ -203,7 +250,6 @@
         </div>
     </div>
 
-    <!-- Modal Confirmar eliminación -->
     <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">

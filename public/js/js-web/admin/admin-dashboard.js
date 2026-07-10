@@ -10,7 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let products = [];
     let deleteTargetId = null;
     let searchTimeout = null;
-    let currentBase64Image = null; // Variable para guardar la foto en texto
+    let currentBase64Image = null;
+    
+    // Variables para los Gráficos
+    let chartInstance = null; // Barras
+    let chartEvolucionInstance = null; // Lineal
+    let reporteInterval = null; 
 
     const productModal = new bootstrap.Modal(document.getElementById('productModal'));
     const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
@@ -24,9 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
         filterVisible: document.getElementById('filterVisible'),
         adminPanel: document.getElementById('adminPanel'),
         clientPreview: document.getElementById('clientPreview'),
+        reportsPanel: document.getElementById('reportsPanel'), 
         clientGrid: document.getElementById('clientGrid'),
         btnAdminView: document.getElementById('btnAdminView'),
         btnClientView: document.getElementById('btnClientView'),
+        btnReportesView: document.getElementById('btnReportesView'), 
+        
+        // Elementos independientes para los gráficos
+        filtroEvolucion: document.getElementById('filtroEvolucion'), 
+        filtroTopProductos: document.getElementById('filtroTopProductos'), 
+        ctxGraficoEvolucion: document.getElementById('graficoEvolucion'), // Canvas Lineal
+        ctxGraficoVentas: document.getElementById('graficoVentas'), // Canvas Barras
+        
         inputImagen: document.getElementById('productImagen'),
         previewContainer: document.getElementById('previewContainer'),
         imagePreview: document.getElementById('imagePreview')
@@ -188,13 +202,154 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
     }
 
-    // Convertir la imagen seleccionada a Base64
+    // ==========================================
+    // LOGICA DE GRÁFICOS INDEPENDIENTES
+    // ==========================================
+    
+    // Función para el gráfico lineal
+    async function cargarReporteEvolucion() {
+        try {
+            const rango = elements.filtroEvolucion.value;
+            const response = await AdminAuth.apiFetch(`/api/admin/reportes/ventas-tiempo?rango=${rango}`);
+            if (!response.ok) throw new Error('Error al cargar datos de evolución');
+            const data = await response.json();
+            renderizarGraficoLineal(data);
+        } catch (err) {
+            showToast(err.message, 'danger');
+        }
+    }
+
+    // Función para el gráfico de barras
+    async function cargarReporteProductos() {
+        try {
+            const rango = elements.filtroTopProductos.value;
+            const response = await AdminAuth.apiFetch(`/api/admin/reportes/top-productos?rango=${rango}`);
+            if (!response.ok) throw new Error('Error al cargar top productos');
+            const data = await response.json();
+            renderizarGraficoBarras(data);
+        } catch (err) {
+            showToast(err.message, 'danger');
+        }
+    }
+
+    // 1. Gráfico Lineal (Evolución)
+    function renderizarGraficoLineal(datos) {
+        const labels = datos.map(item => item.fecha);
+        const ingresos = datos.map(item => parseFloat(item.total_ingresos));
+
+        if (chartEvolucionInstance) {
+            chartEvolucionInstance.data.labels = labels;
+            chartEvolucionInstance.data.datasets[0].data = ingresos;
+            chartEvolucionInstance.update();
+        } else {
+            chartEvolucionInstance = new Chart(elements.ctxGraficoEvolucion, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Ingresos Totales (S/)',
+                        data: ingresos,
+                        borderColor: '#0d6efd',
+                        backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#0d6efd',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) { return 'S/ ' + context.parsed.y.toFixed(2); }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false, drawBorder: false }, ticks: { color: '#6c757d' } },
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: '#e9ecef', borderDash: [5, 5], drawBorder: false }, 
+                            ticks: { 
+                                color: '#6c757d',
+                                callback: function(value) { return 'S/ ' + value; }
+                            } 
+                        }
+                    },
+                    animation: { duration: 800, easing: 'easeOutQuart' }
+                }
+            });
+        }
+    }
+
+    // 2. Gráfico de Barras (Productos)
+    function renderizarGraficoBarras(datos) {
+        const labels = datos.map(item => item.nombre);
+        const cantidades = datos.map(item => item.total_vendido);
+
+        if (chartInstance) {
+            chartInstance.data.labels = labels;
+            chartInstance.data.datasets[0].data = cantidades;
+            chartInstance.update();
+        } else {
+            chartInstance = new Chart(elements.ctxGraficoVentas, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Unidades vendidas',
+                        data: cantidades,
+                        backgroundColor: '#212529',
+                        hoverBackgroundColor: '#495057',
+                        borderRadius: 6,
+                        maxBarThickness: 45
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) { return context.parsed.y + ' unidades vendidas'; }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false, drawBorder: false }, ticks: { color: '#6c757d' } },
+                        y: { beginAtZero: true, grid: { color: '#e9ecef', borderDash: [5, 5], drawBorder: false }, ticks: { stepSize: 1, color: '#6c757d' } }
+                    },
+                    animation: { duration: 800, easing: 'easeOutQuart' }
+                }
+            });
+        }
+    }
+    // ==========================================
+
     elements.inputImagen.addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                currentBase64Image = e.target.result; // Aquí se guarda la imagen en texto
+                currentBase64Image = e.target.result;
                 elements.imagePreview.src = currentBase64Image;
                 elements.previewContainer.classList.remove('d-none');
             };
@@ -219,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('productEstado').value = producto ? (producto.estado || 'activo') : 'activo';
 
         elements.inputImagen.value = '';
-        currentBase64Image = null; // Reseteamos la imagen al abrir el modal
+        currentBase64Image = null;
 
         if (producto && producto.imagen_url) {
             currentBase64Image = producto.imagen_url;
@@ -240,26 +395,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = id ? `/api/admin/productos/${id}` : '/api/admin/productos';
         const method = id ? 'PUT' : 'POST';
 
-        // Volvemos a armar el JSON puro
         const payload = {
             nombre: document.getElementById('productNombre').value.trim(),
             descripcion: document.getElementById('productDescripcion').value.trim(),
             precio: parseFloat(document.getElementById('productPrecio').value),
             categoria: document.getElementById('productCategoria').value,
             marca: document.getElementById('productMarca').value.trim() || 'Palmas Street',
-            imagen_url: currentBase64Image || '/media/media-logos/LogoPS.png', // Enviamos el texto Base64
+            imagen_url: currentBase64Image || '/media/media-logos/LogoPS.png',
             visible: document.getElementById('productVisible').checked,
             destacado: document.getElementById('productDestacado').checked,
             estado: document.getElementById('productEstado').value
         };
 
         try {
-            // Hacemos el fetch enviando JSON
             const response = await AdminAuth.apiFetch(url, {
                 method,
-                headers: {
-                    'Content-Type': 'application/json' // Especificamos que es JSON de nuevo
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
             const data = await response.json();
@@ -326,12 +477,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function switchView(clientView) {
-        elements.btnAdminView.classList.toggle('active', !clientView);
-        elements.btnClientView.classList.toggle('active', clientView);
-        elements.adminPanel.classList.toggle('d-none', clientView);
-        elements.clientPreview.classList.toggle('d-none', !clientView);
-        loadProducts(clientView);
+    function switchView(viewName) {
+        elements.btnAdminView.classList.toggle('active', viewName === 'admin');
+        elements.btnClientView.classList.toggle('active', viewName === 'cliente');
+        elements.btnReportesView.classList.toggle('active', viewName === 'reportes');
+        
+        elements.adminPanel.classList.toggle('d-none', viewName !== 'admin');
+        elements.clientPreview.classList.toggle('d-none', viewName !== 'cliente');
+        elements.reportsPanel.classList.toggle('d-none', viewName !== 'reportes');
+
+        if (viewName !== 'reportes' && reporteInterval) {
+            clearInterval(reporteInterval);
+        }
+
+        if (viewName === 'admin') loadProducts(false);
+        if (viewName === 'cliente') loadProducts(true);
+        if (viewName === 'reportes') {
+            // Cargar los gráficos con el valor individual de cada select
+            cargarReporteEvolucion();
+            cargarReporteProductos();
+            
+            // Ambos gráficos se auto-actualizan cada 5s según su propio filtro actual
+            if (reporteInterval) clearInterval(reporteInterval);
+            reporteInterval = setInterval(() => {
+                cargarReporteEvolucion();
+                cargarReporteProductos();
+            }, 5000); 
+        }
     }
 
     elements.tableBody.addEventListener('click', async (e) => {
@@ -375,8 +547,13 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('change', () => loadProducts());
     });
 
-    elements.btnAdminView.addEventListener('click', () => switchView(false));
-    elements.btnClientView.addEventListener('click', () => switchView(true));
+    elements.btnAdminView.addEventListener('click', () => switchView('admin'));
+    elements.btnClientView.addEventListener('click', () => switchView('cliente'));
+    elements.btnReportesView.addEventListener('click', () => switchView('reportes'));
+
+    // Eventos individuales cuando el usuario cambia un filtro
+    elements.filtroEvolucion.addEventListener('change', cargarReporteEvolucion);
+    elements.filtroTopProductos.addEventListener('change', cargarReporteProductos);
 
     loadProducts();
 });
