@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       productos.forEach(prod => {
-        const imgUrl = prod.imagen_url ? (String(prod.imagen_url).startsWith('/') ? prod.imagen_url : '/' + prod.imagen_url) : '/media/media-logos/LogoPS.png';
+        const imgUrl = prod.imagen_url || '/media/media-logos/LogoPS.png';
         const marca = prod.marca || 'Palmas Street';
         const nombreLower = (prod.nombre || '').toLowerCase();
         
