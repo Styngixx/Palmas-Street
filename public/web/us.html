@@ -263,6 +263,7 @@
         <button class="sprint-tab active" data-target="sprint1">Sprint 1 <br><span>AVANCE 1</span></button>
         <button class="sprint-tab" data-target="sprint2">Sprint 2 <br><span>AVANCE 2</span></button>
         <button class="sprint-tab" data-target="sprint3">Sprint 3 <br><span>AVANCE 3</span></button>
+        <button class="sprint-tab" data-target="sprint4">Sprint 4 <br><span>AVANCE FINAL</span></button>
       </div>
     
       <div class="sprints-content">
@@ -356,13 +357,42 @@
             </table>
           </div>
         </div>
+
+        <div id="sprint4" class="sprint-section">
+          <div class="table-responsive">
+            <table class="raci-table">
+                <thead>
+                    <tr>
+                        <th>Tarea</th>
+                        <th>Aldo Mestanza</th>
+                        <th>Francis Inche</th>
+                        <th>Gabriel Apac</th>
+                        <th>David Gonzales</th>
+                        <th>Fabrizio Correa</th>
+                        <th>Rosa Garibay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Login Administrador & Cliente</td><td><span class="cell-check">✓</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>CRUD Completo de Productos (Admin)</td><td><span class="cell-check">✓</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Modo Vista Cliente en lado Admin</td><td><span class="cell-check">✓</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Reportes & 4 Gráficas Estadísticas</td><td></td><td></td><td></td><td></td><td><span class="cell-check">✓</span></td><td><span class="cell-check">✓</span></td></tr>
+                    <tr><td>Descripción y Leyenda de Gráficas</td><td></td><td></td><td></td><td></td><td><span class="cell-check">✓</span></td><td><span class="cell-check">✓</span></td></tr>
+                    <tr><td>Descuentos, Promociones y Tickets</td><td></td><td></td><td><span class="cell-check">✓</span></td><td></td><td></td><td></td></tr>
+                    <tr><td>Liquidaciones y Remates</td><td></td><td></td><td><span class="cell-check">✓</span></td><td></td><td></td><td></td></tr>
+                    <tr><td>Carrito con conexión a BD (Supabase)</td><td></td><td></td><td></td><td><span class="cell-check">✓</span></td><td></td><td></td></tr>
+                    <tr><td>Colaboraciones (Artistas locales/int. y Marcas)</td><td></td><td><span class="cell-check">✓</span></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
     
       </div>
     
       <div class="raci-legend">
           <div><span class="cell-check">✓</span> : Responsable directo (Ejecutó la tarea)</div>
       </div>
-    </div>
+</div>
 
     <!-- ==========================================
      SECCIÓN SCRUM (TAMAÑO 100% OPTIMIZADO + EFECTO AURA)
@@ -387,11 +417,11 @@
       <div class="scrum-card backlog-card">
         <h4>Product Backlog</h4>
         <ul>
-          <li>Estructura Base (Nav, Inicio, Footer)</li>
-          <li>Catálogo y Secciones (H/D/A)</li>
-          <li>Buscadores y Carrito de Compras</li>
-          <li>Base de Datos</li>
-          <li>Documentación (Nosotros, RACI)</li>
+          <li>Estructura Base, Catálogo y Secciones</li>
+          <li>Buscadores y Plataforma E-commerce</li>
+          <li>Panel Administrativo y CRUD de Productos</li>
+          <li>Reportes Gráficos y Sistema de Promociones</li>
+          <li>Carrito con BD Supabase y Colaboraciones</li>
         </ul>
       </div>
     </div>
@@ -407,6 +437,7 @@
           <li><strong>Sprint 1:</strong> Inicio, Nav, Wireframes, Catálogo, Carrusel, Logo, Video, Footer.</li>
           <li><strong>Sprint 2:</strong> Búsqueda Dinámica, Secciones (H/D/A), Carrito, Nosotros, Contacto, BD.</li>
           <li><strong>Sprint 3:</strong> Búsquedas Estáticas, Banners, Mapas, Metodologías, CV, RACI.</li>
+          <li><strong>Sprint 4:</strong> Login Admin/Cliente y CRUD (Aldo) | Reportes y 4 Gráficas (Rosa & Fabrizio) | Descuentos y Promos (Gabriel) | Carrito conectado a BD Supabase (David) | Colaboraciones locales e internacionales (Francis).</li>
         </ul>
       </div>
     </div>
@@ -430,7 +461,7 @@
         <div class="scrum-animated-ring">
           <div class="scrum-circle-content">
             <h3>SPRINTS</h3>
-            <span class="highlight-text">Avances 1, 2 y 3</span>
+            <span class="highlight-text">Avances 1, 2, 3 y 4 (Final)</span>
             <span class="sub-text">Iteración Continua</span>
           </div>
         </div>
@@ -462,12 +493,13 @@
     <!-- FASE 7: Entregable y Stakeholders -->
     <div class="scrum-column">
       <div class="scrum-card deliverable-card">
-        <div class="scrum-icon">🚀</div>
-        <h4>Producto Entregable</h4>
+        <div class="scrum-icon">🏆</div>
+        <h4>Producto Entregable Final</h4>
         <ul>
-          <li>Web App Desplegada en Vercel</li>
-          <li>Búsquedas Dinámicas y Estáticas + Carrito Activo</li>
-          <li>Mapa Organizacional & Matriz RACI</li>
+          <li>Web App Versión Final Desplegada (Vercel)</li>
+          <li>Panel Admin (CRUD) y Dashboard de Ventas</li>
+          <li>Carrito 100% Funcional conectado a Supabase</li>
+          <li>Sistema de Promociones y Colaboraciones Activo</li>
         </ul>
       </div>
       <div class="scrum-arrow">⬇</div>
@@ -481,7 +513,7 @@
 
   </div>
 </div>
-<p class="scrum-note">*Nota: Todos los integrantes del equipo han participado en la realización de la app web Palmas Street.</p>
+<p class="scrum-note">*Nota: Todos los integrantes del equipo han participado activamente en la realización de la app web final Palmas Street.</p>
 <!-- ==========================================
      FIN SECCIÓN SCRUM
      ========================================== -->
