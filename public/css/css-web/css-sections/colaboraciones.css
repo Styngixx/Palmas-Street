@@ -1,0 +1,323 @@
+/* Variables para soportar Modo Claro y Oscuro */
+:root {
+    --bg-collabs: #ffffff;
+    --surface-collabs: #f8f9fa;
+    --text-main-collabs: #1a2b4c;
+    --line-color: #dee2e6;
+  }
+  
+  body.dark {
+    --bg-collabs: #121212;
+    --surface-collabs: #1e1e1e;
+    --text-main-collabs: #ffffff;
+    --line-color: #333333;
+  }
+  
+  /* Base de la página */
+  .collabs-main {
+    background-color: var(--bg-collabs);
+    color: var(--text-main-collabs);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .collabs-title {
+    color: var(--text-main-collabs);
+    letter-spacing: 2px;
+  }
+  
+  .section-heading {
+    color: var(--text-main-collabs);
+  }
+  
+  .heading-line {
+    height: 2px;
+    background-color: var(--line-color);
+    border-radius: 2px;
+  }
+  
+  .bg-surface {
+    background-color: var(--surface-collabs) !important;
+  }
+  .bg-surface-2 {
+    background-color: var(--bg-collabs) !important;
+  }
+  
+  /* =========================================
+     DISEÑO POLAROID (Artistas Locales)
+     ========================================= */
+  .polaroid-card {
+    background-color: #ffffff;
+    padding: 12px 12px 40px 12px;
+    border-radius: 2px;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  }
+  
+  body.dark .polaroid-card {
+    background-color: #242424;
+    border-color: #333333;
+  }
+  
+  .polaroid-img-wrapper {
+    overflow: hidden;
+    background-color: #f0f0f0;
+  }
+  
+  .polaroid-card img {
+    transition: transform 0.5s ease;
+  }
+  
+  .polaroid-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+  
+  .polaroid-card:hover img {
+    transform: scale(1.08);
+  }
+  
+  .polaroid-text h5 {
+    color: #1a2b4c;
+  }
+  body.dark .polaroid-text h5 {
+    color: #ffffff;
+  }
+  
+  /* Rotaciones sutiles para darle estilo urbano desordenado */
+  .polaroid-tilt-right {
+    transform: rotate(2deg);
+  }
+  .polaroid-tilt-left {
+    transform: rotate(-2deg);
+  }
+  
+  .polaroid-tilt-right:hover, 
+  .polaroid-tilt-left:hover {
+    transform: rotate(0deg) translateY(-10px) scale(1.02);
+  }
+  
+  /* =========================================
+     DISEÑO INTERNACIONAL
+     ========================================= */
+  .international-card {
+    border: 1px solid var(--line-color);
+  }
+  
+  .international-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
+    pointer-events: none;
+  }
+  
+  .international-card .overlay-text {
+    z-index: 2;
+    transition: transform 0.3s ease;
+  }
+  
+  .international-card:hover .overlay-text {
+    transform: translateY(-10px);
+  }
+  
+  /* =========================================
+     MARCAS COLABORADORAS
+     ========================================= */
+  .brand-box {
+    transition: all 0.3s ease;
+    background-color: #ffffff !important;
+  }
+  
+  body.dark .brand-box {
+    background-color: #f8f9fa !important; 
+    border-color: #444 !important;
+  }
+  
+  .collab-logo {
+    max-height: 50px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.6);
+    transition: all 0.4s ease;
+  }
+  
+  .brand-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  }
+  
+  .brand-box:hover .collab-logo {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+  }
+  
+  /* =========================================
+     SOLUCIONES FUERTES MODO OSCURO (HEADER Y TEXTOS)
+     ========================================= */
+  
+  /* Fondo del header en modo oscuro */
+  body.dark .header {
+    background-color: #1E1E1E !important;
+    border-bottom: 1px solid #333333 !important;
+  }
+  
+  /* Enlaces del menú de navegación */
+  body.dark .nav-link-custom {
+    color: #E0E0E0 !important;
+  }
+  body.dark .nav-link-custom:hover {
+    color: #FFFFFF !important;
+  }
+  
+  /* Iconos del carrito y el botón del sol/luna (Apuntando directamente a la etiqueta <i>) */
+  body.dark .header .btn-outline-dark,
+  body.dark .header #themeToggle,
+  body.dark .header .btn-outline-dark i,
+  body.dark .header #themeToggle i {
+    color: #FFFFFF !important;
+    border-color: transparent !important;
+  }
+  
+  body.dark .header .btn-outline-dark:hover,
+  body.dark .header #themeToggle:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #FFFFFF !important;
+  }
+  
+  /* CORRECCIÓN DE TEXTOS INVISIBLES */
+  /* Forzamos a que cualquier párrafo, texto secundario o clase 'lead' sea gris claro/blanco */
+  body.dark .text-muted,
+  body.dark p.lead,
+  body.dark p {
+    color: #E0E0E0 !important;
+  }
+  
+  /* Aseguramos que todos los títulos destaquen en blanco puro */
+  body.dark h1,
+  body.dark h2,
+  body.dark h3,
+  body.dark h4,
+  body.dark h5,
+  body.dark h6 {
+    color: #FFFFFF !important;
+  }
+  
+  /* Textos dentro de las tarjetas y contenedores grises */
+  body.dark .bg-surface,
+  body.dark .collabs-hero {
+    background-color: #1E1E1E !important;
+    border-color: #333333 !important;
+  }
+  
+  body.dark .bg-surface p,
+  body.dark .polaroid-text p {
+    color: #E0E0E0 !important;
+  }
+  
+  /* La última sección (Otros proyectos) */
+  body.dark .bg-surface {
+    background-image: none !important;
+  }
+
+  /* =========================================
+   EFECTOS "GOD" PARA EL BANNER Y HEADER
+   ========================================= */
+
+/* 1. Header Fijo Inteligente */
+.header {
+    position: fixed; /* Lo fijamos arriba */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050;
+    /* Transición ultra suave para desaparecer */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  }
+  
+  /* Clase que se inyectará para ocultarlo */
+  .header.header-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* Compensamos el espacio que deja el header al estar "fixed" */
+  body {
+    padding-top: 76px; 
+  }
+  
+  /* 2. El Contenedor del Carrusel */
+  .banner-container {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* Ocupará el 70% de la pantalla */
+    overflow: hidden;
+    background-color: #000; 
+  }
+  
+  .banner-slider {
+    display: flex;
+    height: 100%;
+    /* El secreto del pase suave (Curva God) */
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  /* 3. Las Imágenes del Carrusel */
+  .slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    /* Efecto de Zoom continuo y majestuoso */
+    animation: zoomGod 20s infinite alternate ease-in-out;
+  }
+  
+  /* Oscurecemos un poquito la foto para que no queme a la vista */
+  .slide::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+  }
+  
+  @keyframes zoomGod {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+  }
+  
+  /* 4. Botones de navegación del banner estilo Glassmorphism */
+  .btn-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1); /* Transparente */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    /* Efecto de cristal borroso */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  
+  .btn-nav.prev { left: 20px; }
+  .btn-nav.next { right: 20px; }
